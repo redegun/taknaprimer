@@ -19,7 +19,11 @@
   "devDependencies": {
     "browser-sync": "^2.26.3",
     "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^6.0.0",
     "gulp-less": "^3.5.0",
     "hoek": "^5.0.4"
+  },
+  "dependencies": {
+    "gulp-clean-css": "^3.10.0"
   }
 }

@@ -1,8 +1,1 @@
-@font-face {
-  font-family: 'Roboto Regular';
-  src: url('../../fonts/RobotoRegular/RobotoRegular.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'Roboto Bold';
-  src: url('../../fonts/RobotoBold/RobotoBold.ttf') format('truetype');
-}
+@font-face{font-family:'Roboto Regular';src:url(fonts/RobotoRegular/RobotoRegular.eot);src:url(fonts/RobotoRegular/RobotoRegular.eot?#iefix) format('embedded-opentype'),url(fonts/RobotoRegular/RobotoRegular.woff) format('woff'),url(fonts/RobotoRegular/RobotoRegular.ttf) format('truetype');font-weight:400;font-style:normal}@font-face{font-family:'Roboto Black';src:url(fonts/RobotoBlack/Roboto-Black.ttf) format('truetype')}@font-face{font-family:'Awesome Regular';src:url(fonts/awesome/fa-regular-400.ttf) format('truetype');font-weight:400;font-style:normal}
