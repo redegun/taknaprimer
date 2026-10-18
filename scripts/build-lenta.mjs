@@ -32,7 +32,9 @@ for (const c of cfg.cases) {
 const cleanText = (t) => (t || '').replace(/#[\wа-яёА-ЯЁ_]+/g, '').replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').replace(/[ \t]{2,}/g, ' ').trim();
 const isPersonal = (t) => { const l = (t || '').toLowerCase(); return stop.some((s) => l.includes(s)); };
 const titleOf = (text) => {
-  const first = (text.split('\n').map((s) => s.trim()).find(Boolean) || '').replace(/\s*(--|—|–)\s*/, ' — ');
+  // счётчик челленджа «02/33» / «3/31» — не заголовок: срезаем, а если строка из него одна — берём следующую
+  const lines = text.split('\n').map((s) => s.replace(/^\s*\d{1,2}\/\d{2}\s*[-—–]*\s*/, '').trim()).filter(Boolean);
+  const first = (lines[0] || '').replace(/\s*(--|—|–)\s*/, ' — ');
   if (first.length <= 80) return first;
   const cut = first.slice(0, 79);
   return cut.slice(0, Math.max(cut.lastIndexOf(' '), 30)).trim() + '…';

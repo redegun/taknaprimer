@@ -2,7 +2,7 @@
 id: 316
 date: 2025-10-04
 tg: "https://t.me/tak_naprimer/316"
-title: "4/31 murky/мутный"
+title: "murky/мутный"
 text: "4/31 murky/мутный"
 photos: ["/lenta-media/316/1.webp"]
 videos: []

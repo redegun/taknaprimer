@@ -2,7 +2,7 @@
 id: 172
 date: 2025-08-27
 tg: "https://t.me/tak_naprimer/172"
-title: "10/33 — и"
+title: "и"
 text: "10/33 — и"
 photos: ["/lenta-media/172/1.webp"]
 videos: []
