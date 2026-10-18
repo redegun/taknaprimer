@@ -1,5 +1,6 @@
 ---
-// Плавающая панель кейса (как на Behance): появляется при прокрутке. Десктоп — справа по центру, мобильный — полоска снизу.
+// Плавающая панель кейса — компактно, как на Behance: колонка круглых кнопок с подписями справа (десктоп),
+// на мобильном — узкая полоска снизу. Появляется после прокрутки.
 import { u, SITE } from '@/lib/url';
 import LikeButton from '@/components/LikeButton.astro';
 
@@ -8,34 +9,55 @@ interface Props {
   title: string;
   behance?: string;
 }
-const { slug, title, behance } = Astro.props;
+const { slug, behance } = Astro.props;
+const round = 'grid h-11 w-11 place-items-center rounded-full border border-ink/10 bg-white text-ink shadow-[0_2px_10px_rgba(0,0,0,0.08)] transition-colors hover:border-accent hover:text-accent';
+const cap = 'mt-1.5 block text-center text-[11px] leading-tight text-ink-2';
 ---
-<aside class="case-dock pointer-events-none fixed inset-x-0 bottom-0 z-30 opacity-0 transition-all duration-500 translate-y-3 lg:inset-x-auto lg:bottom-auto lg:right-5 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-3" aria-label="Панель кейса">
-  <!-- десктоп -->
-  <div class="hidden w-[232px] flex-col gap-3 rounded-xl2 border border-ink/10 bg-white/95 p-4 shadow-[0_12px_40px_rgba(0,0,0,0.12)] backdrop-blur lg:flex">
-    <a href={u('/obo-mne/')} class="flex items-center gap-3">
-      <img src={u('/about/tanya.webp')} alt="Татьяна Кочнева" width="44" height="44" class="h-11 w-11 rounded-full object-cover" loading="lazy" />
-      <span class="leading-tight"><span class="block font-display text-[14px] font-bold">Татьяна Кочнева</span><span class="block text-xs text-muted">дизайнер · буквы и объекты</span></span>
-    </a>
-    <div class="text-[13px] leading-snug text-ink-2 line-clamp-2">{title}</div>
-    <div class="flex items-center gap-3">
-      <LikeButton slug={slug} />
-      <span class="hidden items-center gap-1 text-xs text-muted [&.inline-flex]:inline-flex" data-views-wrap title="Просмотры">
-        <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="3"/></svg>
-        <span data-views={slug}>·</span>
-      </span>
-    </div>
-    <a href="#forma" class="btn btn-accent justify-center !py-2.5 text-sm">Обсудить проект</a>
-    <div class="flex items-center justify-between text-xs text-muted">
-      <button type="button" class="dock-share hover:text-accent" title="Поделиться">Поделиться</button>
-      {behance ? <a href={behance} target="_blank" rel="noopener" class="hover:text-accent">Behance ↗</a> : <a href={SITE.channel} target="_blank" rel="noopener" class="hover:text-accent">Канал ↗</a>}
-    </div>
-  </div>
+<aside class="case-dock pointer-events-none fixed inset-x-0 bottom-0 z-30 opacity-0 transition-all duration-500 translate-y-3 lg:inset-x-auto lg:bottom-auto lg:right-4 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-3" aria-label="Панель кейса">
+  <!-- десктоп: узкая колонка -->
+  <ul class="hidden w-[72px] flex-col items-center gap-4 lg:flex">
+    <li class="w-full text-center">
+      <a href={SITE.channel} target="_blank" rel="noopener" class="relative mx-auto block h-12 w-12" title="Подписаться на канал">
+        <img src={u('/about/tanya.webp')} alt="Татьяна Кочнева" width="48" height="48" class="h-12 w-12 rounded-full object-cover shadow-[0_2px_10px_rgba(0,0,0,0.12)]" loading="lazy" />
+        <span class="absolute -bottom-0.5 -right-0.5 grid h-5 w-5 place-items-center rounded-full bg-accent text-white ring-2 ring-paper" aria-hidden="true"><svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14"/></svg></span>
+      </a>
+      <span class={cap}>Подписаться</span>
+    </li>
+    <li class="w-full text-center">
+      <a href="#forma" class={`mx-auto ${round}`} title="Написать">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+      </a>
+      <span class={cap}>Написать</span>
+    </li>
+    <li class="w-full text-center">
+      <div class="mx-auto w-11"><LikeButton slug={slug} variant="round" /></div>
+      <span class={cap} data-like-label={slug}>Оценить</span>
+    </li>
+    <li class="w-full text-center">
+      <button type="button" class={`dock-share mx-auto ${round}`} title="Поделиться">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/></svg>
+      </button>
+      <span class={`dock-share-label ${cap}`}>Поделиться</span>
+    </li>
+    <li class="w-full text-center">
+      <div class={`mx-auto ${round} cursor-default hover:border-ink/10 hover:text-ink`} title="Просмотры">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="3"/></svg>
+      </div>
+      <span class={cap}><span data-views-wrap class="hidden"><span data-views={slug}>·</span></span><span class="block">просмотров</span></span>
+    </li>
+    {behance && (
+      <li class="w-full text-center">
+        <a href={behance} target="_blank" rel="noopener" class={`mx-auto ${round} font-display text-[13px] font-bold`} title="Оригинал на Behance">Bē</a>
+        <span class={cap}>Behance</span>
+      </li>
+    )}
+  </ul>
   <!-- мобильный: полоска снизу -->
-  <div class="flex items-center gap-2 border-t border-ink/10 bg-white/95 px-3 py-2 backdrop-blur lg:hidden">
-    <img src={u('/about/tanya.webp')} alt="" width="36" height="36" class="h-9 w-9 rounded-full object-cover" loading="lazy" />
-    <LikeButton slug={slug} label={false} />
-    <a href="#forma" class="btn btn-accent ml-auto !py-2 text-sm">Обсудить проект</a>
+  <div class="flex items-center gap-3 border-t border-ink/10 bg-white/95 px-3 py-2 backdrop-blur lg:hidden">
+    <a href={SITE.channel} target="_blank" rel="noopener"><img src={u('/about/tanya.webp')} alt="" width="36" height="36" class="h-9 w-9 rounded-full object-cover" loading="lazy" /></a>
+    <LikeButton slug={slug} variant="round" />
+    <span class="hidden items-center gap-1 text-xs text-muted" data-views-wrap><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="3"/></svg><span data-views={slug}>·</span></span>
+    <a href="#forma" class="btn btn-accent ml-auto !py-2 text-sm">Написать</a>
   </div>
 </aside>
 
@@ -51,12 +73,11 @@ const { slug, title, behance } = Astro.props;
     };
     show();
     window.addEventListener('scroll', show, { passive: true });
-    dock.querySelector('.dock-share')?.addEventListener('click', async (e) => {
-      const btn = e.currentTarget as HTMLButtonElement;
-      const data = { title: document.title, url: location.href };
+    dock.querySelector('.dock-share')?.addEventListener('click', async () => {
+      const label = dock.querySelector<HTMLElement>('.dock-share-label');
       try {
-        if (navigator.share) await navigator.share(data);
-        else { await navigator.clipboard.writeText(location.href); btn.textContent = 'Ссылка скопирована'; setTimeout(() => (btn.textContent = 'Поделиться'), 2000); }
+        if (navigator.share) await navigator.share({ title: document.title, url: location.href });
+        else { await navigator.clipboard.writeText(location.href); if (label) { label.textContent = 'Скопировано'; setTimeout(() => (label.textContent = 'Поделиться'), 2000); } }
       } catch {}
     });
   }
