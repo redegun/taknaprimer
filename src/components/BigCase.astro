@@ -5,12 +5,15 @@
 //  split — в контейнере: картинка + текст (по умолчанию).
 import { u } from '@/lib/url';
 import type { CollectionEntry } from 'astro:content';
+import Stickers from '@/components/Stickers.astro';
+import type { StickerPlacement } from '@/lib/stickers';
 
 interface Props {
   entry: CollectionEntry<'cases'>;
   flip?: boolean;
+  stickers?: StickerPlacement[];
 }
-const { entry, flip = false } = Astro.props;
+const { entry, flip = false, stickers = [] } = Astro.props;
 const d = entry.data;
 const href = u(`/raboty/${entry.id}/`);
 const imgs = d.presentation.flatMap((b) => (b.kind === 'image' ? [{ src: b.src!, w: b.w, h: b.h }] : b.kind === 'grid' ? (b.items ?? []) : []));
@@ -25,11 +28,14 @@ const heart = '<path d="M12 21s-7-4.6-9.3-8.6C.9 9.2 2.4 5.5 6 5.5c2 0 3.2 1.1 4
 ---
 {layout === 'wide' ? (
   <section class="py-6 sm:py-10" data-reveal>
-    <a href={href} class="group block" style={`background:${bg}`}>
-      <div class="mx-auto max-w-[1600px]">
-        <img src={u(media)} alt={d.title} width={meta?.w} height={meta?.h} loading="lazy" decoding="async" class="block w-full" style={ratio ? `aspect-ratio:${ratio}` : undefined} />
-      </div>
-    </a>
+    <div class="relative">
+      <a href={href} class="group block" style={`background:${bg}`}>
+        <div class="mx-auto max-w-[1600px]">
+          <img src={u(media)} alt={d.title} width={meta?.w} height={meta?.h} loading="lazy" decoding="async" class="block w-full" style={ratio ? `aspect-ratio:${ratio}` : undefined} />
+        </div>
+      </a>
+      {stickers.length > 0 && <Stickers items={stickers} />}
+    </div>
     <div class="container-x mt-6 grid gap-4 sm:mt-8 lg:grid-cols-[1.1fr_1fr] lg:items-end">
       <a href={href} class="group">
         <div class="text-sm text-muted">{d.period ?? d.year} · {d.tags.slice(0, 3).join(' · ')}</div>
@@ -45,7 +51,8 @@ const heart = '<path d="M12 21s-7-4.6-9.3-8.6C.9 9.2 2.4 5.5 6 5.5c2 0 3.2 1.1 4
     </div>
   </section>
 ) : layout === 'band' ? (
-  <section class:list={['py-14 sm:py-20', dark ? 'text-paper' : 'text-ink']} style={`background:${bg}`} data-reveal>
+  <section class:list={['relative py-14 sm:py-20', dark ? 'text-paper' : 'text-ink']} style={`background:${bg}`} data-reveal>
+    {stickers.length > 0 && <Stickers items={stickers} />}
     <div class="container-x grid items-center gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
       <div class:list={[flip ? 'lg:order-2' : '']}>
         <div class:list={['text-sm', dark ? 'text-paper/60' : 'text-muted']}>{d.period ?? d.year} · {d.tags.slice(0, 3).join(' · ')}</div>

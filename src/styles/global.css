@@ -26,6 +26,10 @@
 html {
   scroll-behavior: smooth;
 }
+/* стикеры и декор могут свисать за правый край — без горизонтального скролла */
+html, body {
+  overflow-x: clip;
+}
 
 body {
   @apply bg-paper text-ink font-sans antialiased;

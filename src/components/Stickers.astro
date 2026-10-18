@@ -1,0 +1,72 @@
+---
+// Слой стикеров поверх блока: абсолютное позиционирование, лёгкий поворот, тень, параллакс от курсора и плавное «плавание».
+// Родитель должен быть position: relative. Слой не ловит клики.
+import { u } from '@/lib/url';
+import { stickerSrc, type StickerPlacement } from '@/lib/stickers';
+
+interface Props {
+  items: StickerPlacement[];
+  class?: string;
+}
+const { items, class: cls = '' } = Astro.props;
+---
+<div class:list={['sticker-layer pointer-events-none absolute inset-0 z-10 overflow-visible', cls]} aria-hidden="true">
+  {items.map((s, i) => (
+    <img
+      src={u(stickerSrc(s.id))}
+      alt=""
+      width={s.size}
+      height={s.size}
+      loading="lazy"
+      decoding="async"
+      class:list={['sticker absolute rounded-[14%] shadow-[0_10px_30px_rgba(0,0,0,0.18)]', s.mobile ? '' : 'hidden sm:block']}
+      style={`left:${s.x};top:${s.y};width:${s.size}px;height:${s.size}px;--rot:${s.rot}deg;--depth:${s.depth ?? 0.5};--delay:${(i * 0.7).toFixed(1)}s`}
+    />
+  ))}
+</div>
+
+<style>
+  .sticker {
+    transform: translate(-50%, -50%) rotate(var(--rot)) translate3d(var(--px, 0px), var(--py, 0px), 0);
+    animation: sticker-float 6s ease-in-out infinite;
+    animation-delay: var(--delay);
+    will-change: transform;
+    transition: --px 0.3s, --py 0.3s;
+  }
+  @keyframes sticker-float {
+    0%, 100% { margin-top: 0; }
+    50% { margin-top: -8px; }
+  }
+  @media (max-width: 640px) {
+    .sticker { width: calc(var(--w, 100px) * 0.6); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sticker { animation: none; }
+  }
+</style>
+
+<script>
+  // параллакс: стикеры с большей глубиной сильнее уезжают за курсором
+  const layers = document.querySelectorAll<HTMLElement>('.sticker-layer');
+  if (layers.length && matchMedia('(pointer: fine)').matches) {
+    layers.forEach((layer) => {
+      const parent = layer.parentElement!;
+      const stickers = [...layer.querySelectorAll<HTMLElement>('.sticker')];
+      let raf = 0, tx = 0, ty = 0;
+      parent.addEventListener('pointermove', (e) => {
+        const r = parent.getBoundingClientRect();
+        tx = (e.clientX - r.left) / r.width - 0.5;
+        ty = (e.clientY - r.top) / r.height - 0.5;
+        if (!raf) raf = requestAnimationFrame(() => {
+          raf = 0;
+          stickers.forEach((s) => {
+            const d = Number(s.style.getPropertyValue('--depth') || 0.5) * 28;
+            s.style.setProperty('--px', `${(-tx * d).toFixed(1)}px`);
+            s.style.setProperty('--py', `${(-ty * d).toFixed(1)}px`);
+          });
+        });
+      });
+      parent.addEventListener('pointerleave', () => stickers.forEach((s) => { s.style.setProperty('--px', '0px'); s.style.setProperty('--py', '0px'); }));
+    });
+  }
+</script>

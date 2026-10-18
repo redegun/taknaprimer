@@ -1,9 +1,16 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import Stickers from '@/components/Stickers.astro';
 import { u } from '@/lib/url';
+const stickers = [
+  { id: '164', x: '18%', y: '22%', size: 130, rot: -14, depth: 0.6, mobile: true },
+  { id: '095', x: '82%', y: '30%', size: 140, rot: 10, depth: 0.8 },
+  { id: '153', x: '70%', y: '82%', size: 120, rot: -6, depth: 0.5, mobile: true },
+];
 ---
 <Layout title="Страница не нашлась" noindex>
-  <section class="py-24 text-center">
+  <section class="relative py-24 text-center">
+    <Stickers items={stickers} />
     <div class="container-x">
       <div class="font-display text-[clamp(5rem,25vw,14rem)] font-extrabold leading-none text-accent">Ъ</div>
       <h1 class="mt-4 text-3xl font-bold">Такой страницы нет</h1>

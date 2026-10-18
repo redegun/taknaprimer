@@ -1,0 +1,21 @@
+---
+// Бегущая лента стикеров (стикерпак Тани): бесконечная прокрутка CSS, пауза при наведении.
+import { u } from '@/lib/url';
+import { stickerSrc, MARQUEE_STICKERS } from '@/lib/stickers';
+const items = [...MARQUEE_STICKERS, ...MARQUEE_STICKERS];
+---
+<section class="sticker-marquee overflow-hidden py-6 sm:py-8" aria-label="Стикеры">
+  <div class="marquee-track flex w-max gap-4 sm:gap-6">
+    {items.map((id, i) => (
+      <img src={u(stickerSrc(id))} alt="" width="120" height="120" loading="lazy" decoding="async" class="h-20 w-20 shrink-0 rounded-[14%] shadow-[0_8px_24px_rgba(0,0,0,0.14)] sm:h-28 sm:w-28" style={`--rot:${((i * 37) % 17) - 8}deg`} />
+    ))}
+  </div>
+</section>
+
+<style>
+  .marquee-track { animation: marquee 70s linear infinite; }
+  .marquee-track img { transform: rotate(var(--rot)); }
+  .sticker-marquee:hover .marquee-track { animation-play-state: paused; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
+</style>

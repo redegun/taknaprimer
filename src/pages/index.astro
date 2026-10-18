@@ -5,6 +5,9 @@ import CaseCard from '@/components/CaseCard.astro';
 import BigCase from '@/components/BigCase.astro';
 import Lenta from '@/components/Lenta.astro';
 import ProjectForm from '@/components/ProjectForm.astro';
+import Stickers from '@/components/Stickers.astro';
+import StickerMarquee from '@/components/StickerMarquee.astro';
+import { HERO_STICKERS, CASE_STICKERS } from '@/lib/stickers';
 import { getCollection } from 'astro:content';
 import { u, SITE } from '@/lib/url';
 import { SERVICES, AWARDS } from '@/lib/data';
@@ -16,7 +19,11 @@ const bigIds = new Set(big.map((c) => c.id));
 const featured = all.filter((c) => c.data.featured && !bigIds.has(c.id)).slice(0, 6);
 ---
 <Layout title={SITE.name}>
-  <Hero client:load base={import.meta.env.BASE_URL} />
+  <div class="relative">
+    <Hero client:load base={import.meta.env.BASE_URL} />
+    {/* стикеры Тани поверх хиро: абсолютные объекты с параллаксом */}
+    <Stickers items={HERO_STICKERS} />
+  </div>
 
   {big.length > 0 && (
     <div class="pt-10 sm:pt-16">
@@ -25,7 +32,7 @@ const featured = all.filter((c) => c.data.featured && !bigIds.has(c.id)).slice(0
         <a href={u('/raboty/')} class="hidden font-medium underline decoration-line underline-offset-4 hover:text-accent sm:inline">Все работы →</a>
       </div>
       {/* Разные форматы, не однотипные карточки: полотно во всю ширину, тёмная полоса, картинка + текст */}
-      {big.map((c, i) => <BigCase entry={c} flip={i % 2 === 1} />)}
+      {big.map((c, i) => <BigCase entry={c} flip={i % 2 === 1} stickers={CASE_STICKERS[c.id] ?? []} />)}
     </div>
   )}
 
@@ -65,6 +72,8 @@ const featured = all.filter((c) => c.data.featured && !bigIds.has(c.id)).slice(0
       </div>
     </div>
   </section>
+
+  <StickerMarquee />
 
   <Lenta limit={12} />
 
