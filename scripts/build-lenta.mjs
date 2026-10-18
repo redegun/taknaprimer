@@ -42,4 +42,7 @@ for (const p of picked) {
 }
 fs.mkdirSync(path.join(ROOT, 'src/data'), { recursive: true });
 fs.writeFileSync(path.join(ROOT, 'src/data/lenta.json'), JSON.stringify(out, null, 1));
+// копия для клиентского обновления; на хостинге этот файл перезаписывает крон на VPS
+fs.mkdirSync(path.join(ROOT, 'public/lenta'), { recursive: true });
+fs.writeFileSync(path.join(ROOT, 'public/lenta/feed.json'), JSON.stringify(out));
 console.log('lenta posts:', out.length);

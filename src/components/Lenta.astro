@@ -1,5 +1,6 @@
 ---
 import { u, SITE } from '@/lib/url';
+import { cardHTML, type LentaPost } from '@/lib/lenta-client';
 import feed from '@/data/lenta.json';
 
 interface Props {
@@ -7,10 +8,10 @@ interface Props {
   title?: string;
 }
 const { limit = 12, title = 'Из канала' } = Astro.props;
-const posts = (feed as any[]).slice(0, limit);
-const fmt = (iso: string) => new Date(iso).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' });
+const posts = (feed as LentaPost[]).slice(0, limit);
+const html = posts.map((p) => cardHTML(p, 'carousel')).join('');
 ---
-<section class="py-16 sm:py-24" id="lenta">
+<section class="py-16 sm:py-24" id="lenta" data-limit={limit}>
   <div class="container-x">
     <div class="flex flex-wrap items-end justify-between gap-4" data-reveal>
       <div>
@@ -28,29 +29,19 @@ const fmt = (iso: string) => new Date(iso).toLocaleDateString('ru-RU', { day: 'n
       </div>
     </div>
 
-    <div class="lenta-track no-scrollbar mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [scroll-padding-inline:1rem]" data-reveal>
-      {posts.map((p) => (
-        <a href={p.tg} target="_blank" rel="noopener" class="card snap-start w-[78vw] shrink-0 sm:w-[340px]">
-          <div class="aspect-square overflow-hidden bg-paper-2">
-            <img src={u(p.photos[0])} alt="" loading="lazy" decoding="async" class="h-full w-full object-cover" />
-          </div>
-          <div class="p-4">
-            <div class="text-xs font-medium uppercase tracking-wide text-muted">{fmt(p.date)}{p.photos.length > 1 ? ` · ${p.photos.length} фото` : ''}</div>
-            <p class="mt-1.5 text-[15px] leading-snug text-ink-2 line-clamp-3">{p.text || 'Без подписи'}</p>
-          </div>
-        </a>
-      ))}
-    </div>
+    <div class="lenta-track no-scrollbar mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [scroll-padding-inline:1rem]" data-lenta-track data-first={posts[0]?.id ?? 0} data-reveal set:html={html} />
     <div class="mt-6">
       <a href={u('/lenta/')} class="font-medium underline decoration-line underline-offset-4 hover:text-accent">Вся лента →</a>
     </div>
   </div>
   <script>
-    document.querySelectorAll('#lenta').forEach((root) => {
-      const track = root.querySelector<HTMLElement>('.lenta-track');
+    import { refreshLenta } from '@/lib/lenta-client';
+    document.querySelectorAll<HTMLElement>('#lenta').forEach((root) => {
+      const track = root.querySelector<HTMLElement>('[data-lenta-track]');
       const step = () => (track?.firstElementChild as HTMLElement | null)?.offsetWidth ?? 320;
       root.querySelector('.lenta-prev')?.addEventListener('click', () => track?.scrollBy({ left: -step() - 16, behavior: 'smooth' }));
       root.querySelector('.lenta-next')?.addEventListener('click', () => track?.scrollBy({ left: step() + 16, behavior: 'smooth' }));
+      refreshLenta(track, 'carousel', Number(root.dataset.limit || 12));
     });
   </script>
 </section>

@@ -14,9 +14,18 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-$cfgPath = dirname(__DIR__, 3) . '/form-config.php';
+// Папка над docroot (/home/r/redegun/taknaprimer): и для корня, и для /_preview/
+$docroot = rtrim($_SERVER['DOCUMENT_ROOT'] ?? '', '/');
+$home = $docroot ? dirname($docroot) : dirname(__DIR__, 2);
+if (!is_file($home . '/form-config.php')) {
+    for ($d = __DIR__, $i = 0; $i < 6; $i++) {
+        $d = dirname($d);
+        if (is_file($d . '/form-config.php')) { $home = $d; break; }
+    }
+}
+$cfgPath = $home . '/form-config.php';
 $cfg = is_file($cfgPath) ? (include $cfgPath) : [];
-$logPath = dirname(__DIR__, 3) . '/form-inbox.log';
+$logPath = $home . '/form-inbox.log';
 
 $clean = function ($v) { return trim(mb_substr(strip_tags((string)$v), 0, 2000)); };
 

@@ -22,6 +22,7 @@ gallery:
   - {"kind":"image","src":"/cases/bukva-yo/614-1.webp","post":614,"tg":"https://t.me/tak_naprimer/614","title":"«Мамино Ё»"}
   - {"kind":"video","src":"/cases/bukva-yo/614-v1.mp4","post":614,"tg":"https://t.me/tak_naprimer/614","title":"«Мамино Ё»"}
   - {"kind":"image","src":"/cases/bukva-yo/625-1.webp","post":625,"tg":"https://t.me/tak_naprimer/625","title":"Распад цифрового образа (из алфавита)"}
+  - {"kind":"video","src":"/cases/bukva-yo/625-v1.mp4","post":625,"tg":"https://t.me/tak_naprimer/625","title":"Распад цифрового образа (из алфавита)"}
 ---
 
 Ё — буква, которой я когда-то посвятила диплом, так что мимо Ё-феста пройти невозможно. В 2026-м на конкурс «Расставим все точки над Ё» ушло сразу три идеи.
