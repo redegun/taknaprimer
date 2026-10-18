@@ -16,12 +16,13 @@ const pages = walk(DIST).map((f) => {
   const h1 = (html.match(/<h1[\s>]/g) || []).length;
   const noindex = /name="robots" content="noindex/.test(html);
   const canonical = (html.match(/<link rel="canonical" href="([^"]*)"/) || [, ''])[1];
-  return { url, title, desc, h1, noindex, canonical };
+  const redirect = /http-equiv="refresh"/i.test(html);
+  return { url, title, desc, h1, noindex, canonical, redirect };
 });
 const brand = (s) => /так, например/i.test(s) && /taknaprimer/i.test(s);
 const issues = [];
 const seenT = new Map(), seenD = new Map();
-const redirects = pages.filter((p) => p.noindex && /http-equiv="refresh"/i.test(fs.readFileSync(path.join(DIST, p.url, 'index.html'), 'utf8'))).length;
+const redirects = pages.filter((p) => p.redirect).length;
 for (const p of pages) {
   if (p.noindex) continue; // редиректы слитых постов и 404 — не для поиска
   if (!p.title) issues.push([p.url, 'нет title']);
