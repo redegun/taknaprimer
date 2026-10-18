@@ -11,8 +11,16 @@ interface Props {
   noindex?: boolean;
   stickyHeader?: boolean;
 }
-const { title, description = 'Татьяна Кочнева — дизайнер. Леттеринг, шрифтовые алфавиты, айдентика, буквы-объекты из бумаги, скотча и ткани.', ogImage, noindex = false, stickyHeader = true } = Astro.props;
-const fullTitle = title === SITE.name ? `${SITE.name} — ${SITE.person}, дизайнер` : `${title} — ${SITE.name}`;
+const { title, description = 'Так, например (taknaprimer) — сайт дизайнера Татьяны Кочневой: леттеринг, шрифтовые алфавиты, айдентика, буквы-объекты из бумаги, скотча и ткани.', ogImage, noindex = false, stickyHeader = true } = Astro.props;
+// Бренд в каждом title: кириллицей и слитно латиницей — по нему ищут
+const fullTitle = title === SITE.name ? `Так, например (taknaprimer) — ${SITE.person}, дизайнер: леттеринг и айдентика` : `${title} — Так, например · taknaprimer`;
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'WebSite', '@id': 'https://taknaprimer.ru/#website', url: 'https://taknaprimer.ru/', name: 'Так, например', alternateName: ['taknaprimer', 'Так например', 'taknaprimer.ru'], inLanguage: 'ru-RU', publisher: { '@id': 'https://taknaprimer.ru/#person' } },
+    { '@type': 'Person', '@id': 'https://taknaprimer.ru/#person', name: 'Татьяна Кочнева', alternateName: 'Так, например', jobTitle: 'Дизайнер', url: 'https://taknaprimer.ru/obo-mne/', image: 'https://taknaprimer.ru/about/tanya.webp', sameAs: [SITE.channel, 'https://www.behance.net/tak_naprimer'], knowsAbout: ['леттеринг', 'каллиграфия', 'шрифтовые алфавиты', 'айдентика', 'буквы-объекты'] },
+  ],
+});
 const isPreview = import.meta.env.BASE_URL !== '/';
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
 const og = ogImage ? new URL(ogImage, Astro.site).toString() : new URL(u('/og.jpg'), Astro.site).toString();
@@ -32,6 +40,8 @@ const og = ogImage ? new URL(ogImage, Astro.site).toString() : new URL(u('/og.jp
     <meta property="og:description" content={description} />
     <meta property="og:image" content={og} />
     <meta property="og:locale" content="ru_RU" />
+    <meta property="og:site_name" content="Так, например (taknaprimer)" />
+    <script type="application/ld+json" set:html={jsonLd} />
     <meta name="theme-color" content="#faf8f3" />
     <script is:inline>document.documentElement.classList.add('js');</script>
     {!isPreview && (

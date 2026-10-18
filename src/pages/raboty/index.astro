@@ -8,7 +8,7 @@ const all = (await getCollection('cases', ({ data }) => !data.draft)).sort((a, b
 const used = new Set(all.flatMap((c) => c.data.tags));
 const tags = TAGS.filter((t) => used.has(t));
 ---
-<Layout title="Работы" description="Алфавиты, леттеринг, буквы-объекты, каллиграфия и печать — работы Татьяны Кочневой.">
+<Layout title="Работы" description="Работы Татьяны Кочневой, «Так, например» (taknaprimer): алфавиты, леттеринг, буквы-объекты, каллиграфия, печать. Кейсы с Behance и Telegram-канала.">
   <section class="py-12 sm:py-16">
     <div class="container-x">
       <h1 class="text-4xl font-bold sm:text-6xl" data-reveal>Работы</h1>

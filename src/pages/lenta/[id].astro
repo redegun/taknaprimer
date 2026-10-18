@@ -18,10 +18,21 @@ const d = entry.data;
 const title = postTitle(entry);
 const cases = await getCollection('cases');
 const relatedCase = d.case ? cases.find((c) => c.id === d.case) : undefined;
-const description = (d.text || `Пост из Telegram-канала «Так, например» от ${fmtDate(d.date, true)}`).replace(/\s+/g, ' ').slice(0, 160);
+// SEO-title: короче H1 (до ~55 знаков), уникален за счёт кейса и номера поста (у буквы бывает несколько версий в один день)
+const shorten = (s: string, n: number) => (s.length <= n ? s : s.slice(0, n - 1).replace(/\s\S*$/, '').trim() + '…');
+const dateLong = fmtDate(d.date, true).replace(/\s*г\.$/, '');
+const media = [d.photos.length ? `${d.photos.length} фото` : '', d.videos.length ? `${d.videos.length} видео` : ''].filter(Boolean).join(', ');
+const seoTitle = d.title
+  ? `${shorten(d.title, 44)} — пост ${d.id}`
+  : `${media || 'Фото'} из канала, ${dateLong}, пост ${d.id}`;
+// description: текст поста (до 150 знаков, без счётчика «12/33») + бренд кириллицей и латиницей; у постов без текста — кейс, медиа, дата, номер
+const excerpt = d.text.replace(/^\s*\d{1,2}\/\d{2}\s*[-—–]*\s*/, '').replace(/\s+/g, ' ').trim();
+const description = excerpt
+  ? `${shorten(excerpt, 150)} — пост ${d.id} из канала «Так, например» (taknaprimer)${relatedCase ? `, кейс «${relatedCase.data.title}»` : ''}, ${dateLong}.`
+  : `${relatedCase ? `Кейс «${relatedCase.data.title}»: ` : ''}${media || 'фото'} из Telegram-канала «Так, например» (taknaprimer) Татьяны Кочневой, ${dateLong}, пост ${d.id}.`;
 const og = d.photos[0] ?? d.videos[0]?.poster;
 ---
-<Layout title={title} description={description} ogImage={og ? u(og) : undefined}>
+<Layout title={seoTitle} description={description} ogImage={og ? u(og) : undefined}>
   <article class="py-10 sm:py-14">
     <div class="container-x max-w-[900px]">
       <a href={u('/lenta/')} class="text-sm text-muted hover:text-accent">← Лента</a>

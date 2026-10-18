@@ -13,7 +13,7 @@ const { posts, page, pages } = Astro.props;
 const pageUrl = (n: number) => (n <= 1 ? '/lenta/' : `/lenta/page/${n}/`);
 const title = page > 1 ? `Лента, страница ${page}` : 'Лента';
 ---
-<Layout title={title} description="Посты из Telegram-канала «Так, например»: буквы, процесс, челленджи, конкурсы. Каждый пост — на своей странице.">
+<Layout title={title} description={`Лента «Так, например» (taknaprimer)${page > 1 ? `, страница ${page}` : ''}: посты Telegram-канала Татьяны Кочневой — буквы, леттеринг, процесс, челленджи. Каждый пост на своей странице.`}>
   <section class="py-12 sm:py-16">
     <div class="container-x">
       <div class="flex flex-wrap items-end justify-between gap-4" data-reveal>
