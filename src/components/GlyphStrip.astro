@@ -1,0 +1,28 @@
+---
+// Бегущая строка из векторных букв «Китайщины» (public/decor/vector, манифест src/data/vector.json).
+// Идёт в обратную сторону относительно стикер-ленты, тонкая, на бумажном фоне.
+import { u } from '@/lib/url';
+import vec from '@/data/vector.json';
+
+interface Props {
+  dark?: boolean;
+  speed?: number;
+}
+const { dark = false, speed = 60 } = Astro.props;
+const letters = (vec.letters as { id: string; w: number; h: number }[]);
+const items = [...letters, ...letters];
+---
+<div class="glyph-strip overflow-hidden py-3 sm:py-4" aria-hidden="true">
+  <div class="glyph-track flex w-max items-center gap-7 sm:gap-10" style={`--dur:${speed}s`}>
+    {items.map((l) => (
+      <img src={u(`/decor/vector/${l.id}.svg`)} alt="" width={l.w} height={l.h} loading="lazy" decoding="async" class:list={['h-9 w-auto sm:h-12', dark ? 'invert' : '']} />
+    ))}
+  </div>
+</div>
+
+<style>
+  .glyph-track { animation: glyphs var(--dur, 60s) linear infinite reverse; }
+  .glyph-strip:hover .glyph-track { animation-play-state: paused; }
+  @keyframes glyphs { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .glyph-track { animation: none; } }
+</style>

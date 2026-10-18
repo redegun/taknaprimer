@@ -7,6 +7,8 @@ import Lenta from '@/components/Lenta.astro';
 import ProjectForm from '@/components/ProjectForm.astro';
 import Stickers from '@/components/Stickers.astro';
 import StickerMarquee from '@/components/StickerMarquee.astro';
+import GlyphStrip from '@/components/GlyphStrip.astro';
+import { vec } from '@/lib/stickers';
 import { HERO_STICKERS, CASE_STICKERS } from '@/lib/stickers';
 import { getCollection } from 'astro:content';
 import { u, SITE } from '@/lib/url';
@@ -24,6 +26,8 @@ const featured = all.filter((c) => c.data.featured && !bigIds.has(c.id)).slice(0
     {/* стикеры Тани поверх хиро: абсолютные объекты с параллаксом */}
     <Stickers items={HERO_STICKERS} />
   </div>
+  {/* бегущая строка из векторных букв «Китайщины» */}
+  <GlyphStrip />
 
   {big.length > 0 && (
     <div class="pt-10 sm:pt-16">
@@ -39,7 +43,7 @@ const featured = all.filter((c) => c.data.featured && !bigIds.has(c.id)).slice(0
   <section class="py-10 sm:py-16">
     <div class="container-x">
       <div class="flex items-end justify-between gap-4" data-reveal>
-        <h2 class="text-3xl font-bold sm:text-4xl">{big.length ? 'Ещё работы' : 'Избранное'}</h2>
+        <h2 class="flex items-center gap-3 text-3xl font-bold sm:text-4xl">{big.length ? 'Ещё работы' : 'Избранное'} <img src={u(vec('v356'))} alt="" class="hidden h-4 w-auto -rotate-6 sm:inline" aria-hidden="true" /></h2>
         <a href={u('/raboty/')} class="hidden font-medium underline decoration-line underline-offset-4 hover:text-accent sm:inline">Все работы →</a>
       </div>
       <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -95,7 +99,7 @@ const featured = all.filter((c) => c.data.featured && !bigIds.has(c.id)).slice(0
   <section class="py-12 sm:py-20" id="forma">
     <div class="container-x grid gap-10 lg:grid-cols-[1fr_1.3fr]">
       <div data-reveal>
-        <h2 class="text-3xl font-bold sm:text-4xl">Обсудить проект</h2>
+        <h2 class="flex items-center gap-3 text-3xl font-bold sm:text-4xl">Обсудить проект <img src={u(vec('v020'))} alt="так?" class="hidden h-4 w-auto -rotate-3 sm:inline" aria-hidden="true" /></h2>
         <p class="mt-4 text-muted">Соберите запрос из кубиков — как я собираю буквы. Это ни к чему не обязывает: обсудим, прикинем сроки и стоимость.</p>
         <p class="mt-4 text-muted">Или напишите напрямую: <a class="font-medium text-ink underline decoration-line underline-offset-4 hover:text-accent" href={SITE.tg} target="_blank" rel="noopener">@taknaprimer</a>, <a class="font-medium text-ink underline decoration-line underline-offset-4 hover:text-accent" href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
       </div>

@@ -13,13 +13,13 @@ const { items, class: cls = '' } = Astro.props;
 <div class:list={['sticker-layer pointer-events-none absolute inset-0 z-10 overflow-visible', cls]} aria-hidden="true">
   {items.map((s, i) => (
     <img
-      src={u(stickerSrc(s.id))}
+      src={u(s.src ?? stickerSrc(s.id))}
       alt=""
       width={s.size}
       height={s.size}
       loading="lazy"
       decoding="async"
-      class:list={['sticker absolute rounded-[14%] shadow-[0_10px_30px_rgba(0,0,0,0.18)]', s.mobile ? '' : 'hidden sm:block']}
+      class:list={['sticker absolute', s.src ? 'sticker--vec object-contain drop-shadow-[0_6px_14px_rgba(0,0,0,0.18)]' : 'rounded-[14%] shadow-[0_10px_30px_rgba(0,0,0,0.18)]', s.mobile ? '' : 'hidden sm:block']}
       style={`left:${s.x};top:${s.y};width:${s.size}px;height:${s.size}px;--rot:${s.rot}deg;--depth:${s.depth ?? 0.5};--delay:${(i * 0.7).toFixed(1)}s`}
     />
   ))}
@@ -39,7 +39,10 @@ const { items, class: cls = '' } = Astro.props;
   }
   @media (max-width: 640px) {
     .sticker { width: 68px !important; height: 68px !important; }
+    .sticker--vec { width: 48px !important; height: 48px !important; }
   }
+  /* на тёмном фоне чёрные векторные элементы — белыми */
+  :global(.text-paper) .sticker--vec { filter: invert(1) drop-shadow(0 6px 14px rgba(0,0,0,0.3)); }
   @media (prefers-reduced-motion: reduce) {
     .sticker { animation: none; }
   }

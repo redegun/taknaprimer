@@ -14,7 +14,7 @@ const posts = (await getLenta()).slice(0, limit);
   <div class="container-x">
     <div class="flex flex-wrap items-end justify-between gap-4" data-reveal>
       <div>
-        <h2 class="text-3xl font-bold sm:text-4xl">{title}</h2>
+        <h2 class="flex items-center gap-3 text-3xl font-bold sm:text-4xl">{title} <img src={u('/decor/vector/v087.svg')} alt="свайпнись" class="hidden h-4 w-auto rotate-3 sm:inline" aria-hidden="true" /></h2>
         <p class="mt-2 text-muted">Свежее из Telegram-канала «Так, например»: процесс, буквы, челленджи.</p>
       </div>
       <div class="flex items-center gap-2">
