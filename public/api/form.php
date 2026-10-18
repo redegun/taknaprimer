@@ -3,7 +3,7 @@
 // Конфиг (вне webroot): /home/r/redegun/taknaprimer/form-config.php, возвращает массив:
 //   ['to' => ['taknaprimer@yandex.ru'], 'from' => 'site@taknaprimer.ru',
 //    'relay' => 'https://r.antonvetrov.ru/_tg/send', 'relay_auth' => '...', 'bot_token' => '...', 'chat_id' => '...']
-// Без конфига заявка пишется в /home/r/redegun/taknaprimer/form-inbox.log.
+// Порядок: записать в лог → сразу ответить браузеру → потом почта и Telegram (mail() на хостинге бывает медленным).
 
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');
@@ -49,18 +49,33 @@ $lines[] = 'Страница: ' . $page;
 $lines[] = 'IP: ' . ($_SERVER['REMOTE_ADDR'] ?? '') . ' · ' . date('Y-m-d H:i');
 $text = implode("\n", $lines);
 
-$sent = false;
+// 1. Лог вне webroot — заявка не теряется, даже если почта упала
+@file_put_contents($logPath, "----- " . date('c') . "\n" . $text . "\n\n", FILE_APPEND | LOCK_EX);
 
-// Почта
+// 2. Ответ браузеру сразу
+ignore_user_abort(true);
+set_time_limit(60);
+$body = json_encode(['ok' => true]);
+header('Content-Length: ' . strlen($body));
+header('Connection: close');
+echo $body;
+if (function_exists('fastcgi_finish_request')) {
+    fastcgi_finish_request();
+} else {
+    @ob_end_flush();
+    flush();
+}
+
+// 3. Почта
 if (!empty($cfg['to'])) {
     $subject = '=?UTF-8?B?' . base64_encode('Заявка с taknaprimer.ru: ' . mb_substr($message, 0, 50)) . '?=';
     $headers = "From: " . ($cfg['from'] ?? 'site@taknaprimer.ru') . "\r\nContent-Type: text/plain; charset=UTF-8\r\n";
     foreach ((array)$cfg['to'] as $to) {
-        if (@mail($to, $subject, $text, $headers)) $sent = true;
+        @mail($to, $subject, $text, $headers);
     }
 }
 
-// Telegram через релей на VPS (с Timeweb api.telegram.org недоступен)
+// 4. Telegram через релей на VPS (с Timeweb api.telegram.org недоступен)
 if (!empty($cfg['relay']) && !empty($cfg['bot_token']) && !empty($cfg['chat_id'])) {
     $payload = json_encode(['token' => $cfg['bot_token'], 'chat_id' => $cfg['chat_id'], 'text' => $text], JSON_UNESCAPED_UNICODE);
     $ch = curl_init($cfg['relay']);
@@ -71,12 +86,6 @@ if (!empty($cfg['relay']) && !empty($cfg['bot_token']) && !empty($cfg['chat_id']
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_TIMEOUT => 8,
     ]);
-    $res = curl_exec($ch);
-    if ($res !== false && curl_getinfo($ch, CURLINFO_HTTP_CODE) === 200) $sent = true;
+    curl_exec($ch);
     curl_close($ch);
 }
-
-// Всегда дублируем в лог вне webroot
-@file_put_contents($logPath, "----- " . date('c') . "\n" . $text . "\n\n", FILE_APPEND | LOCK_EX);
-
-echo json_encode(['ok' => true, 'delivered' => $sent]);
