@@ -20,11 +20,11 @@ export type StickerPlacement = {
 
 // Раскладки для конкретных мест
 export const HERO_STICKERS: StickerPlacement[] = [
-  { id: '013', x: '72%', y: '12%', size: 120, rot: -12, depth: 0.6, mobile: true },
-  { id: '074', x: '86%', y: '38%', size: 150, rot: 9, depth: 0.9 },
-  { id: '090', x: '64%', y: '66%', size: 110, rot: 15, depth: 0.4 },
-  { id: '255', x: '92%', y: '74%', size: 96, rot: -20, depth: 0.7, mobile: true },
-  { id: '125', x: '4%', y: '80%', size: 104, rot: -8, depth: 0.5 },
+  { id: '013', x: '88%', y: '10%', size: 120, rot: -12, depth: 0.6, mobile: true },
+  { id: '074', x: '94%', y: '46%', size: 150, rot: 9, depth: 0.9 },
+  { id: '090', x: '66%', y: '72%', size: 110, rot: 15, depth: 0.4 },
+  { id: '255', x: '82%', y: '88%', size: 96, rot: -20, depth: 0.7, mobile: true },
+  { id: '125', x: '4%', y: '84%', size: 104, rot: -8, depth: 0.5 },
 ];
 
 // Стикеры поверх больших кейсов на главной (ключ — slug кейса). Координаты — от краёв полотна.
