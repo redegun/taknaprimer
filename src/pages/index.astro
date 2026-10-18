@@ -97,13 +97,16 @@ const featured = all.filter((c) => c.data.featured && !bigIds.has(c.id)).slice(0
   </section>
 
   <section class="py-12 sm:py-20" id="forma">
-    <div class="container-x grid gap-10 lg:grid-cols-[1fr_1.3fr]">
-      <div data-reveal>
+    <div class="container-x">
+      <div class="grid gap-6 lg:grid-cols-[1fr_1fr] lg:items-end" data-reveal>
         <h2 class="flex items-center gap-3 text-3xl font-bold sm:text-4xl">Обсудить проект <img src={u(vec('v020'))} alt="так?" class="hidden h-4 w-auto -rotate-3 sm:inline" aria-hidden="true" /></h2>
-        <p class="mt-4 text-muted">Соберите запрос из наклеек: перетащите нужные в заявку — как я собираю буквы. Это ни к чему не обязывает: обсудим, прикинем сроки и стоимость.</p>
-        <p class="mt-4 text-muted">Или напишите напрямую: <a class="font-medium text-ink underline decoration-line underline-offset-4 hover:text-accent" href={SITE.tg} target="_blank" rel="noopener">@taknaprimer</a>, <a class="font-medium text-ink underline decoration-line underline-offset-4 hover:text-accent" href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+        <div>
+          <p class="text-muted">Соберите запрос из наклеек: перетащите нужные в заявку — как я собираю буквы. Это ни к чему не обязывает: обсудим, прикинем сроки и стоимость.</p>
+          <p class="mt-2 text-muted">Или напишите напрямую: <a class="font-medium text-ink underline decoration-line underline-offset-4 hover:text-accent" href={SITE.tg} target="_blank" rel="noopener">@taknaprimer</a>, <a class="font-medium text-ink underline decoration-line underline-offset-4 hover:text-accent" href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+        </div>
       </div>
-      <div class="rounded-xl2 border border-line bg-white p-6 sm:p-8">
+      {/* форма во всю ширину контейнера: слева лист наклеек, справа заявка */}
+      <div class="mt-8 rounded-xl2 border border-line bg-white p-6 sm:p-8">
         <ProjectForm />
       </div>
     </div>
