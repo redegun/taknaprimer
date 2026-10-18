@@ -7,9 +7,63 @@ short: "31 слово за 31 день — весь Inktober чернилами 
 result: "Собран в кейсы на Behance и Dprofile."
 materials: "Чернила «Малевичъ», в том числе распадающиеся, перо, кисть, вода. Эксперимент «буквы из воды и чернил»."
 cover: "/cases/inktober-2025/413-1.webp"
-links: {"tg":"https://t.me/tak_naprimer/312"}
+links: {"tg":"https://t.me/tak_naprimer/312","behance":"https://www.behance.net/gallery/238219833/Inktober-2025-by-lettering"}
 sort: 80
 featured: true
+presentation:
+  - {"kind":"image","src":"/cases/inktober-2025/behance/01.webp","w":1280,"h":868,"grid":false}
+  - {"kind":"text","text":"Inktober — это международный ежеоктябрьский творческий челлендж придуманный Паркером для художников.\nНужно делать по одному чб рисунку каждый день, используя чернила. Темы для работ предлагают организаторы, а участники выкладывают свои рисунки в соцсети, чтобы развивать навыки и обмениваться идеями по хештегу #inktober2025\nМне давно хотелось выполнить челлендж не иллюстрациями, а леттерингом, в результате нарисовала 31 работу чернилами и линерами, стараясь передать тему, ощущения и найти новые идеи, формы, сочетания и образы."}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/02.webp","w":1280,"h":903,"grid":true}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/03.webp","w":1280,"h":1024,"grid":true}
+  - {"kind":"text","text":"01 Mustache\n02 Weave"}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/04.webp","w":1280,"h":846,"grid":true}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/05.webp","w":1280,"h":916,"grid":true}
+  - {"kind":"text","text":"03 Crown\n04 Murky"}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/06.webp","w":1280,"h":1280,"grid":false}
+  - {"kind":"text","text":"05 Deer"}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/07.webp","w":1280,"h":955,"grid":true}
+  - {"kind":"text","text":"06 Pierce"}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/08.webp","w":1280,"h":1099,"grid":true}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/09.webp","w":1280,"h":813,"grid":true}
+  - {"kind":"text","text":"07 Starfish\n08 Reckless"}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/10.webp","w":1280,"h":960,"grid":true}
+  - {"kind":"text","text":"09 Heavy"}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/11.webp","w":1280,"h":1280,"grid":true}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/12.webp","w":1280,"h":1065,"grid":true}
+  - {"kind":"text","text":"10 Sweep\n11 Sting"}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/13.webp","w":1280,"h":784,"grid":true}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/14.webp","w":1279,"h":1035,"grid":true}
+  - {"kind":"text","text":"12 Shredded\n13 Drink"}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/15.webp","w":1280,"h":921,"grid":true}
+  - {"kind":"text","text":"14 Trunk"}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/16.webp","w":1237,"h":1280,"grid":true}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/17.webp","w":818,"h":555,"grid":true}
+  - {"kind":"text","text":"15 Ragged\n16 Blunder"}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/18.webp","w":1280,"h":671,"grid":true}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/19.webp","w":1280,"h":886,"grid":true}
+  - {"kind":"text","text":"17 Ornate\n18 Deal"}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/20.webp","w":1280,"h":875,"grid":true}
+  - {"kind":"text","text":"19 Arctic"}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/21.webp","w":1280,"h":1280,"grid":true}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/22.webp","w":1280,"h":977,"grid":true}
+  - {"kind":"text","text":"20 Rivals\n21 Blast"}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/23.webp","w":1280,"h":395,"grid":true}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/24.webp","w":1280,"h":1040,"grid":true}
+  - {"kind":"text","text":"22 Button\n23 Firefly"}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/25.webp","w":1280,"h":794,"grid":true}
+  - {"kind":"text","text":"24 Rowdy"}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/26.webp","w":1280,"h":935,"grid":true}
+  - {"kind":"text","text":"25 Inferno"}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/27.webp","w":1280,"h":845,"grid":true}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/28.webp","w":1280,"h":902,"grid":true}
+  - {"kind":"text","text":"26 Puzzling\n27 Onion"}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/29.webp","w":1280,"h":995,"grid":true}
+  - {"kind":"text","text":"28 Skeletal"}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/30.webp","w":1280,"h":715,"grid":true}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/31.webp","w":1280,"h":995,"grid":true}
+  - {"kind":"text","text":"29 Lesson\n30 Vacant"}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/32.webp","w":1280,"h":715,"grid":true}
+  - {"kind":"text","text":"31 Award"}
 gallery:
   - {"kind":"image","src":"/cases/inktober-2025/312-1.webp","post":312,"tg":"https://t.me/tak_naprimer/312","title":"А вот и мои усы, точнее не мои, мои еще не настолько шикарные, а…"}
   - {"kind":"image","src":"/cases/inktober-2025/313-1.webp","post":313,"tg":"https://t.me/tak_naprimer/313","title":"Наплела вам я тут сегодня"}

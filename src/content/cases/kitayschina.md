@@ -10,6 +10,69 @@ cover: "/cases/kitayschina/298-1.webp"
 links: {"tg":"https://t.me/tak_naprimer/145","behance":"https://www.behance.net/gallery/235462227/bkvch-2025-kitajschina"}
 sort: 90
 featured: true
+presentation:
+  - {"kind":"image","src":"/cases/kitayschina/behance/01.webp","w":1600,"h":556,"grid":false}
+  - {"kind":"heading","text":"33 дня X 33 буквы"}
+  - {"kind":"text","text":"Творческий вызов для всех, кто работает с типографикой — от дизайнеров и иллюстраторов до каллиграфов и даже фотографов, — с 18 августа по 19 сентября 2025 года, где каждый день по-новому раскрывает кириллическую букву."}
+  - {"kind":"image","src":"/cases/kitayschina/behance/02.webp","w":1600,"h":827,"grid":false}
+  - {"kind":"heading","text":"Поиски"}
+  - {"kind":"text","text":"За пару дней до старта я понятия не имела, что буду делать, поэтому взяла карандаш и стала нащупывать возможные варианты. Пересматривая эскизы в день старта, у меня ёкало только на одном варианте, вот так я и ввязалась в азиатско-иероглифическую тему."}
+  - {"kind":"heading","text":"Цветовая гамма"}
+  - {"kind":"image","src":"/cases/kitayschina/behance/03.gif","w":800,"h":800,"grid":false}
+  - {"kind":"heading","text":"Алфавит"}
+  - {"kind":"text","text":"Я старалась рисовать буквы в одной стилистике, но с различными подходами в идентичных буквах, чтобы каждая получилась уникальной. Вот такой алфавит у меня получился."}
+  - {"kind":"image","src":"/cases/kitayschina/behance/04.webp","w":1600,"h":1022,"grid":false}
+  - {"kind":"text","text":"После буквы В захотелось оживить буквы, одеть их в фактуры и дать им вторую жизнь. А так как я до сих пор еще не пробовала нейросети, то решила, что сейчас самое время освоить этот инструмент.\nРисуя такие псевдо-иероглифические буквы, думала о том, что все мы ежедневно заказываем, пользуемся, сталкиваемся с китайскими «поделками» и их качеством: то вышивка слипшаяся, то нитки торчат, то бусина висит на волоске, то ржавчина, то трещины, а то и осколки вовсе. Всем известное китайское качество. Так и решила назвать свои буквы — «китайщина», а торчащие нитки сделать «изюминкой» стиля."}
+  - {"kind":"image","src":"/cases/kitayschina/behance/05.gif","w":800,"h":800,"grid":false}
+  - {"kind":"image","src":"/cases/kitayschina/behance/06.webp","w":1600,"h":2093,"grid":false}
+  - {"kind":"image","src":"/cases/kitayschina/behance/07.webp","w":1600,"h":1603,"grid":false}
+  - {"kind":"image","src":"/cases/kitayschina/behance/08.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/09.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/10.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/11.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/12.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/13.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/14.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/15.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/16.webp","w":1600,"h":1067,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/17.webp","w":1024,"h":1024,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/18.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/19.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/20.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/21.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/22.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/23.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/24.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/25.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/26.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/27.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/28.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/29.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/30.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/31.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/32.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/33.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/34.webp","w":1600,"h":1067,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/35.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/36.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/37.webp","w":1600,"h":797,"grid":false}
+  - {"kind":"image","src":"/cases/kitayschina/behance/38.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/39.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/40.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/41.webp","w":1600,"h":1067,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/42.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/43.webp","w":1600,"h":688,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/44.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/45.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/46.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/47.webp","w":1600,"h":1604,"grid":false}
+  - {"kind":"image","src":"/cases/kitayschina/behance/48.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/49.gif","w":800,"h":800,"grid":true}
+  - {"kind":"image","src":"/cases/kitayschina/behance/50.webp","w":1600,"h":688,"grid":false}
+  - {"kind":"image","src":"/cases/kitayschina/behance/51.webp","w":1600,"h":1607,"grid":false}
+  - {"kind":"heading","text":"Спасибо за внимание"}
+  - {"kind":"text","text":"Посмотреть буквы поближе можно в телеграм: @tak_naprimer"}
+  - {"kind":"image","src":"/cases/kitayschina/behance/52.gif","w":2520,"h":800,"grid":false}
 gallery:
   - {"kind":"image","src":"/cases/kitayschina/145-1.webp","post":145,"tg":"https://t.me/tak_naprimer/145","title":"А"}
   - {"kind":"image","src":"/cases/kitayschina/146-1.webp","post":146,"tg":"https://t.me/tak_naprimer/146","title":"Б"}

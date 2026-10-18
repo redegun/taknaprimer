@@ -29,6 +29,15 @@ const cases = defineCollection({
       behance: z.string().optional(),
       dprofile: z.string().optional(),
     }).default({}),
+    // Презентация кейса как на Behance: модули по порядку (картинки в оригинале, заголовки, абзацы)
+    presentation: z.array(z.object({
+      kind: z.enum(['image', 'heading', 'text']),
+      src: z.string().optional(),
+      w: z.number().optional(),
+      h: z.number().optional(),
+      grid: z.boolean().optional(),
+      text: z.string().optional(),
+    })).default([]),
     sort: z.number().default(0),
     featured: z.boolean().default(false),
     draft: z.boolean().default(false),

@@ -147,6 +147,11 @@ for (const c of cfg.cases) {
   const nImg = gallery.filter((g) => g.kind === 'image').length, nVid = gallery.length - nImg;
   console.log(`   ${nImg} фото, ${nVid} видео, cover ${cover}`);
 
+  // презентация с Behance (scripts/behance-import.mjs) — если есть
+  const presFile = path.join(ROOT, 'scripts/presentation', `${c.slug}.json`);
+  const pres = fs.existsSync(presFile) ? JSON.parse(fs.readFileSync(presFile, 'utf8')) : null;
+  const links = { ...(c.links || {}) };
+  if (pres?.behance && !links.behance) links.behance = pres.behance;
   const fm = [
     '---',
     `title: ${yaml(c.title)}`,
@@ -157,9 +162,10 @@ for (const c of cfg.cases) {
     c.result ? `result: ${yaml(c.result)}` : null,
     c.materials ? `materials: ${yaml(c.materials)}` : null,
     `cover: ${yaml(cover)}`,
-    `links: ${JSON.stringify(c.links || {})}`,
+    `links: ${JSON.stringify(links)}`,
     `sort: ${c.sort ?? 0}`,
     `featured: ${!!c.featured}`,
+    ...(pres ? ['presentation:', ...pres.blocks.map((b) => '  - ' + JSON.stringify(b))] : []),
     'gallery:',
     ...gallery.map((g) => '  - ' + JSON.stringify(g)),
     '---',
