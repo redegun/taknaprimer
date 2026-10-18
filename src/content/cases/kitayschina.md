@@ -1,0 +1,142 @@
+---
+title: "Китайщина"
+year: 2025
+period: "август–сентябрь 2025"
+tags: ["Алфавиты","Текстиль","Леттеринг","Конкурсы"]
+short: "Кириллический алфавит для Буквального челленджа 2025: по две-четыре версии каждой буквы, отдельная текстильная линия."
+result: "33 буквы, два финальных коллажа, кейс на Behance."
+materials: "Маркеры, тушь, вышивка, пряжа, бумага, фотосъёмка предметов. Текстильная серия #буквастильнаятекстильная."
+cover: "/cases/kitayschina/298-1.webp"
+links: {"tg":"https://t.me/tak_naprimer/145","behance":"https://www.behance.net/gallery/235462227/bkvch-2025-kitajschina"}
+sort: 90
+featured: true
+gallery:
+  - {"kind":"image","src":"/cases/kitayschina/145-1.webp","post":145,"tg":"https://t.me/tak_naprimer/145","title":"А"}
+  - {"kind":"image","src":"/cases/kitayschina/146-1.webp","post":146,"tg":"https://t.me/tak_naprimer/146","title":"Б"}
+  - {"kind":"image","src":"/cases/kitayschina/147-1.webp","post":147,"tg":"https://t.me/tak_naprimer/147","title":"В"}
+  - {"kind":"image","src":"/cases/kitayschina/148-1.webp","post":148,"tg":"https://t.me/tak_naprimer/148","title":"Г","caption":"Вроде бы простая буква, а такая сложная оказалась"}
+  - {"kind":"image","src":"/cases/kitayschina/149-1.webp","post":149,"tg":"https://t.me/tak_naprimer/149","title":"И вот как уже складывается"}
+  - {"kind":"image","src":"/cases/kitayschina/151-1.webp","post":151,"tg":"https://t.me/tak_naprimer/151","title":"Д"}
+  - {"kind":"image","src":"/cases/kitayschina/154-1.webp","post":154,"tg":"https://t.me/tak_naprimer/154","title":"Е"}
+  - {"kind":"image","src":"/cases/kitayschina/161-1.webp","post":161,"tg":"https://t.me/tak_naprimer/161"}
+  - {"kind":"image","src":"/cases/kitayschina/162-1.webp","post":162,"tg":"https://t.me/tak_naprimer/162"}
+  - {"kind":"image","src":"/cases/kitayschina/163-1.webp","post":163,"tg":"https://t.me/tak_naprimer/163","title":"Ё","caption":"Буква настолько любимая, что даже когда-то писала диплом, посвящённый ей."}
+  - {"kind":"image","src":"/cases/kitayschina/164-1.webp","post":164,"tg":"https://t.me/tak_naprimer/164","title":"иероглифическая Ж"}
+  - {"kind":"image","src":"/cases/kitayschina/165-1.webp","post":165,"tg":"https://t.me/tak_naprimer/165","title":"Вторая четверка"}
+  - {"kind":"image","src":"/cases/kitayschina/166-1.webp","post":166,"tg":"https://t.me/tak_naprimer/166","title":"Ёж здорового человека"}
+  - {"kind":"image","src":"/cases/kitayschina/168-1.webp","post":168,"tg":"https://t.me/tak_naprimer/168","title":"злая З"}
+  - {"kind":"image","src":"/cases/kitayschina/169-1.webp","post":169,"tg":"https://t.me/tak_naprimer/169","title":"Буквенный джаз"}
+  - {"kind":"image","src":"/cases/kitayschina/170-1.webp","post":170,"tg":"https://t.me/tak_naprimer/170","title":"Девятка"}
+  - {"kind":"image","src":"/cases/kitayschina/171-1.webp","post":171,"tg":"https://t.me/tak_naprimer/171","title":"на всём газу"}
+  - {"kind":"image","src":"/cases/kitayschina/172-1.webp","post":172,"tg":"https://t.me/tak_naprimer/172","title":"и"}
+  - {"kind":"image","src":"/cases/kitayschina/174-1.webp","post":174,"tg":"https://t.me/tak_naprimer/174","title":"й"}
+  - {"kind":"image","src":"/cases/kitayschina/175-1.webp","post":175,"tg":"https://t.me/tak_naprimer/175","title":"теплеЙшая Й"}
+  - {"kind":"image","src":"/cases/kitayschina/176-1.webp","post":176,"tg":"https://t.me/tak_naprimer/176"}
+  - {"kind":"image","src":"/cases/kitayschina/180-1.webp","post":180,"tg":"https://t.me/tak_naprimer/180","title":"Атмосферная А"}
+  - {"kind":"image","src":"/cases/kitayschina/181-1.webp","post":181,"tg":"https://t.me/tak_naprimer/181","title":"К","caption":"Количество слов на эту букву огромное. Качество, креатив, контраст, контекст, культура, кич, круг, квадрат, Китай . Но я все таки отталкиваюсь не от слов на букву, а от ее возможной формы. Кто-то как-то кому-то в комментариях написал мол главное не форма, а идея. А для меня форма — это и есть идея буквы, если она не находится в каком либо контексте или слове, где смысл будет играть первую роль при поиске характера и вида буквы.\n\nКрадется вторая треть челленджа, и я только сейчас для себя начала определять примерно, что я вообще делаю такое. Китайщину делаю, — так и назову свои псевдо-иероглифические буквы и постараюсь до конца челленджа успеть «одеть» свои формы в текстуры, чтобы наверняка проявилась эта самая «китайщина», немного кривенькая, слегка косонькая, чуть-чуть коцанная и малость корявенькая."}
+  - {"kind":"image","src":"/cases/kitayschina/182-1.webp","post":182,"tg":"https://t.me/tak_naprimer/182","title":"К"}
+  - {"kind":"image","src":"/cases/kitayschina/183-1.webp","post":183,"tg":"https://t.me/tak_naprimer/183","title":"Кичевая К"}
+  - {"kind":"image","src":"/cases/kitayschina/184-1.webp","post":184,"tg":"https://t.me/tak_naprimer/184","title":"К"}
+  - {"kind":"image","src":"/cases/kitayschina/185-1.webp","post":185,"tg":"https://t.me/tak_naprimer/185","title":"К"}
+  - {"kind":"image","src":"/cases/kitayschina/186-1.webp","post":186,"tg":"https://t.me/tak_naprimer/186"}
+  - {"kind":"image","src":"/cases/kitayschina/187-1.webp","post":187,"tg":"https://t.me/tak_naprimer/187","title":"Богатая Б"}
+  - {"kind":"image","src":"/cases/kitayschina/188-1.webp","post":188,"tg":"https://t.me/tak_naprimer/188","title":"Вышитая В"}
+  - {"kind":"image","src":"/cases/kitayschina/189-1.webp","post":189,"tg":"https://t.me/tak_naprimer/189","title":"Грохнувшаяся Г"}
+  - {"kind":"image","src":"/cases/kitayschina/190-1.webp","post":190,"tg":"https://t.me/tak_naprimer/190","title":"дутая Д"}
+  - {"kind":"image","src":"/cases/kitayschina/191-1.webp","post":191,"tg":"https://t.me/tak_naprimer/191","title":"Единственная Е"}
+  - {"kind":"image","src":"/cases/kitayschina/192-1.webp","post":192,"tg":"https://t.me/tak_naprimer/192","title":"зелЁная Ё"}
+  - {"kind":"image","src":"/cases/kitayschina/193-1.webp","post":193,"tg":"https://t.me/tak_naprimer/193","title":"Жизненная Ж"}
+  - {"kind":"image","src":"/cases/kitayschina/194-1.webp","post":194,"tg":"https://t.me/tak_naprimer/194","title":"Лаконичная Л"}
+  - {"kind":"image","src":"/cases/kitayschina/195-1.webp","post":195,"tg":"https://t.me/tak_naprimer/195","title":"Лакричная Л"}
+  - {"kind":"image","src":"/cases/kitayschina/196-1.webp","post":196,"tg":"https://t.me/tak_naprimer/196","title":"иррациональная И"}
+  - {"kind":"image","src":"/cases/kitayschina/207-1.webp","post":207,"tg":"https://t.me/tak_naprimer/207","title":"М"}
+  - {"kind":"image","src":"/cases/kitayschina/208-1.webp","post":208,"tg":"https://t.me/tak_naprimer/208","title":"Мокрая и медная М","caption":"Воду и медные трубы прошли, огонь будет впереди, буквально через одну букву"}
+  - {"kind":"image","src":"/cases/kitayschina/209-1.webp","post":209,"tg":"https://t.me/tak_naprimer/209","title":"зеркальная З"}
+  - {"kind":"image","src":"/cases/kitayschina/210-1.webp","post":210,"tg":"https://t.me/tak_naprimer/210","title":"Промежуточный миг между прошлым и будущим"}
+  - {"kind":"image","src":"/cases/kitayschina/211-1.webp","post":211,"tg":"https://t.me/tak_naprimer/211","title":"Н"}
+  - {"kind":"image","src":"/cases/kitayschina/212-1.webp","post":212,"tg":"https://t.me/tak_naprimer/212","title":"Ночная неоновая Н"}
+  - {"kind":"image","src":"/cases/kitayschina/214-1.webp","post":214,"tg":"https://t.me/tak_naprimer/214","title":"Нереальная ночная неоновая Н 🌌","caption":"Налетели👾\n\nНамело🌪 🥶"}
+  - {"kind":"image","src":"/cases/kitayschina/215-1.webp","post":215,"tg":"https://t.me/tak_naprimer/215"}
+  - {"kind":"image","src":"/cases/kitayschina/216-1.webp","post":216,"tg":"https://t.me/tak_naprimer/216","title":"Клмн-клмн"}
+  - {"kind":"image","src":"/cases/kitayschina/217-1.webp","post":217,"tg":"https://t.me/tak_naprimer/217","title":"О"}
+  - {"kind":"image","src":"/cases/kitayschina/218-1.webp","post":218,"tg":"https://t.me/tak_naprimer/218","title":"Оберточная О","caption":"Думала сделаю огонь, а вот как все обернулось"}
+  - {"kind":"image","src":"/cases/kitayschina/219-1.webp","post":219,"tg":"https://t.me/tak_naprimer/219","title":"еще Одна Обмотанная О"}
+  - {"kind":"image","src":"/cases/kitayschina/221-1.webp","post":221,"tg":"https://t.me/tak_naprimer/221","title":"Еще завернулась такая О"}
+  - {"kind":"image","src":"/cases/kitayschina/222-1.webp","post":222,"tg":"https://t.me/tak_naprimer/222","title":"П"}
+  - {"kind":"image","src":"/cases/kitayschina/223-1.webp","post":223,"tg":"https://t.me/tak_naprimer/223","title":"Переливающаяся прозрачная П"}
+  - {"kind":"image","src":"/cases/kitayschina/224-1.webp","post":224,"tg":"https://t.me/tak_naprimer/224","title":"Половина пройдена"}
+  - {"kind":"image","src":"/cases/kitayschina/225-1.webp","post":225,"tg":"https://t.me/tak_naprimer/225","title":"Р"}
+  - {"kind":"image","src":"/cases/kitayschina/226-1.webp","post":226,"tg":"https://t.me/tak_naprimer/226","title":"Рифленая ржавенькая Р"}
+  - {"kind":"image","src":"/cases/kitayschina/227-1.webp","post":227,"tg":"https://t.me/tak_naprimer/227","title":"Пинкфлойдовская П"}
+  - {"kind":"image","src":"/cases/kitayschina/228-1.webp","post":228,"tg":"https://t.me/tak_naprimer/228","title":"С"}
+  - {"kind":"image","src":"/cases/kitayschina/230-1.webp","post":230,"tg":"https://t.me/tak_naprimer/230","title":"Сделала такую букву, чтобы помнить, как всё связано"}
+  - {"kind":"image","src":"/cases/kitayschina/231-1.webp","post":231,"tg":"https://t.me/tak_naprimer/231","title":"Трафаретная Т"}
+  - {"kind":"image","src":"/cases/kitayschina/232-1.webp","post":232,"tg":"https://t.me/tak_naprimer/232","title":"Трафаретная Т"}
+  - {"kind":"image","src":"/cases/kitayschina/233-1.webp","post":233,"tg":"https://t.me/tak_naprimer/233","title":"Трафаретная Т"}
+  - {"kind":"image","src":"/cases/kitayschina/234-1.webp","post":234,"tg":"https://t.me/tak_naprimer/234","title":"Т"}
+  - {"kind":"image","src":"/cases/kitayschina/235-1.webp","post":235,"tg":"https://t.me/tak_naprimer/235","title":"О, имечко сложилось"}
+  - {"kind":"image","src":"/cases/kitayschina/236-1.webp","post":236,"tg":"https://t.me/tak_naprimer/236","title":"У"}
+  - {"kind":"image","src":"/cases/kitayschina/237-1.webp","post":237,"tg":"https://t.me/tak_naprimer/237","title":"Узловатая У"}
+  - {"kind":"image","src":"/cases/kitayschina/238-1.webp","post":238,"tg":"https://t.me/tak_naprimer/238","title":"Уютная У"}
+  - {"kind":"image","src":"/cases/kitayschina/239-1.webp","post":239,"tg":"https://t.me/tak_naprimer/239","title":"Фломастерная Ф"}
+  - {"kind":"image","src":"/cases/kitayschina/240-1.webp","post":240,"tg":"https://t.me/tak_naprimer/240","title":"Ф"}
+  - {"kind":"image","src":"/cases/kitayschina/241-1.webp","post":241,"tg":"https://t.me/tak_naprimer/241","title":"Ф"}
+  - {"kind":"image","src":"/cases/kitayschina/242-1.webp","post":242,"tg":"https://t.me/tak_naprimer/242"}
+  - {"kind":"image","src":"/cases/kitayschina/243-1.webp","post":243,"tg":"https://t.me/tak_naprimer/243"}
+  - {"kind":"image","src":"/cases/kitayschina/244-1.webp","post":244,"tg":"https://t.me/tak_naprimer/244"}
+  - {"kind":"image","src":"/cases/kitayschina/246-1.webp","post":246,"tg":"https://t.me/tak_naprimer/246","title":"Х"}
+  - {"kind":"image","src":"/cases/kitayschina/247-1.webp","post":247,"tg":"https://t.me/tak_naprimer/247","title":"Х"}
+  - {"kind":"image","src":"/cases/kitayschina/248-1.webp","post":248,"tg":"https://t.me/tak_naprimer/248","title":"Химическая Х"}
+  - {"kind":"image","src":"/cases/kitayschina/249-1.webp","post":249,"tg":"https://t.me/tak_naprimer/249","title":"Химическая Х"}
+  - {"kind":"image","src":"/cases/kitayschina/250-1.webp","post":250,"tg":"https://t.me/tak_naprimer/250"}
+  - {"kind":"image","src":"/cases/kitayschina/251-1.webp","post":251,"tg":"https://t.me/tak_naprimer/251","title":"Ц"}
+  - {"kind":"image","src":"/cases/kitayschina/252-1.webp","post":252,"tg":"https://t.me/tak_naprimer/252","title":"Целлюлозно-бумажная Ц"}
+  - {"kind":"image","src":"/cases/kitayschina/253-1.webp","post":253,"tg":"https://t.me/tak_naprimer/253","title":"Целлюлозная Ц"}
+  - {"kind":"image","src":"/cases/kitayschina/254-1.webp","post":254,"tg":"https://t.me/tak_naprimer/254","title":"Ч"}
+  - {"kind":"image","src":"/cases/kitayschina/256-1.webp","post":256,"tg":"https://t.me/tak_naprimer/256","title":"Чешуйчатая Ч"}
+  - {"kind":"image","src":"/cases/kitayschina/257-1.webp","post":257,"tg":"https://t.me/tak_naprimer/257","title":"Чешуйчатая Ч"}
+  - {"kind":"image","src":"/cases/kitayschina/257-2.webp","post":257,"tg":"https://t.me/tak_naprimer/257","title":"Чешуйчатая Ч"}
+  - {"kind":"image","src":"/cases/kitayschina/259-1.webp","post":259,"tg":"https://t.me/tak_naprimer/259","title":"Чешуйчатая Ч"}
+  - {"kind":"image","src":"/cases/kitayschina/260-1.webp","post":260,"tg":"https://t.me/tak_naprimer/260"}
+  - {"kind":"image","src":"/cases/kitayschina/261-1.webp","post":261,"tg":"https://t.me/tak_naprimer/261"}
+  - {"kind":"image","src":"/cases/kitayschina/262-1.webp","post":262,"tg":"https://t.me/tak_naprimer/262","title":"Ш"}
+  - {"kind":"image","src":"/cases/kitayschina/263-1.webp","post":263,"tg":"https://t.me/tak_naprimer/263","title":"Шпатлевочная Ш"}
+  - {"kind":"image","src":"/cases/kitayschina/264-1.webp","post":264,"tg":"https://t.me/tak_naprimer/264","title":"Щ"}
+  - {"kind":"image","src":"/cases/kitayschina/265-1.webp","post":265,"tg":"https://t.me/tak_naprimer/265","title":"Щ, найденная под воздействием Вовы Аносова @designmebaby ч.1"}
+  - {"kind":"image","src":"/cases/kitayschina/265-2.webp","post":265,"tg":"https://t.me/tak_naprimer/265","title":"Щ, найденная под воздействием Вовы Аносова @designmebaby ч.1"}
+  - {"kind":"image","src":"/cases/kitayschina/265-3.webp","post":265,"tg":"https://t.me/tak_naprimer/265","title":"Щ, найденная под воздействием Вовы Аносова @designmebaby ч.1"}
+  - {"kind":"image","src":"/cases/kitayschina/265-4.webp","post":265,"tg":"https://t.me/tak_naprimer/265","title":"Щ, найденная под воздействием Вовы Аносова @designmebaby ч.1"}
+  - {"kind":"image","src":"/cases/kitayschina/265-5.webp","post":265,"tg":"https://t.me/tak_naprimer/265","title":"Щ, найденная под воздействием Вовы Аносова @designmebaby ч.1"}
+  - {"kind":"image","src":"/cases/kitayschina/265-6.webp","post":265,"tg":"https://t.me/tak_naprimer/265","title":"Щ, найденная под воздействием Вовы Аносова @designmebaby ч.1"}
+  - {"kind":"image","src":"/cases/kitayschina/265-7.webp","post":265,"tg":"https://t.me/tak_naprimer/265","title":"Щ, найденная под воздействием Вовы Аносова @designmebaby ч.1"}
+  - {"kind":"image","src":"/cases/kitayschina/265-8.webp","post":265,"tg":"https://t.me/tak_naprimer/265","title":"Щ, найденная под воздействием Вовы Аносова @designmebaby ч.1"}
+  - {"kind":"image","src":"/cases/kitayschina/265-9.webp","post":265,"tg":"https://t.me/tak_naprimer/265","title":"Щ, найденная под воздействием Вовы Аносова @designmebaby ч.1"}
+  - {"kind":"image","src":"/cases/kitayschina/265-10.webp","post":265,"tg":"https://t.me/tak_naprimer/265","title":"Щ, найденная под воздействием Вовы Аносова @designmebaby ч.1"}
+  - {"kind":"image","src":"/cases/kitayschina/275-1.webp","post":275,"tg":"https://t.me/tak_naprimer/275","title":"Щ, найденная под воздействием Вовы Аносова @designmebaby ч.2"}
+  - {"kind":"image","src":"/cases/kitayschina/275-2.webp","post":275,"tg":"https://t.me/tak_naprimer/275","title":"Щ, найденная под воздействием Вовы Аносова @designmebaby ч.2"}
+  - {"kind":"image","src":"/cases/kitayschina/275-3.webp","post":275,"tg":"https://t.me/tak_naprimer/275","title":"Щ, найденная под воздействием Вовы Аносова @designmebaby ч.2"}
+  - {"kind":"image","src":"/cases/kitayschina/275-4.webp","post":275,"tg":"https://t.me/tak_naprimer/275","title":"Щ, найденная под воздействием Вовы Аносова @designmebaby ч.2"}
+  - {"kind":"image","src":"/cases/kitayschina/275-5.webp","post":275,"tg":"https://t.me/tak_naprimer/275","title":"Щ, найденная под воздействием Вовы Аносова @designmebaby ч.2"}
+  - {"kind":"image","src":"/cases/kitayschina/282-1.webp","post":282,"tg":"https://t.me/tak_naprimer/282","title":"чуть не прощёлкала Щ"}
+  - {"kind":"image","src":"/cases/kitayschina/283-1.webp","post":283,"tg":"https://t.me/tak_naprimer/283","title":"Ъ"}
+  - {"kind":"image","src":"/cases/kitayschina/284-1.webp","post":284,"tg":"https://t.me/tak_naprimer/284","title":"Твёрдый алмазный Ъ"}
+  - {"kind":"image","src":"/cases/kitayschina/285-1.webp","post":285,"tg":"https://t.me/tak_naprimer/285","title":"Ы"}
+  - {"kind":"image","src":"/cases/kitayschina/286-1.webp","post":286,"tg":"https://t.me/tak_naprimer/286","title":"Ы"}
+  - {"kind":"image","src":"/cases/kitayschina/287-1.webp","post":287,"tg":"https://t.me/tak_naprimer/287","title":"запылившаяся Ы"}
+  - {"kind":"image","src":"/cases/kitayschina/288-1.webp","post":288,"tg":"https://t.me/tak_naprimer/288","title":"ь"}
+  - {"kind":"image","src":"/cases/kitayschina/289-1.webp","post":289,"tg":"https://t.me/tak_naprimer/289","title":"ь"}
+  - {"kind":"image","src":"/cases/kitayschina/290-1.webp","post":290,"tg":"https://t.me/tak_naprimer/290"}
+  - {"kind":"image","src":"/cases/kitayschina/291-1.webp","post":291,"tg":"https://t.me/tak_naprimer/291","title":"э"}
+  - {"kind":"image","src":"/cases/kitayschina/292-1.webp","post":292,"tg":"https://t.me/tak_naprimer/292","title":"Эбеновая Э"}
+  - {"kind":"image","src":"/cases/kitayschina/293-1.webp","post":293,"tg":"https://t.me/tak_naprimer/293","title":"ю"}
+  - {"kind":"image","src":"/cases/kitayschina/294-1.webp","post":294,"tg":"https://t.me/tak_naprimer/294","title":"Югаваралитовая Ю"}
+  - {"kind":"image","src":"/cases/kitayschina/295-1.webp","post":295,"tg":"https://t.me/tak_naprimer/295"}
+  - {"kind":"image","src":"/cases/kitayschina/296-1.webp","post":296,"tg":"https://t.me/tak_naprimer/296","title":"Я","caption":"Такое чувство сейчас, будто очеееееееееееень долго ехал на велосипеде, то в гору, то с горки, усиленно крутил педали, и вот ты наконец приехал, слез с него, а ноги всё ещё будто крутят педали, всё ещё крутят, всё ещё, всё е.."}
+  - {"kind":"image","src":"/cases/kitayschina/297-1.webp","post":297,"tg":"https://t.me/tak_naprimer/297","title":"🤎 кто это тут такой","caption":"захотелось завершить этот алфавит чем-то теплым, шерстяным, может быть дурацким, но милым по-своему"}
+  - {"kind":"image","src":"/cases/kitayschina/298-1.webp","post":298,"tg":"https://t.me/tak_naprimer/298","title":"А вот и мой первый финальный коллаж, сама не ожидала, что столько букв…"}
+  - {"kind":"image","src":"/cases/kitayschina/299-1.webp","post":299,"tg":"https://t.me/tak_naprimer/299","title":"А вот и второй коллаж с дополненной реальностью"}
+---
+
+Мой первый «Буквальный челлендж»: 33 дня, 33 буквы, и почти на каждую — несколько версий. Неоновая Н, целлюлозная Ц, шпатлёвочная Ш, трафаретная Т. Отдельной линией пошли текстильные буквы: вышитая В, тёплая Й, узловатая У, чешуйчатая Ч и шерстяная Я в финале.
+
+Из получившихся букв собрались два коллажа — обычный и с дополненной реальностью, а потом и кейс на Behance.

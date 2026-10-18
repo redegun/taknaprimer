@@ -1,0 +1,31 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { u, SITE } from '@/lib/url';
+import feed from '@/data/lenta.json';
+const posts = feed as any[];
+const fmt = (iso: string) => new Date(iso).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+<Layout title="Лента" description="Последние посты из Telegram-канала «Так, например»: буквы, процесс, челленджи." noindex>
+  <section class="py-12 sm:py-16">
+    <div class="container-x">
+      <div class="flex flex-wrap items-end justify-between gap-4" data-reveal>
+        <div>
+          <h1 class="text-4xl font-bold sm:text-6xl">Лента</h1>
+          <p class="mt-4 max-w-2xl text-lg text-muted">Посты из канала «Так, например». Самое свежее — сверху, всё остальное — в самом канале.</p>
+        </div>
+        <a href={SITE.channel} target="_blank" rel="noopener" class="btn btn-primary">Подписаться</a>
+      </div>
+      <div class="mt-10 columns-1 gap-5 sm:columns-2 lg:columns-3 [&>*]:mb-5 [&>*]:break-inside-avoid">
+        {posts.map((p) => (
+          <a href={p.tg} target="_blank" rel="noopener" class="card" data-reveal>
+            <img src={u(p.photos[0])} alt="" loading="lazy" decoding="async" class="w-full" />
+            <div class="p-4">
+              <div class="text-xs font-medium uppercase tracking-wide text-muted">{fmt(p.date)}{p.photos.length > 1 ? ` · ${p.photos.length} фото` : ''}</div>
+              <p class="mt-1.5 whitespace-pre-line text-[15px] leading-snug text-ink-2 line-clamp-6">{p.text || 'Без подписи'}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

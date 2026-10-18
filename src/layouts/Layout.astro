@@ -1,0 +1,58 @@
+---
+import '@/styles/global.css';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import { u, SITE } from '@/lib/url';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  noindex?: boolean;
+}
+const { title, description = 'Татьяна Кочнева — дизайнер. Леттеринг, шрифтовые алфавиты, айдентика, буквы-объекты из бумаги, скотча и ткани.', ogImage, noindex = false } = Astro.props;
+const fullTitle = title === SITE.name ? `${SITE.name} — ${SITE.person}, дизайнер` : `${title} — ${SITE.name}`;
+const isPreview = import.meta.env.BASE_URL !== '/';
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const og = ogImage ? new URL(ogImage, Astro.site).toString() : new URL(u('/og.jpg'), Astro.site).toString();
+---
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    {(noindex || isPreview) && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href={u('/favicon.svg')} type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={og} />
+    <meta property="og:locale" content="ru_RU" />
+    <meta name="theme-color" content="#faf8f3" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <Header />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      // появление блоков при скролле
+      const els = document.querySelectorAll('[data-reveal]');
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+          }
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+        els.forEach((el) => io.observe(el));
+      } else {
+        els.forEach((el) => el.classList.add('is-in'));
+      }
+    </script>
+  </body>
+</html>

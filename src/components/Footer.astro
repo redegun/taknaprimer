@@ -1,0 +1,34 @@
+---
+import { u, SITE } from '@/lib/url';
+const year = new Date().getFullYear();
+---
+<footer class="mt-24 border-t border-line bg-paper-2/60">
+  <div class="container-x grid gap-10 py-14 md:grid-cols-[1.2fr_1fr_1fr]">
+    <div>
+      <div class="font-display text-2xl font-bold">Так, например</div>
+      <p class="mt-3 max-w-sm text-muted">{SITE.person}. Леттеринг, шрифтовые алфавиты, айдентика и буквы-объекты. Работаю дизайнером в студии <a class="underline decoration-line underline-offset-4 hover:text-accent" href="https://ne-prosto.ru" target="_blank" rel="noopener">Непросто</a>.</p>
+    </div>
+    <div>
+      <div class="text-sm font-semibold uppercase tracking-wide text-muted">Разделы</div>
+      <ul class="mt-3 space-y-2">
+        <li><a class="hover:text-accent" href={u('/raboty/')}>Работы</a></li>
+        <li><a class="hover:text-accent" href={u('/obo-mne/')}>Обо мне</a></li>
+        <li><a class="hover:text-accent" href={u('/lenta/')}>Лента канала</a></li>
+        <li><a class="hover:text-accent" href={u('/kontakty/')}>Контакты</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="text-sm font-semibold uppercase tracking-wide text-muted">Связь</div>
+      <ul class="mt-3 space-y-2">
+        <li><a class="hover:text-accent" href={SITE.tg} target="_blank" rel="noopener">Telegram: @taknaprimer</a></li>
+        <li><a class="hover:text-accent" href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
+        <li><a class="hover:text-accent" href={SITE.channel} target="_blank" rel="noopener">Канал «Так, например»</a></li>
+      </ul>
+      <a href={u('/kontakty/#forma')} class="btn btn-accent mt-5">Обсудить проект</a>
+    </div>
+  </div>
+  <div class="container-x flex flex-wrap items-center justify-between gap-2 border-t border-line py-5 text-sm text-muted">
+    <span>© {year} {SITE.person}</span>
+    <span>Картинки и тексты — авторские. Пожалуйста, со ссылкой.</span>
+  </div>
+</footer>

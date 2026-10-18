@@ -1,0 +1,44 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import CaseCard from '@/components/CaseCard.astro';
+import { getCollection } from 'astro:content';
+import { TAGS } from '@/lib/data';
+
+const all = (await getCollection('cases', ({ data }) => !data.draft)).sort((a, b) => b.data.sort - a.data.sort);
+const used = new Set(all.flatMap((c) => c.data.tags));
+const tags = TAGS.filter((t) => used.has(t));
+---
+<Layout title="Работы" description="Алфавиты, леттеринг, буквы-объекты, каллиграфия и печать — работы Татьяны Кочневой.">
+  <section class="py-12 sm:py-16">
+    <div class="container-x">
+      <h1 class="text-4xl font-bold sm:text-6xl" data-reveal>Работы</h1>
+      <p class="mt-4 max-w-2xl text-lg text-muted" data-reveal>Алфавиты из челленджей, чернильный леттеринг, буквы из скотча и ткани, печать. Фильтр — по тому, что интересно.</p>
+
+      <div class="mt-8 flex flex-wrap gap-2" id="filters" data-reveal>
+        <button class="chip is-on" data-filter="">Все</button>
+        {tags.map((t) => <button class="chip" data-filter={t}>{t}</button>)}
+      </div>
+
+      <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3" id="grid">
+        {all.map((c) => <CaseCard entry={c} />)}
+      </div>
+      <p id="empty" class="mt-10 hidden text-muted">Пока в этом разделе пусто — такие работы появятся позже.</p>
+    </div>
+  </section>
+  <script>
+    const chips = document.querySelectorAll<HTMLButtonElement>('#filters .chip');
+    const cards = document.querySelectorAll<HTMLElement>('#grid [data-tags]');
+    const empty = document.getElementById('empty')!;
+    chips.forEach((chip) => chip.addEventListener('click', () => {
+      chips.forEach((c) => c.classList.toggle('is-on', c === chip));
+      const f = chip.dataset.filter || '';
+      let shown = 0;
+      cards.forEach((card) => {
+        const ok = !f || (card.dataset.tags || '').split('|').includes(f);
+        card.classList.toggle('hidden', !ok);
+        if (ok) shown++;
+      });
+      empty.classList.toggle('hidden', shown > 0);
+    }));
+  </script>
+</Layout>

@@ -1,0 +1,23 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import ProjectForm from '@/components/ProjectForm.astro';
+import { SITE } from '@/lib/url';
+---
+<Layout title="Контакты" description="Обсудить проект с Татьяной Кочневой: леттеринг, айдентика, буквы-объекты. Telegram @taknaprimer.">
+  <section class="py-12 sm:py-16">
+    <div class="container-x grid gap-10 lg:grid-cols-[1fr_1.3fr]">
+      <div data-reveal>
+        <h1 class="text-4xl font-bold sm:text-6xl">Обсудить проект</h1>
+        <p class="mt-5 text-lg text-muted">Соберите запрос из кубиков — как я собираю буквы. Отвечу так, например, завтра.</p>
+        <dl class="mt-8 space-y-4">
+          <div><dt class="text-xs font-semibold uppercase tracking-wide text-muted">Telegram</dt><dd><a class="text-lg font-medium underline decoration-line underline-offset-4 hover:text-accent" href={SITE.tg} target="_blank" rel="noopener">@taknaprimer</a></dd></div>
+          <div><dt class="text-xs font-semibold uppercase tracking-wide text-muted">Почта</dt><dd><a class="text-lg font-medium underline decoration-line underline-offset-4 hover:text-accent" href={`mailto:${SITE.email}`}>{SITE.email}</a></dd></div>
+          <div><dt class="text-xs font-semibold uppercase tracking-wide text-muted">Канал</dt><dd><a class="text-lg font-medium underline decoration-line underline-offset-4 hover:text-accent" href={SITE.channel} target="_blank" rel="noopener">t.me/tak_naprimer</a></dd></div>
+        </dl>
+      </div>
+      <div class="rounded-xl2 border border-line bg-white p-6 sm:p-8" id="forma">
+        <ProjectForm />
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,14 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { u } from '@/lib/url';
+---
+<Layout title="Страница не нашлась" noindex>
+  <section class="py-24 text-center">
+    <div class="container-x">
+      <div class="font-display text-[clamp(5rem,25vw,14rem)] font-extrabold leading-none text-accent">Ъ</div>
+      <h1 class="mt-4 text-3xl font-bold">Такой страницы нет</h1>
+      <p class="mt-3 text-muted">Твёрдый знак: дальше буквы не идут. Зато есть работы.</p>
+      <a href={u('/raboty/')} class="btn btn-primary mt-8">К работам</a>
+    </div>
+  </section>
+</Layout>

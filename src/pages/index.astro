@@ -1,0 +1,83 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Hero from '@/components/Hero';
+import CaseCard from '@/components/CaseCard.astro';
+import Lenta from '@/components/Lenta.astro';
+import ProjectForm from '@/components/ProjectForm.astro';
+import { getCollection } from 'astro:content';
+import { u, SITE } from '@/lib/url';
+import { SERVICES, AWARDS } from '@/lib/data';
+
+const all = (await getCollection('cases', ({ data }) => !data.draft)).sort((a, b) => b.data.sort - a.data.sort);
+const featured = all.filter((c) => c.data.featured).slice(0, 6);
+---
+<Layout title={SITE.name}>
+  <Hero client:load base={import.meta.env.BASE_URL} />
+
+  <section class="py-10 sm:py-16">
+    <div class="container-x">
+      <div class="flex items-end justify-between gap-4" data-reveal>
+        <h2 class="text-3xl font-bold sm:text-4xl">Избранное</h2>
+        <a href={u('/raboty/')} class="hidden font-medium underline decoration-line underline-offset-4 hover:text-accent sm:inline">Все работы →</a>
+      </div>
+      <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {featured.map((c) => <CaseCard entry={c} />)}
+      </div>
+      <a href={u('/raboty/')} class="btn btn-ghost mt-8 sm:hidden">Все работы</a>
+    </div>
+  </section>
+
+  <section class="bg-ink py-16 text-paper sm:py-24">
+    <div class="container-x">
+      <h2 class="text-3xl font-bold sm:text-4xl" data-reveal>Что делаю</h2>
+      <p class="mt-3 max-w-2xl text-paper/70" data-reveal>Люблю, когда буква становится вещью: её можно потрогать, надеть, повесить на стену или поставить на полку.</p>
+      <div class="mt-10 grid gap-px overflow-hidden rounded-xl2 bg-paper/10 sm:grid-cols-2 lg:grid-cols-3">
+        {SERVICES.map((s, i) => (
+          <div class="bg-ink p-6 sm:p-8" data-reveal>
+            <div class="font-display text-sm text-accent">0{i + 1}</div>
+            <h3 class="mt-3 text-xl font-bold">{s.title}</h3>
+            <p class="mt-2 text-paper/70">{s.text}</p>
+          </div>
+        ))}
+        <a href={u('/kontakty/#forma')} class="group flex flex-col justify-between bg-accent p-6 text-white sm:p-8" data-reveal>
+          <div class="font-display text-sm">06</div>
+          <div>
+            <h3 class="text-xl font-bold">Обсудить проект</h3>
+            <p class="mt-2 text-white/80">Расскажите, что нужно, — отвечу так, например, завтра.</p>
+            <span class="mt-4 inline-block font-semibold group-hover:translate-x-1 transition-transform">Написать →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Lenta limit={12} />
+
+  <section class="py-12 sm:py-20">
+    <div class="container-x">
+      <h2 class="text-3xl font-bold sm:text-4xl" data-reveal>Участия и награды</h2>
+      <ol class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {AWARDS.map((a) => (
+          <li class="rounded-xl2 border border-line bg-white p-5" data-reveal>
+            <div class="font-display text-sm text-accent">{a.year}</div>
+            <div class="mt-1 font-bold">{a.title}</div>
+            <p class="mt-1 text-[15px] text-muted">{a.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="py-12 sm:py-20" id="forma">
+    <div class="container-x grid gap-10 lg:grid-cols-[1fr_1.3fr]">
+      <div data-reveal>
+        <h2 class="text-3xl font-bold sm:text-4xl">Обсудить проект</h2>
+        <p class="mt-4 text-muted">Соберите запрос из кубиков — как я собираю буквы. Это ни к чему не обязывает: обсудим, прикинем сроки и стоимость.</p>
+        <p class="mt-4 text-muted">Или напишите напрямую: <a class="font-medium text-ink underline decoration-line underline-offset-4 hover:text-accent" href={SITE.tg} target="_blank" rel="noopener">@taknaprimer</a>, <a class="font-medium text-ink underline decoration-line underline-offset-4 hover:text-accent" href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+      </div>
+      <div class="rounded-xl2 border border-line bg-white p-6 sm:p-8">
+        <ProjectForm />
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /_preview/
+Disallow: /api/
+Sitemap: https://taknaprimer.ru/sitemap-index.xml

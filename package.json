@@ -1,0 +1,33 @@
+{
+  "name": "taknaprimer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "build:preview": "cross-env SITE_BASE=/_preview astro build",
+    "preview": "astro preview",
+    "content": "cross-env NODE_USE_ENV_PROXY=1 node scripts/build-content.mjs",
+    "lenta": "cross-env NODE_USE_ENV_PROXY=1 node scripts/build-lenta.mjs"
+  },
+  "dependencies": {
+    "@astrojs/react": "^4.4.2",
+    "@astrojs/sitemap": "^3.7.4",
+    "@fontsource-variable/manrope": "^5.3.0",
+    "@fontsource-variable/unbounded": "^5.3.0",
+    "@paper-design/shaders-react": "^0.0.81",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^5.18.2",
+    "motion": "^14.3.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "cross-env": "^7.0.3",
+    "sharp": "^0.34.5"
+  }
+}

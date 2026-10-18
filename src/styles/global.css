@@ -1,0 +1,97 @@
+@import "tailwindcss";
+@import "@fontsource-variable/unbounded";
+@import "@fontsource-variable/manrope";
+
+@theme {
+  --font-display: "Unbounded Variable", "Arial Black", system-ui, sans-serif;
+  --font-sans: "Manrope Variable", system-ui, -apple-system, sans-serif;
+
+  --color-paper: #faf8f3;
+  --color-paper-2: #f1ede4;
+  --color-ink: #141414;
+  --color-ink-2: #3a3734;
+  --color-muted: #726c64;
+  --color-line: #e3ddd2;
+  --color-accent: #e5392c;
+  --color-accent-ink: #b8271c;
+  --color-pink: #ff3ea5;
+
+  --radius-xl2: 1.25rem;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-paper text-ink font-sans antialiased;
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+h1, h2, h3, .display {
+  @apply font-display tracking-tight;
+  line-height: 1.05;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.container-x {
+  @apply mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8;
+}
+
+/* появление при скролле — только когда JS жив (html.js), иначе контент виден сразу */
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+html.js [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1; transform: none; transition: none; }
+}
+
+/* кнопки */
+.btn {
+  @apply inline-flex items-center gap-2 rounded-full px-5 py-3 font-semibold transition-colors;
+  @apply focus:outline-none focus-visible:ring-4 focus-visible:ring-accent/30;
+}
+.btn-primary { @apply bg-ink text-paper hover:bg-accent; }
+.btn-ghost { @apply border border-ink/20 text-ink hover:border-ink hover:bg-ink hover:text-paper; }
+.btn-accent { @apply bg-accent text-white hover:bg-accent-ink; }
+
+/* чипсы */
+.chip {
+  @apply inline-flex cursor-pointer select-none items-center rounded-full border border-ink/20 px-4 py-2 text-[15px] font-medium transition-colors;
+  @apply hover:border-ink;
+}
+.chip.is-on, .chip:has(input:checked) {
+  @apply border-ink bg-ink text-paper;
+}
+.chip input { @apply sr-only; }
+
+/* карточки */
+.card {
+  @apply block overflow-hidden rounded-xl2 bg-white shadow-[0_1px_0_rgba(0,0,0,0.04)] ring-1 ring-ink/5 transition-transform duration-500;
+}
+.card:hover { transform: translateY(-4px); }
+.card img { @apply transition-transform duration-700; }
+.card:hover img { transform: scale(1.03); }
+
+/* прозрачная скролл-полоса карусели */
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* текст кейса */
+.prose-case p { @apply mb-4 text-[17px] leading-relaxed text-ink-2; }
+.prose-case p:last-child { @apply mb-0; }

@@ -1,0 +1,31 @@
+name: Build & deploy to Timeweb
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    # Только свой раннер (office1080): GitHub-хостинговые до FTP Timeweb не достают.
+    runs-on: [self-hosted, taknaprimer-deploy]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Upload to Timeweb (FTP, IPv4, no --only-newer, no --delete)
+        env:
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASS: ${{ secrets.FTP_PASS }}
+        run: |
+          lftp -e "set dns:order inet; set ftp:ssl-allow no; set ssl:verify-certificate no; \
+            open -u $FTP_USER,$FTP_PASS 185.114.245.107; \
+            mirror -R --parallel=4 dist/ /taknaprimer/public_html/; bye"

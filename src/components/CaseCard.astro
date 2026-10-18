@@ -1,0 +1,26 @@
+---
+import { u } from '@/lib/url';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'cases'>;
+  big?: boolean;
+}
+const { entry, big = false } = Astro.props;
+const d = entry.data;
+---
+<a href={u(`/raboty/${entry.id}/`)} class="card group" data-tags={d.tags.join('|')} data-reveal>
+  <div class:list={['overflow-hidden bg-paper-2', big ? 'aspect-[4/3]' : 'aspect-square']}>
+    <img src={u(d.cover)} alt={d.coverAlt ?? d.title} loading="lazy" decoding="async" class="h-full w-full object-cover" />
+  </div>
+  <div class="p-5">
+    <div class="flex items-baseline justify-between gap-3">
+      <h3 class:list={['font-display font-bold leading-tight group-hover:text-accent transition-colors', big ? 'text-2xl' : 'text-lg']}>{d.title}</h3>
+      <span class="shrink-0 text-sm text-muted">{d.year}</span>
+    </div>
+    <p class="mt-2 text-[15px] text-muted line-clamp-2">{d.short}</p>
+    <div class="mt-3 flex flex-wrap gap-1.5">
+      {d.tags.slice(0, 3).map((t) => <span class="rounded-full bg-paper-2 px-2.5 py-1 text-xs font-medium text-ink-2">{t}</span>)}
+    </div>
+  </div>
+</a>

@@ -1,0 +1,82 @@
+<?php
+// Обработчик формы «Обсудить проект». Статический сайт на Timeweb, PHP в подпапке.
+// Конфиг (вне webroot): /home/r/redegun/taknaprimer/form-config.php, возвращает массив:
+//   ['to' => ['taknaprimer@yandex.ru'], 'from' => 'site@taknaprimer.ru',
+//    'relay' => 'https://r.antonvetrov.ru/_tg/send', 'relay_auth' => '...', 'bot_token' => '...', 'chat_id' => '...']
+// Без конфига заявка пишется в /home/r/redegun/taknaprimer/form-inbox.log.
+
+header('Content-Type: application/json; charset=utf-8');
+header('Cache-Control: no-store');
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405);
+    echo json_encode(['ok' => false, 'error' => 'POST only']);
+    exit;
+}
+
+$cfgPath = dirname(__DIR__, 3) . '/form-config.php';
+$cfg = is_file($cfgPath) ? (include $cfgPath) : [];
+$logPath = dirname(__DIR__, 3) . '/form-inbox.log';
+
+$clean = function ($v) { return trim(mb_substr(strip_tags((string)$v), 0, 2000)); };
+
+// антиспам: honeypot + минимальное время заполнения
+if (!empty($_POST['website'])) { echo json_encode(['ok' => true]); exit; }
+$started = (int)($_POST['started'] ?? 0);
+if ($started > 0 && (microtime(true) * 1000 - $started) < 2500) { echo json_encode(['ok' => true]); exit; }
+
+$message = $clean($_POST['message'] ?? '');
+$contact = $clean($_POST['contact'] ?? '');
+if ($message === '' || $contact === '') {
+    http_response_code(422);
+    echo json_encode(['ok' => false, 'error' => 'Напишите пару слов о проекте и как с вами связаться.']);
+    exit;
+}
+$what = array_map($clean, (array)($_POST['what'] ?? []));
+$who = $clean($_POST['who'] ?? '');
+$when = $clean($_POST['when'] ?? '');
+$page = $clean($_SERVER['HTTP_REFERER'] ?? '');
+
+$lines = ['Новая заявка с taknaprimer.ru'];
+if ($what) $lines[] = 'Что: ' . implode(', ', $what);
+if ($who) $lines[] = 'Для кого: ' . $who;
+if ($when) $lines[] = 'Когда: ' . $when;
+$lines[] = 'Контакт: ' . $contact;
+$lines[] = '';
+$lines[] = $message;
+$lines[] = '';
+$lines[] = 'Страница: ' . $page;
+$lines[] = 'IP: ' . ($_SERVER['REMOTE_ADDR'] ?? '') . ' · ' . date('Y-m-d H:i');
+$text = implode("\n", $lines);
+
+$sent = false;
+
+// Почта
+if (!empty($cfg['to'])) {
+    $subject = '=?UTF-8?B?' . base64_encode('Заявка с taknaprimer.ru: ' . mb_substr($message, 0, 50)) . '?=';
+    $headers = "From: " . ($cfg['from'] ?? 'site@taknaprimer.ru') . "\r\nContent-Type: text/plain; charset=UTF-8\r\n";
+    foreach ((array)$cfg['to'] as $to) {
+        if (@mail($to, $subject, $text, $headers)) $sent = true;
+    }
+}
+
+// Telegram через релей на VPS (с Timeweb api.telegram.org недоступен)
+if (!empty($cfg['relay']) && !empty($cfg['bot_token']) && !empty($cfg['chat_id'])) {
+    $payload = json_encode(['token' => $cfg['bot_token'], 'chat_id' => $cfg['chat_id'], 'text' => $text], JSON_UNESCAPED_UNICODE);
+    $ch = curl_init($cfg['relay']);
+    curl_setopt_array($ch, [
+        CURLOPT_POST => true,
+        CURLOPT_POSTFIELDS => $payload,
+        CURLOPT_HTTPHEADER => ['Content-Type: application/json', 'X-Relay-Auth: ' . ($cfg['relay_auth'] ?? '')],
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT => 8,
+    ]);
+    $res = curl_exec($ch);
+    if ($res !== false && curl_getinfo($ch, CURLINFO_HTTP_CODE) === 200) $sent = true;
+    curl_close($ch);
+}
+
+// Всегда дублируем в лог вне webroot
+@file_put_contents($logPath, "----- " . date('c') . "\n" . $text . "\n\n", FILE_APPEND | LOCK_EX);
+
+echo json_encode(['ok' => true, 'delivered' => $sent]);

@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.astro/
+.env
+*.log
+# сырые дампы канала (есть личные посты) — живут вне репо
+scripts/data/

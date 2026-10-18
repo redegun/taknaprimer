@@ -1,0 +1,43 @@
+---
+import { u, SITE } from '@/lib/url';
+const path = Astro.url.pathname;
+const nav = [
+  { href: '/raboty/', label: 'Работы' },
+  { href: '/obo-mne/', label: 'Обо мне' },
+  { href: '/lenta/', label: 'Лента' },
+  { href: '/kontakty/', label: 'Контакты' },
+];
+const isActive = (href: string) => path.startsWith(u(href));
+---
+<header class="sticky top-0 z-40 border-b border-line/70 bg-paper/85 backdrop-blur">
+  <div class="container-x flex h-16 items-center justify-between gap-4">
+    <a href={u('/')} class="font-display text-[17px] font-bold tracking-tight hover:text-accent transition-colors">
+      Так,<span class="text-accent">&nbsp;например</span>
+    </a>
+    <nav class="hidden items-center gap-6 md:flex">
+      {nav.map((n) => (
+        <a href={u(n.href)} class:list={['text-[15px] font-medium transition-colors hover:text-accent', isActive(n.href) ? 'text-accent' : 'text-ink-2']}>{n.label}</a>
+      ))}
+      <a href={u('/kontakty/#forma')} class="btn btn-primary !py-2 !px-4 text-[14px]">Обсудить проект</a>
+    </nav>
+    <button id="menu-btn" class="md:hidden rounded-full border border-ink/20 px-3 py-2 text-sm font-medium" aria-expanded="false" aria-controls="mobile-menu">Меню</button>
+  </div>
+  <div id="mobile-menu" class="hidden border-t border-line bg-paper md:hidden">
+    <div class="container-x flex flex-col gap-1 py-3">
+      {nav.map((n) => (
+        <a href={u(n.href)} class="rounded-lg px-2 py-2 text-base font-medium hover:bg-paper-2">{n.label}</a>
+      ))}
+      <a href={u('/kontakty/#forma')} class="btn btn-primary mt-2 justify-center">Обсудить проект</a>
+      <a href={SITE.channel} target="_blank" rel="noopener" class="px-2 py-2 text-sm text-muted">Канал в Telegram →</a>
+    </div>
+  </div>
+  <script>
+    const btn = document.getElementById('menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    btn?.addEventListener('click', () => {
+      const open = menu!.classList.toggle('hidden') === false;
+      btn.setAttribute('aria-expanded', String(open));
+      btn.textContent = open ? 'Закрыть' : 'Меню';
+    });
+  </script>
+</header>

@@ -1,0 +1,128 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import ProjectForm from '@/components/ProjectForm.astro';
+import { getCollection, render } from 'astro:content';
+import { u } from '@/lib/url';
+
+export async function getStaticPaths() {
+  const all = (await getCollection('cases', ({ data }) => !data.draft)).sort((a, b) => b.data.sort - a.data.sort);
+  return all.map((entry, i) => ({
+    params: { slug: entry.id },
+    props: { entry, prev: all[i - 1] ?? null, next: all[i + 1] ?? null },
+  }));
+}
+
+const { entry, prev, next } = Astro.props;
+const d = entry.data;
+const { Content } = await render(entry);
+const images = d.gallery.filter((g) => g.kind === 'image');
+const videos = d.gallery.filter((g) => g.kind === 'video');
+const hasCaptions = images.some((g) => g.title);
+---
+<Layout title={d.title} description={d.short} ogImage={u(d.cover)}>
+  <article>
+    <div class="container-x pt-10 sm:pt-14">
+      <a href={u('/raboty/')} class="text-sm text-muted hover:text-accent">← Все работы</a>
+      <div class="mt-4 flex flex-wrap items-center gap-2" data-reveal>
+        {d.tags.map((t) => <span class="rounded-full bg-paper-2 px-3 py-1 text-xs font-medium text-ink-2">{t}</span>)}
+        <span class="ml-1 text-sm text-muted">{d.period ?? d.year}</span>
+      </div>
+      <h1 class="mt-4 max-w-4xl text-4xl font-bold sm:text-6xl" data-reveal>{d.title}</h1>
+      <p class="mt-5 max-w-2xl text-xl text-ink-2" data-reveal>{d.short}</p>
+    </div>
+
+    <div class="container-x mt-10" data-reveal>
+      <div class="overflow-hidden rounded-xl2 bg-paper-2">
+        <img src={u(d.cover)} alt={d.coverAlt ?? d.title} class="w-full object-cover" decoding="async" />
+      </div>
+    </div>
+
+    <div class="container-x mt-12 grid gap-10 lg:grid-cols-[1.4fr_1fr]">
+      <div class="prose-case" data-reveal>
+        <Content />
+      </div>
+      <aside class="space-y-5" data-reveal>
+        {d.result && (
+          <div class="rounded-xl2 bg-ink p-6 text-paper">
+            <div class="text-xs font-semibold uppercase tracking-wide text-paper/60">Результат</div>
+            <p class="mt-2 text-lg leading-snug">{d.result}</p>
+          </div>
+        )}
+        {d.materials && (
+          <div class="rounded-xl2 border border-line bg-white p-6">
+            <div class="text-xs font-semibold uppercase tracking-wide text-muted">Материалы и техника</div>
+            <p class="mt-2 text-ink-2">{d.materials}</p>
+          </div>
+        )}
+        <div class="rounded-xl2 border border-line bg-white p-6">
+          <div class="text-xs font-semibold uppercase tracking-wide text-muted">Где смотреть</div>
+          <ul class="mt-2 space-y-1.5">
+            {d.links.tg && <li><a class="underline decoration-line underline-offset-4 hover:text-accent" href={d.links.tg} target="_blank" rel="noopener">В канале, с самого начала →</a></li>}
+            {d.links.behance && <li><a class="underline decoration-line underline-offset-4 hover:text-accent" href={d.links.behance} target="_blank" rel="noopener">Кейс на Behance →</a></li>}
+            {d.links.dprofile && <li><a class="underline decoration-line underline-offset-4 hover:text-accent" href={d.links.dprofile} target="_blank" rel="noopener">Кейс на Dprofile →</a></li>}
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    {images.length > 0 && (
+      <div class="container-x mt-14">
+        <h2 class="text-2xl font-bold sm:text-3xl" data-reveal>{hasCaptions ? 'Буква за буквой' : 'Галерея'} <span class="text-muted">· {images.length}</span></h2>
+        <div class:list={['mt-6 grid gap-4', hasCaptions ? 'sm:grid-cols-2 lg:grid-cols-3' : 'grid-cols-2 lg:grid-cols-3']}>
+          {images.map((g) => (
+            <figure class="group overflow-hidden rounded-xl2 bg-white ring-1 ring-ink/5" data-reveal>
+              <a href={u(g.src)} target="_blank" rel="noopener" class="block aspect-square overflow-hidden bg-paper-2">
+                <img src={u(g.src)} alt={g.title ?? d.title} loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+              </a>
+              {(g.title || g.caption) && (
+                <figcaption class="p-4">
+                  {g.title && <div class="font-display text-[15px] font-bold leading-snug">{g.title}</div>}
+                  {g.caption && (
+                    <details class="mt-1 text-[14px] text-muted">
+                      <summary class="cursor-pointer select-none hover:text-accent">Идея</summary>
+                      <p class="mt-2 whitespace-pre-line leading-relaxed">{g.caption}</p>
+                    </details>
+                  )}
+                  {g.tg && <a href={g.tg} target="_blank" rel="noopener" class="mt-2 inline-block text-xs text-muted hover:text-accent">пост в канале →</a>}
+                </figcaption>
+              )}
+            </figure>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {videos.length > 0 && (
+      <div class="container-x mt-14">
+        <h2 class="text-2xl font-bold sm:text-3xl" data-reveal>В движении <span class="text-muted">· {videos.length}</span></h2>
+        <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {videos.map((v) => (
+            <figure class="overflow-hidden rounded-xl2 bg-ink ring-1 ring-ink/5" data-reveal>
+              <video controls preload="none" playsinline poster={v.poster ? u(v.poster) : undefined} class="aspect-square w-full object-cover">
+                <source src={u(v.src)} type="video/mp4" />
+              </video>
+              {v.title && <figcaption class="p-4 text-[15px] font-medium text-paper/90">{v.title}</figcaption>}
+            </figure>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <nav class="container-x mt-16 grid gap-4 sm:grid-cols-2">
+      {prev ? (
+        <a href={u(`/raboty/${prev.id}/`)} class="card p-5"><div class="text-xs text-muted">← Предыдущая</div><div class="mt-1 font-display font-bold">{prev.data.title}</div></a>
+      ) : <div />}
+      {next && (
+        <a href={u(`/raboty/${next.id}/`)} class="card p-5 text-right"><div class="text-xs text-muted">Следующая →</div><div class="mt-1 font-display font-bold">{next.data.title}</div></a>
+      )}
+    </nav>
+
+    <section class="container-x mt-20" id="forma">
+      <div class="rounded-xl2 border border-line bg-white p-6 sm:p-8">
+        <h2 class="text-2xl font-bold sm:text-3xl">Хочется такое же, но своё?</h2>
+        <p class="mt-2 mb-6 text-muted">Расскажите о проекте — обсудим.</p>
+        <ProjectForm compact />
+      </div>
+    </section>
+  </article>
+</Layout>

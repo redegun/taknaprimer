@@ -1,0 +1,39 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { u, SITE } from '@/lib/url';
+import { AWARDS } from '@/lib/data';
+---
+<Layout title="Обо мне" description="Татьяна Кочнева — дизайнер: леттеринг, шрифтовые алфавиты, айдентика, буквы-объекты. Дизайнер студии Непросто.">
+  <section class="py-12 sm:py-16">
+    <div class="container-x grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:items-start">
+      <div class="overflow-hidden rounded-xl2 bg-paper-2 lg:sticky lg:top-24" data-reveal>
+        <img src={u('/about/tanya.webp')} alt="Татьяна Кочнева" class="aspect-square w-full object-cover" decoding="async" />
+      </div>
+      <div>
+        <h1 class="text-4xl font-bold sm:text-6xl" data-reveal>Привет, я Таня</h1>
+        <div class="prose-case mt-6" data-reveal>
+          <p>Я дизайнер, и больше всего на свете люблю буквы. Рисую их кистью и пером, собираю из скотча, фольги, бумаги и ткани, вышиваю, печатаю и снимаю на видео. Из букв складываются алфавиты, из алфавитов — кейсы, из кейсов — этот сайт.</p>
+          <p>Работаю дизайнером в студии <a class="underline decoration-line underline-offset-4 hover:text-accent" href="https://ne-prosto.ru" target="_blank" rel="noopener">Непросто</a>: айдентика, сайты, полиграфия для брендов. А «Так, например» — моя личная территория: челленджи, эксперименты с материалами, конкурсы и всё, что не влезает в бриф.</p>
+          <p>Люблю задачи, где у буквы есть характер и материал: вывеска, которую хочется потрогать, мерч, который хочется носить, упаковка, которую жалко выбрасывать. Если у вас такая задача — <a class="underline decoration-line underline-offset-4 hover:text-accent" href={u('/kontakty/#forma')}>давайте обсудим</a>.</p>
+        </div>
+
+        <h2 class="mt-12 text-2xl font-bold sm:text-3xl" data-reveal>Участия и награды</h2>
+        <ol class="mt-5 divide-y divide-line border-y border-line">
+          {AWARDS.map((a) => (
+            <li class="grid gap-1 py-4 sm:grid-cols-[80px_1fr]" data-reveal>
+              <div class="font-display text-sm text-accent">{a.year}</div>
+              <div><div class="font-bold">{a.title}</div><p class="text-[15px] text-muted">{a.text}</p></div>
+            </li>
+          ))}
+        </ol>
+
+        <h2 class="mt-12 text-2xl font-bold sm:text-3xl" data-reveal>Где меня читать</h2>
+        <ul class="mt-4 space-y-2" data-reveal>
+          <li><a class="underline decoration-line underline-offset-4 hover:text-accent" href={SITE.channel} target="_blank" rel="noopener">Канал «Так, например» в Telegram</a> — процесс и буквы почти каждый день.</li>
+          <li><a class="underline decoration-line underline-offset-4 hover:text-accent" href={SITE.behance} target="_blank" rel="noopener">Behance</a> — собранные кейсы.</li>
+          <li><a class="underline decoration-line underline-offset-4 hover:text-accent" href={SITE.tg} target="_blank" rel="noopener">@taknaprimer</a> — написать лично.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Layout>
