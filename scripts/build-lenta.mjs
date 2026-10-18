@@ -6,6 +6,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import sharp from 'sharp';
+import { execFileSync } from 'node:child_process';
 
 const args = Object.fromEntries(process.argv.slice(2).reduce((a, v, i, arr) => (v.startsWith('--') ? [...a, [v.slice(2), arr[i + 1]]] : a), []));
 const DUMP = args.dump, MEDIA = args.media, SINCE = Number(args.since || 0);
@@ -53,6 +54,17 @@ async function savePhoto(url, out, max) {
     return true;
   } catch (e) { console.warn('  photo fail', out, e.message); return false; }
 }
+// постер из первого кадра ролика, если превью у Telegram не нашлось
+async function posterFromVideo(mp4, out) {
+  if (fs.existsSync(out)) return true;
+  const tmp = out + '.jpg';
+  try {
+    execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-ss', '0.3', '-i', mp4, '-frames:v', '1', '-vf', 'scale=1000:-2', tmp]);
+    await sharp(tmp).webp({ quality: 80 }).toFile(out);
+    fs.unlinkSync(tmp);
+    return true;
+  } catch (e) { console.warn('  poster from video fail', out, e.message.split('\n')[0]); try { fs.unlinkSync(tmp); } catch {} return false; }
+}
 async function saveVideo(url, out) {
   if (fs.existsSync(out)) return true;
   try {
@@ -83,7 +95,9 @@ for (const p of posts) {
     const v = m.videos[i];
     if (!(await saveVideo(v.src, path.join(MEDIA_DIR, String(id), `v${i + 1}.mp4`)))) continue;
     const item = { src: `/lenta-media/${id}/v${i + 1}.mp4` };
-    if (v.thumb && (await savePhoto(v.thumb, path.join(MEDIA_DIR, String(id), `v${i + 1}-poster.webp`), 1000))) item.poster = `/lenta-media/${id}/v${i + 1}-poster.webp`;
+    const posterPath = path.join(MEDIA_DIR, String(id), `v${i + 1}-poster.webp`);
+    const ok = (v.thumb && (await savePhoto(v.thumb, posterPath, 1000))) || (await posterFromVideo(path.join(MEDIA_DIR, String(id), `v${i + 1}.mp4`), posterPath));
+    if (ok) item.poster = `/lenta-media/${id}/v${i + 1}-poster.webp`;
     videos.push(item);
   }
   if (!photos.length && !videos.length) { skipped++; continue; }

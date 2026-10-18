@@ -4,6 +4,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import sharp from 'sharp';
+import { execFileSync } from 'node:child_process';
 
 const args = Object.fromEntries(process.argv.slice(2).reduce((a, v, i, arr) => (v.startsWith('--') ? [...a, [v.slice(2), arr[i + 1]]] : a), []));
 const DUMP = args.dump, MEDIA = args.media, IMG = args.img || '';
@@ -40,6 +41,17 @@ async function saveImage(src, out, max) {
     await sharp(buf).rotate().resize({ width: max, height: max, fit: 'inside', withoutEnlargement: true }).webp({ quality: 82 }).toFile(out);
     return true;
   } catch (e) { console.warn('  image fail', src, e.message); return false; }
+}
+// постер из первого кадра ролика, если превью у Telegram не нашлось
+async function posterFromVideo(mp4, out) {
+  if (fs.existsSync(out)) return true;
+  const tmp = out + '.jpg';
+  try {
+    execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-ss', '0.3', '-i', mp4, '-frames:v', '1', '-vf', 'scale=1000:-2', tmp]);
+    await sharp(tmp).webp({ quality: 80 }).toFile(out);
+    fs.unlinkSync(tmp);
+    return true;
+  } catch (e) { console.warn('  poster from video fail', out, e.message.split('\n')[0]); try { fs.unlinkSync(tmp); } catch {} return false; }
 }
 async function saveVideo(url, out) {
   if (fs.existsSync(out)) return true;
@@ -124,10 +136,9 @@ for (const c of cfg.cases) {
       const out = path.join(dir, `${id}-v${i + 1}.mp4`);
       if (!(await saveVideo(v.src, out))) continue;
       const item = { kind: 'video', src: `/cases/${c.slug}/${id}-v${i + 1}.mp4`, post: id, tg };
-      if (v.thumb) {
-        const po = path.join(dir, `${id}-v${i + 1}-poster.webp`);
-        if (await saveImage(v.thumb, po, 900)) item.poster = `/cases/${c.slug}/${id}-v${i + 1}-poster.webp`;
-      }
+      const po = path.join(dir, `${id}-v${i + 1}-poster.webp`);
+      const ok = (v.thumb && (await saveImage(v.thumb, po, 900))) || (await posterFromVideo(out, po));
+      if (ok) item.poster = `/cases/${c.slug}/${id}-v${i + 1}-poster.webp`;
       if (title) item.title = title;
       gallery.push(item);
     }

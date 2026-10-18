@@ -26,8 +26,8 @@ gallery:
   - {"kind":"image","src":"/cases/inktober-2025/328-1.webp","post":328,"tg":"https://t.me/tak_naprimer/328","title":"sting/жало"}
   - {"kind":"image","src":"/cases/inktober-2025/329-1.webp","post":329,"tg":"https://t.me/tak_naprimer/329","title":"shredded/измельченный"}
   - {"kind":"image","src":"/cases/inktober-2025/330-1.webp","post":330,"tg":"https://t.me/tak_naprimer/330","title":"Наигралась я с водой вдоооволь, на несколько постов налила"}
-  - {"kind":"video","src":"/cases/inktober-2025/331-v1.mp4","post":331,"tg":"https://t.me/tak_naprimer/331"}
-  - {"kind":"video","src":"/cases/inktober-2025/335-v1.mp4","post":335,"tg":"https://t.me/tak_naprimer/335"}
+  - {"kind":"video","src":"/cases/inktober-2025/331-v1.mp4","post":331,"tg":"https://t.me/tak_naprimer/331","poster":"/cases/inktober-2025/331-v1-poster.webp"}
+  - {"kind":"video","src":"/cases/inktober-2025/335-v1.mp4","post":335,"tg":"https://t.me/tak_naprimer/335","poster":"/cases/inktober-2025/335-v1-poster.webp"}
   - {"kind":"image","src":"/cases/inktober-2025/337-1.webp","post":337,"tg":"https://t.me/tak_naprimer/337","title":"Кусочки процесса"}
   - {"kind":"image","src":"/cases/inktober-2025/337-2.webp","post":337,"tg":"https://t.me/tak_naprimer/337","title":"Кусочки процесса"}
   - {"kind":"image","src":"/cases/inktober-2025/337-3.webp","post":337,"tg":"https://t.me/tak_naprimer/337","title":"Кусочки процесса"}

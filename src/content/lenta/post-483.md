@@ -5,6 +5,6 @@ tg: "https://t.me/tak_naprimer/483"
 title: ""
 text: ""
 photos: []
-videos: [{"src":"/lenta-media/483/v1.mp4"}]
+videos: [{"src":"/lenta-media/483/v1.mp4","poster":"/lenta-media/483/v1-poster.webp"}]
 case: "analogovyy-apdeyt"
 ---
