@@ -22,6 +22,19 @@ export type StickerPlacement = {
 // Раскладки для конкретных мест
 export const vec = (id: string) => `/decor/vector/${id}.svg`;
 
+// Буквы для подмены в заголовке «Так, например» из квадратных стикеров (36 Days of Type «кудрявые», «Аналоговый апдейт»):
+// номер стикера → буква. Подобрано на глаз по контакт-листу — Тане проверить/дополнить.
+export const LETTER_TILES: Record<string, string[]> = {
+  а: ['022', '204'],
+  к: ['074', '199'],
+  м: ['191', '244', '222'],
+  н: ['218'],
+  п: ['241'],
+  р: ['242'],
+  т: ['257'],
+  е: ['078'],
+};
+
 export const HERO_STICKERS: StickerPlacement[] = [
   { id: '013', x: '88%', y: '10%', size: 120, rot: -12, depth: 0.6, mobile: true },
   { id: '074', x: '94%', y: '46%', size: 150, rot: 9, depth: 0.9 },

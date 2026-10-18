@@ -7,8 +7,14 @@ import Lenta from '@/components/Lenta.astro';
 import ProjectForm from '@/components/ProjectForm.astro';
 import Stickers from '@/components/Stickers.astro';
 import StickerMarquee from '@/components/StickerMarquee.astro';
-import GlyphStrip from '@/components/GlyphStrip.astro';
-import { vec } from '@/lib/stickers';
+import { vec, stickerSrc, LETTER_TILES } from '@/lib/stickers';
+import kit from '@/data/alphabet-kitayschina.json';
+import type { GlyphMap } from '@/components/Hero';
+
+// Глифы для подмены букв в заголовке: векторный алфавит «Китайщины» (точно по буквам) + квадратные стикеры
+const glyphs: GlyphMap = {};
+for (const [letter, v] of Object.entries(kit as Record<string, { file: string }>)) glyphs[letter] = [{ kind: 'svg', src: u(`/decor/alphabet/kitayschina/${v.file}`), set: 'Китайщина, 2025' }];
+for (const [letter, ids] of Object.entries(LETTER_TILES)) (glyphs[letter] ??= []).push(...ids.map((id) => ({ kind: 'tile' as const, src: u(stickerSrc(id)), set: 'из стикерпака' })));
 import { HERO_STICKERS, CASE_STICKERS } from '@/lib/stickers';
 import { getCollection } from 'astro:content';
 import { u, SITE } from '@/lib/url';
@@ -22,12 +28,10 @@ const featured = all.filter((c) => c.data.featured && !bigIds.has(c.id)).slice(0
 ---
 <Layout title={SITE.name}>
   <div class="relative">
-    <Hero client:load base={import.meta.env.BASE_URL} />
+    <Hero client:load base={import.meta.env.BASE_URL} glyphs={glyphs} />
     {/* стикеры Тани поверх хиро: абсолютные объекты с параллаксом */}
     <Stickers items={HERO_STICKERS} />
   </div>
-  {/* бегущая строка из векторных букв «Китайщины» */}
-  <GlyphStrip />
 
   {big.length > 0 && (
     <div class="pt-10 sm:pt-16">
