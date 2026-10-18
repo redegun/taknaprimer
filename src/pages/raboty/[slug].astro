@@ -17,31 +17,78 @@ const d = entry.data;
 const { Content } = await render(entry);
 const lentaIds = new Set((await getCollection('lenta')).map((p) => p.data.id));
 const ps = { bg: '#ffffff', paddingTop: 0, gap: 0, ...(d.presentationStyle ?? {}) };
+const hasPres = d.presentation.length > 0;
 const images = d.gallery.filter((g) => g.kind === 'image');
 const videos = d.gallery.filter((g) => g.kind === 'video');
 const hasCaptions = images.some((g) => g.title);
 ---
 <Layout title={d.title} description={d.short} ogImage={u(d.cover)}>
   <article>
-    <div class="container-x pt-10 sm:pt-14">
-      <a href={u('/raboty/')} class="text-sm text-muted hover:text-accent">← Все работы</a>
-      <div class="mt-4 flex flex-wrap items-center gap-2" data-reveal>
-        {d.tags.map((t) => <span class="rounded-full bg-paper-2 px-3 py-1 text-xs font-medium text-ink-2">{t}</span>)}
-        <span class="ml-1 text-sm text-muted">{d.period ?? d.year}</span>
-      </div>
-      <h1 class="mt-4 max-w-4xl text-4xl font-bold sm:text-6xl" data-reveal>{d.title}</h1>
-      <p class="mt-5 max-w-2xl text-xl text-ink-2" data-reveal>{d.short}</p>
-    </div>
-
-    <div class="container-x mt-10" data-reveal>
-      <div class="overflow-hidden rounded-xl2 bg-paper-2">
-        <img src={u(d.cover)} alt={d.coverAlt ?? d.title} class="w-full object-cover" decoding="async" />
-      </div>
-    </div>
+    {hasPres ? (
+      <>
+        {/* Кейс с Behance: страница начинается сразу с полотна проекта, без шапки и обложки из Telegram */}
+        <div class="container-x flex flex-wrap items-center justify-between gap-2 py-3 text-sm text-muted">
+          <a href={u('/raboty/')} class="hover:text-accent">← Все работы</a>
+          <span>{d.title} · {d.period ?? d.year}</span>
+        </div>
+        <section id="prezentaciya">
+          <div class="be-project mx-auto w-full max-w-[1400px]" style={`--be-bg:${ps.bg};--be-gap:${ps.gap}px;--be-pt:${ps.paddingTop}px`}>
+            {d.presentation.map((b) => b.kind === 'image' ? (
+              <figure class="be-module">
+                <img src={u(b.src!)} alt={d.title} width={b.w} height={b.h} loading="lazy" decoding="async" class="block h-auto w-full" />
+              </figure>
+            ) : b.kind === 'grid' ? (
+              <div class="be-module be-grid">
+                {(b.items ?? []).map((it) => (
+                  <figure class="be-grid__item" style={`flex-grow:${((it.w ?? 1) / (it.h ?? 1)).toFixed(4)};aspect-ratio:${it.w ?? 1}/${it.h ?? 1}`}>
+                    <img src={u(it.src)} alt={d.title} width={it.w} height={it.h} loading="lazy" decoding="async" class="block h-full w-full object-cover" />
+                  </figure>
+                ))}
+              </div>
+            ) : b.kind === 'html' ? (
+              <div class:list={['be-module be-text', b.align === 'center' ? 'text-center' : b.align === 'right' ? 'text-right' : 'text-left']} set:html={b.html} />
+            ) : b.kind === 'heading' ? (
+              <div class="be-module be-text"><p class="be-title">{b.text}</p></div>
+            ) : (
+              <div class="be-module be-text"><p>{b.text}</p></div>
+            ))}
+          </div>
+        </section>
+      </>
+    ) : (
+      <>
+        <div class="container-x pt-10 sm:pt-14">
+          <a href={u('/raboty/')} class="text-sm text-muted hover:text-accent">← Все работы</a>
+          <div class="mt-4 flex flex-wrap items-center gap-2" data-reveal>
+            {d.tags.map((t) => <span class="rounded-full bg-paper-2 px-3 py-1 text-xs font-medium text-ink-2">{t}</span>)}
+            <span class="ml-1 text-sm text-muted">{d.period ?? d.year}</span>
+          </div>
+          <h1 class="mt-4 max-w-4xl text-4xl font-bold sm:text-6xl" data-reveal>{d.title}</h1>
+          <p class="mt-5 max-w-2xl text-xl text-ink-2" data-reveal>{d.short}</p>
+        </div>
+        <div class="container-x mt-10" data-reveal>
+          <div class="overflow-hidden rounded-xl2 bg-paper-2">
+            <img src={u(d.cover)} alt={d.coverAlt ?? d.title} class="w-full object-cover" decoding="async" />
+          </div>
+        </div>
+      </>
+    )}
 
     <div class="container-x mt-12 grid gap-10 lg:grid-cols-[1.4fr_1fr]">
-      <div class="prose-case" data-reveal>
-        <Content />
+      <div>
+        {hasPres && (
+          <div class="mb-6">
+            <div class="flex flex-wrap items-center gap-2" data-reveal>
+              {d.tags.map((t) => <span class="rounded-full bg-paper-2 px-3 py-1 text-xs font-medium text-ink-2">{t}</span>)}
+              <span class="ml-1 text-sm text-muted">{d.period ?? d.year}</span>
+            </div>
+            <h1 class="mt-4 max-w-4xl text-3xl font-bold sm:text-5xl" data-reveal>{d.title}</h1>
+            <p class="mt-4 max-w-2xl text-lg text-ink-2" data-reveal>{d.short}</p>
+          </div>
+        )}
+        <div class="prose-case" data-reveal>
+          <Content />
+        </div>
       </div>
       <aside class="space-y-5" data-reveal>
         {d.result && (
@@ -66,37 +113,6 @@ const hasCaptions = images.some((g) => g.title);
         </div>
       </aside>
     </div>
-
-    {d.presentation.length > 0 && (
-      <section class="mt-16" id="prezentaciya">
-        <div class="container-x flex flex-wrap items-end justify-between gap-3">
-          <h2 class="text-2xl font-bold sm:text-3xl" data-reveal>Кейс</h2>
-          {d.links.behance && <a class="text-sm text-muted underline decoration-line underline-offset-4 hover:text-accent" href={d.links.behance} target="_blank" rel="noopener">Оригинал на Behance →</a>}
-        </div>
-        {/* Полотно проекта как на Behance: 1400 px, фон и отступы проекта, картинки встык, авторская типографика */}
-        <div class="be-project mx-auto mt-6 w-full max-w-[1400px]" style={`--be-bg:${ps.bg};--be-gap:${ps.gap}px;--be-pt:${ps.paddingTop}px`}>
-          {d.presentation.map((b) => b.kind === 'image' ? (
-            <figure class="be-module">
-              <img src={u(b.src!)} alt={d.title} width={b.w} height={b.h} loading="lazy" decoding="async" class="block h-auto w-full" />
-            </figure>
-          ) : b.kind === 'grid' ? (
-            <div class="be-module be-grid">
-              {(b.items ?? []).map((it) => (
-                <figure class="be-grid__item" style={`flex-grow:${((it.w ?? 1) / (it.h ?? 1)).toFixed(4)};aspect-ratio:${it.w ?? 1}/${it.h ?? 1}`}>
-                  <img src={u(it.src)} alt={d.title} width={it.w} height={it.h} loading="lazy" decoding="async" class="block h-full w-full object-cover" />
-                </figure>
-              ))}
-            </div>
-          ) : b.kind === 'html' ? (
-            <div class:list={['be-module be-text', b.align === 'center' ? 'text-center' : b.align === 'right' ? 'text-right' : 'text-left']} set:html={b.html} />
-          ) : b.kind === 'heading' ? (
-            <div class="be-module be-text"><p class="be-title">{b.text}</p></div>
-          ) : (
-            <div class="be-module be-text"><p>{b.text}</p></div>
-          ))}
-        </div>
-      </section>
-    )}
 
     {images.length > 0 && (
       <div class="container-x mt-14">
