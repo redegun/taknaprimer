@@ -1,5 +1,6 @@
 ---
 id: 513
+ids: [513]
 date: 2026-09-12
 tg: "https://t.me/tak_naprimer/513"
 title: "Ъ — твёрдый сверхзвуковой след"

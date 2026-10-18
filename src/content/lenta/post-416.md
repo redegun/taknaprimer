@@ -1,5 +1,6 @@
 ---
 id: 416
+ids: [416]
 date: 2026-08-17
 tg: "https://t.me/tak_naprimer/416"
 title: "А — аналоговый апдейт"

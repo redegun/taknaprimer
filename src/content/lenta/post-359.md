@@ -1,5 +1,6 @@
 ---
 id: 359
+ids: [359]
 date: 2025-10-14
 tg: "https://t.me/tak_naprimer/359"
 title: "trunk/ствол"

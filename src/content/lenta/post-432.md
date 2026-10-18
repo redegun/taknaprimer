@@ -1,5 +1,6 @@
 ---
 id: 432
+ids: [432]
 date: 2026-08-25
 tg: "https://t.me/tak_naprimer/432"
 title: "И"

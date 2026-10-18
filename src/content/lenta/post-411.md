@@ -1,5 +1,6 @@
 ---
 id: 411
+ids: [411]
 date: 2025-11-02
 tg: "https://t.me/tak_naprimer/411"
 title: "✅Итоги 31 дня"

@@ -1,5 +1,6 @@
 ---
 id: 384
+ids: [384]
 date: 2025-10-24
 tg: "https://t.me/tak_naprimer/384"
 title: ""

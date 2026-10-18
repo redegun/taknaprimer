@@ -1,5 +1,6 @@
 ---
 id: 224
+ids: [224]
 date: 2025-09-03
 tg: "https://t.me/tak_naprimer/224"
 title: "Половина пройдена"

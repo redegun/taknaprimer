@@ -1,5 +1,6 @@
 ---
 id: 190
+ids: [190]
 date: 2025-08-29
 tg: "https://t.me/tak_naprimer/190"
 title: "дутая Д"

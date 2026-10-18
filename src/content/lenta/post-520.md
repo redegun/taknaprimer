@@ -1,5 +1,6 @@
 ---
 id: 520
+ids: [520]
 date: 2026-09-14
 tg: "https://t.me/tak_naprimer/520"
 title: "Ы — перекрёстный сигнал"

@@ -1,5 +1,6 @@
 ---
 id: 187
+ids: [187]
 date: 2025-08-29
 tg: "https://t.me/tak_naprimer/187"
 title: "Богатая Б"

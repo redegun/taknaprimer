@@ -1,5 +1,6 @@
 ---
 id: 498
+ids: [498]
 date: 2026-09-11
 tg: "https://t.me/tak_naprimer/498"
 title: "Ш — Шифрование памяти"

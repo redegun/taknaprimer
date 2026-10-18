@@ -1,5 +1,6 @@
 ---
 id: 196
+ids: [196]
 date: 2025-08-30
 tg: "https://t.me/tak_naprimer/196"
 title: "иррациональная И"

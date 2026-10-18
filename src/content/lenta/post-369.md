@@ -1,5 +1,6 @@
 ---
 id: 369
+ids: [369]
 date: 2025-10-20
 tg: "https://t.me/tak_naprimer/369"
 title: "🤯Ддыщь-бдыщь💥 Взорвала буквы 🌩"

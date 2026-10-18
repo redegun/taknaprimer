@@ -1,5 +1,6 @@
 ---
 id: 163
+ids: [163]
 date: 2025-08-24
 tg: "https://t.me/tak_naprimer/163"
 title: "Ё"

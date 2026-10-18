@@ -21,7 +21,9 @@ const pages = walk(DIST).map((f) => {
 const brand = (s) => /так, например/i.test(s) && /taknaprimer/i.test(s);
 const issues = [];
 const seenT = new Map(), seenD = new Map();
+const redirects = pages.filter((p) => p.noindex && /http-equiv="refresh"/i.test(fs.readFileSync(path.join(DIST, p.url, 'index.html'), 'utf8'))).length;
 for (const p of pages) {
+  if (p.noindex) continue; // редиректы слитых постов и 404 — не для поиска
   if (!p.title) issues.push([p.url, 'нет title']);
   if (!p.desc) issues.push([p.url, 'нет description']);
   if (p.title && !brand(p.title)) issues.push([p.url, 'в title нет бренда кириллицей+латиницей']);
@@ -38,7 +40,7 @@ for (const p of pages) {
 for (const [t, urls] of seenT) if (urls.length > 1) issues.push([urls.join(' '), `дубль title: ${t.slice(0, 60)}`]);
 for (const [d, urls] of seenD) if (urls.length > 1) issues.push([urls.slice(0, 5).join(' '), `дубль description (${urls.length} стр.)`]);
 const lens = (arr) => `мин ${Math.min(...arr)} / медиана ${arr.sort((a, b) => a - b)[Math.floor(arr.length / 2)]} / макс ${Math.max(...arr)}`;
-console.log(`страниц: ${pages.length}, noindex: ${pages.filter((p) => p.noindex).length}`);
+console.log(`страниц: ${pages.length}, noindex: ${pages.filter((p) => p.noindex).length} (из них редиректов: ${redirects})`);
 console.log(`title: ${lens(pages.map((p) => p.title.length))} знаков; description: ${lens(pages.map((p) => p.desc.length))} знаков`);
 console.log(`проблем: ${issues.length}`);
 for (const [u, m] of issues.slice(0, 40)) console.log('  ', m, '→', u);

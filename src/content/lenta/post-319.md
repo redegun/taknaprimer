@@ -1,5 +1,6 @@
 ---
 id: 319
+ids: [319]
 date: 2025-10-07
 tg: "https://t.me/tak_naprimer/319"
 title: "Такие звезды эти буквы."

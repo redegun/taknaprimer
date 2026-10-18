@@ -1,5 +1,6 @@
 ---
 id: 526
+ids: [526]
 date: 2026-09-16
 tg: "https://t.me/tak_naprimer/526"
 title: "Э — энергия пустоты"

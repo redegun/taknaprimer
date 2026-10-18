@@ -1,5 +1,6 @@
 ---
 id: 148
+ids: [148]
 date: 2025-08-21
 tg: "https://t.me/tak_naprimer/148"
 title: "Г"

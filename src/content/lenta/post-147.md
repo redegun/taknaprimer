@@ -1,5 +1,6 @@
 ---
 id: 147
+ids: [147]
 date: 2025-08-20
 tg: "https://t.me/tak_naprimer/147"
 title: "В"

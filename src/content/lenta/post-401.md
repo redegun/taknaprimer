@@ -1,5 +1,6 @@
 ---
 id: 401
+ids: [401]
 date: 2025-10-30
 tg: "https://t.me/tak_naprimer/401"
 title: "BDEFGHIJKLMOPQRSUWXYZ✋ вы нам не подходите"

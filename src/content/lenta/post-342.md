@@ -1,5 +1,6 @@
 ---
 id: 342
+ids: [342]
 date: 2025-10-13
 tg: "https://t.me/tak_naprimer/342"
 title: "В чб"

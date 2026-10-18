@@ -1,5 +1,6 @@
 ---
 id: 415
+ids: [415]
 date: 2026-08-10
 tg: "https://t.me/tak_naprimer/415"
 title: "Дырявенькая ё для @efestmsk"

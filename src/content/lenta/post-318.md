@@ -1,5 +1,6 @@
 ---
 id: 318
+ids: [318]
 date: 2025-10-05
 tg: "https://t.me/tak_naprimer/318"
 title: "pierce/прокалывать"

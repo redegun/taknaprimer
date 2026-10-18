@@ -1,5 +1,6 @@
 ---
 id: 399
+ids: [399]
 date: 2025-10-28
 tg: "https://t.me/tak_naprimer/399"
 title: "💀Типографические кости 🦴"

@@ -1,5 +1,6 @@
 ---
 id: 324
+ids: [324]
 date: 2025-10-09
 tg: "https://t.me/tak_naprimer/324"
 title: "Первая девятка"

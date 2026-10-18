@@ -1,5 +1,6 @@
 ---
 id: 395
+ids: [395]
 date: 2025-10-26
 tg: "https://t.me/tak_naprimer/395"
 title: "Не заблудитесь тут ☝️"

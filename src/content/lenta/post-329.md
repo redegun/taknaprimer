@@ -1,5 +1,6 @@
 ---
 id: 329
+ids: [329]
 date: 2025-10-12
 tg: "https://t.me/tak_naprimer/329"
 title: "shredded/измельченный"

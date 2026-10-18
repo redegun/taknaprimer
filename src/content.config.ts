@@ -65,6 +65,7 @@ const lenta = defineCollection({
   loader: glob({ pattern: 'post-*.md', base: './src/content/lenta' }),
   schema: z.object({
     id: z.number(),
+    ids: z.array(z.number()).default([]),   // серия из нескольких постов: все id, страница — по первому
     date: z.coerce.date(),
     tg: z.string(),
     title: z.string().default(''),

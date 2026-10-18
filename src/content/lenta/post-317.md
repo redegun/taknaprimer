@@ -1,5 +1,6 @@
 ---
 id: 317
+ids: [317]
 date: 2025-10-05
 tg: "https://t.me/tak_naprimer/317"
 title: "deer/олень"

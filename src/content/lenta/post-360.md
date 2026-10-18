@@ -1,5 +1,6 @@
 ---
 id: 360
+ids: [360]
 date: 2025-10-15
 tg: "https://t.me/tak_naprimer/360"
 title: "Порвала я эти буквы 😑"

@@ -39,7 +39,7 @@ const og = d.photos[0] ?? d.videos[0]?.poster;
       <div class="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted" data-reveal>
         <time datetime={d.date.toISOString().slice(0, 10)}>{fmtDate(d.date, true)}</time>
         <span>·</span>
-        <a href={d.tg} target="_blank" rel="noopener" class="underline decoration-line underline-offset-4 hover:text-accent">Пост в Telegram</a>
+        <a href={d.tg} target="_blank" rel="noopener" class="underline decoration-line underline-offset-4 hover:text-accent">{d.ids.length > 1 ? `Серия из ${d.ids.length} постов в Telegram` : 'Пост в Telegram'}</a>
         {relatedCase && (
           <>
             <span>·</span>

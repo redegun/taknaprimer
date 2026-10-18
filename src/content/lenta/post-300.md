@@ -1,5 +1,6 @@
 ---
 id: 300
+ids: [300]
 date: 2025-09-20
 tg: "https://t.me/tak_naprimer/300"
 title: "Спасибо команде @bkvchallenge и @dprofileru за то, что создали + этот…"

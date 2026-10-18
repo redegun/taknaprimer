@@ -1,5 +1,6 @@
 ---
 id: 534
+ids: [534]
 date: 2026-09-18
 tg: "https://t.me/tak_naprimer/534"
 title: "Я — остаточная личность"

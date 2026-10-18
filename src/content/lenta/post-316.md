@@ -1,5 +1,6 @@
 ---
 id: 316
+ids: [316]
 date: 2025-10-04
 tg: "https://t.me/tak_naprimer/316"
 title: "murky/мутный"

@@ -1,5 +1,6 @@
 ---
 id: 168
+ids: [168]
 date: 2025-08-26
 tg: "https://t.me/tak_naprimer/168"
 title: "злая З"

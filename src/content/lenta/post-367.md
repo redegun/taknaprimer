@@ -1,5 +1,6 @@
 ---
 id: 367
+ids: [367]
 date: 2025-10-19
 tg: "https://t.me/tak_naprimer/367"
 title: "А я уже хочу зиму! ✨"

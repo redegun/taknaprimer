@@ -1,5 +1,6 @@
 ---
 id: 275
+ids: [275]
 date: 2025-09-13
 tg: "https://t.me/tak_naprimer/275"
 title: "Щ, найденная под воздействием Вовы Аносова @designmebaby ч.2"

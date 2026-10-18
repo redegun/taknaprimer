@@ -1,5 +1,6 @@
 ---
 id: 327
+ids: [327]
 date: 2025-10-10
 tg: "https://t.me/tak_naprimer/327"
 title: "sweep/подметать"

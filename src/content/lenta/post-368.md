@@ -1,5 +1,6 @@
 ---
 id: 368
+ids: [368]
 date: 2025-10-19
 tg: "https://t.me/tak_naprimer/368"
 title: "🏴Буквы-соперники 🏳️"

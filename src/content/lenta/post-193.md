@@ -1,5 +1,6 @@
 ---
 id: 193
+ids: [193]
 date: 2025-08-29
 tg: "https://t.me/tak_naprimer/193"
 title: "Жизненная Ж"

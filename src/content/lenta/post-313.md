@@ -1,5 +1,6 @@
 ---
 id: 313
+ids: [313]
 date: 2025-10-02
 tg: "https://t.me/tak_naprimer/313"
 title: "Наплела вам я тут сегодня"

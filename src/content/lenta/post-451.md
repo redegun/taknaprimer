@@ -1,5 +1,6 @@
 ---
 id: 451
+ids: [451]
 date: 2026-08-31
 tg: "https://t.me/tak_naprimer/451"
 title: "Н — Нестабильная связь"

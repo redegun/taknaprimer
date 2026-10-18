@@ -1,5 +1,6 @@
 ---
 id: 282
+ids: [282]
 date: 2025-09-13
 tg: "https://t.me/tak_naprimer/282"
 title: "чуть не прощёлкала Щ"

@@ -1,5 +1,6 @@
 ---
 id: 189
+ids: [189]
 date: 2025-08-29
 tg: "https://t.me/tak_naprimer/189"
 title: "Грохнувшаяся Г"

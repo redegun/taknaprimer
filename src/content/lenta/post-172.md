@@ -1,5 +1,6 @@
 ---
 id: 172
+ids: [172]
 date: 2025-08-27
 tg: "https://t.me/tak_naprimer/172"
 title: "и"

@@ -1,5 +1,6 @@
 ---
 id: 614
+ids: [614]
 date: 2026-10-13
 tg: "https://t.me/tak_naprimer/614"
 title: "«Мамино Ё»"

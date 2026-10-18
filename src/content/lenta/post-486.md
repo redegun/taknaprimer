@@ -1,5 +1,6 @@
 ---
 id: 486
+ids: [486]
 date: 2026-09-09
 tg: "https://t.me/tak_naprimer/486"
 title: "Ц — целостность данных"

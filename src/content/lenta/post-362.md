@@ -1,5 +1,6 @@
 ---
 id: 362
+ids: [362]
 date: 2025-10-16
 tg: "https://t.me/tak_naprimer/362"
 title: "Просчиталась, но где?"

@@ -1,5 +1,6 @@
 ---
 id: 328
+ids: [328]
 date: 2025-10-10
 tg: "https://t.me/tak_naprimer/328"
 title: "sting/жало"

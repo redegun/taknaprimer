@@ -1,5 +1,6 @@
 ---
 id: 396
+ids: [396]
 date: 2025-10-27
 tg: "https://t.me/tak_naprimer/396"
 title: "Приправим инктобер лучком 🧅"

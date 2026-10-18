@@ -1,5 +1,6 @@
 ---
 id: 227
+ids: [227]
 date: 2025-09-04
 tg: "https://t.me/tak_naprimer/227"
 title: "Пинкфлойдовская П"

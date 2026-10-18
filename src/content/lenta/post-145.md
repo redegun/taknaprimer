@@ -1,5 +1,6 @@
 ---
 id: 145
+ids: [145]
 date: 2025-08-18
 tg: "https://t.me/tak_naprimer/145"
 title: "А"

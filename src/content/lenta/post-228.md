@@ -1,5 +1,6 @@
 ---
 id: 228
+ids: [228]
 date: 2025-09-04
 tg: "https://t.me/tak_naprimer/228"
 title: "С"

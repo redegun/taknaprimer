@@ -1,5 +1,6 @@
 ---
 id: 365
+ids: [365]
 date: 2025-10-18
 tg: "https://t.me/tak_naprimer/365"
 title: "Вторая девятка"

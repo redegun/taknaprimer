@@ -1,5 +1,6 @@
 ---
 id: 323
+ids: [323]
 date: 2025-10-09
 tg: "https://t.me/tak_naprimer/323"
 title: "В догонку в чб"

@@ -1,5 +1,6 @@
 ---
 id: 458
+ids: [458]
 date: 2026-09-04
 tg: "https://t.me/tak_naprimer/458"
 title: "Т — тающий, исчезающий сигнал"

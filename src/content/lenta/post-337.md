@@ -1,5 +1,6 @@
 ---
 id: 337
+ids: [337]
 date: 2025-10-13
 tg: "https://t.me/tak_naprimer/337"
 title: "Кусочки процесса"

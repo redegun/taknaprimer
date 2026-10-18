@@ -1,5 +1,6 @@
 ---
 id: 166
+ids: [166]
 date: 2025-08-25
 tg: "https://t.me/tak_naprimer/166"
 title: "Ёж здорового человека"

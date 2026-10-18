@@ -1,5 +1,6 @@
 ---
 id: 435
+ids: [435]
 date: 2026-08-27
 tg: "https://t.me/tak_naprimer/435"
 title: "Й"

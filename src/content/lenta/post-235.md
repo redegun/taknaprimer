@@ -1,5 +1,6 @@
 ---
 id: 235
+ids: [235]
 date: 2025-09-06
 tg: "https://t.me/tak_naprimer/235"
 title: "О, имечко сложилось"

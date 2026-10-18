@@ -1,5 +1,6 @@
 ---
 id: 314
+ids: [314]
 date: 2025-10-03
 tg: "https://t.me/tak_naprimer/314"
 title: "crown/корона"

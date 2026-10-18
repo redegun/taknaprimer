@@ -1,5 +1,6 @@
 ---
 id: 497
+ids: [497]
 date: 2026-09-10
 tg: "https://t.me/tak_naprimer/497"
 title: "Ч — Человекопиксель"
