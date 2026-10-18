@@ -2,6 +2,9 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 
 export type LentaEntry = CollectionEntry<'lenta'>;
 
+// Импортируется и в getStaticPaths (там переменные модуля страницы недоступны)
+export const PAGE_SIZE = 36;
+
 export async function getLenta(): Promise<LentaEntry[]> {
   const all = await getCollection('lenta', ({ data }) => !data.draft);
   return all.sort((a, b) => b.data.id - a.data.id);

@@ -1,8 +1,7 @@
 ---
 import LentaGrid from '@/components/LentaGrid.astro';
-import { getLenta } from '@/lib/lenta';
+import { getLenta, PAGE_SIZE } from '@/lib/lenta';
 
-const PAGE_SIZE = 36;
 export async function getStaticPaths() {
   const all = await getLenta();
   const pages = Math.max(1, Math.ceil(all.length / PAGE_SIZE));
