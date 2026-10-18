@@ -5,45 +5,63 @@ interface Props {
   compact?: boolean;
 }
 const { compact = false } = Astro.props;
-const what = ['логотип', 'надпись или леттеринг', 'оформление пространства', 'текстиль, мерч', 'упаковка, печать', 'не знаю, давайте обсудим'];
-const who = ['бренд', 'человек', 'событие'];
-const when = ['не горит', 'в этом месяце', 'вчера'];
+// Лист наклеек: группа, значение, цвет наклейки. what — несколько, who/when — по одной.
+const sheet = [
+  { group: 'what', multi: true, title: 'Что делаем?', hint: 'можно несколько', items: [
+    ['логотип', 'bg-[#ffe3df]'], ['надпись или леттеринг', 'bg-[#e6ecff]'], ['оформление пространства', 'bg-[#e4f5e9]'],
+    ['текстиль, мерч', 'bg-[#fff1cc]'], ['упаковка, печать', 'bg-[#f3e4ff]'], ['не знаю, давайте обсудим', 'bg-white'],
+  ] },
+  { group: 'who', multi: false, title: 'Для кого?', hint: 'одна', items: [['бренд', 'bg-[#e6ecff]'], ['человек', 'bg-[#ffe3df]'], ['событие', 'bg-[#fff1cc]']] },
+  { group: 'when', multi: false, title: 'Когда нужно?', hint: 'одна', items: [['не горит', 'bg-[#e4f5e9]'], ['в этом месяце', 'bg-[#fff1cc]'], ['вчера', 'bg-[#ffe3df]']] },
+];
+const rots = [-4, 3, -2, 5, -3, 2, 4, -5, 1];
 ---
 <form class="project-form" action={u('/api/form.php')} method="post" novalidate data-reveal>
   <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
   <input type="hidden" name="started" value="" />
 
   {!compact && (
-    <fieldset class="mb-7">
-      <legend class="mb-3 font-display text-lg font-bold">Что делаем?</legend>
-      <div class="flex flex-wrap gap-2">
-        {what.map((v) => (
-          <label class="chip"><input type="checkbox" name="what[]" value={v} />{v}</label>
+    <div class="stk-form mb-8 grid gap-6 lg:grid-cols-[1fr_1.15fr]">
+      {/* лист наклеек */}
+      <div class="stk-sheet rounded-xl2 border border-dashed border-ink/20 bg-paper-2/60 p-4 sm:p-5">
+        <div class="mb-3 flex items-center gap-2 text-sm text-muted">
+          <img src={u('/decor/vector/v045.svg')} alt="" class="h-3.5 w-3.5" aria-hidden="true" />
+          <span class="hidden sm:inline">Наклейки. Перетащите нужные в заявку</span><span class="sm:hidden">Наклейки. Нажмите, чтобы приклеить</span>
+        </div>
+        {sheet.map((g, gi) => (
+          <fieldset class="mb-4 last:mb-0">
+            <legend class="mb-2 font-display text-[15px] font-bold">{g.title} <span class="font-sans text-xs font-normal text-muted">· {g.hint}</span></legend>
+            <div class="flex flex-wrap gap-2.5" data-sheet-group={g.group}>
+              {g.items.map(([v, color], i) => (
+                <label class:list={['stk', color]} data-group={g.group} data-multi={g.multi ? '1' : '0'} style={`--rot:${rots[(gi * 3 + i) % rots.length]}deg`} tabindex="0" role="button" aria-pressed="false">
+                  <input type={g.multi ? 'checkbox' : 'radio'} name={g.multi ? `${g.group}[]` : g.group} value={v} tabindex="-1" />
+                  <span>{v}</span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
         ))}
       </div>
-    </fieldset>
-  )}
 
-  {!compact && (
-    <div class="mb-7 grid gap-6 sm:grid-cols-2">
-      <fieldset>
-        <legend class="mb-3 font-display text-lg font-bold">Для кого?</legend>
-        <div class="flex flex-wrap gap-2">
-          {who.map((v) => <label class="chip"><input type="radio" name="who" value={v} />{v}</label>)}
+      {/* заявка — куда клеим */}
+      <div class="stk-zone rounded-xl2 border-2 border-ink/80 bg-white p-4 sm:p-5" data-zone>
+        <div class="mb-3 flex items-center justify-between">
+          <div class="font-display text-lg font-bold">Заявка</div>
+          <img src={u('/decor/vector/v020.svg')} alt="так?" class="h-3.5 w-auto -rotate-3" aria-hidden="true" />
         </div>
-      </fieldset>
-      <fieldset>
-        <legend class="mb-3 font-display text-lg font-bold">Когда нужно?</legend>
-        <div class="flex flex-wrap gap-2">
-          {when.map((v) => <label class="chip"><input type="radio" name="when" value={v} />{v}</label>)}
-        </div>
-      </fieldset>
+        {sheet.map((g) => (
+          <div class="stk-slot mb-3 min-h-[64px] rounded-xl border border-dashed border-ink/20 p-2 last:mb-0" data-slot={g.group}>
+            <div class="stk-slot__label pointer-events-none px-1.5 py-1 text-sm text-muted">{g.title} <span class="opacity-60">— сюда</span></div>
+            <div class="flex flex-wrap gap-2.5" data-slot-items></div>
+          </div>
+        ))}
+      </div>
     </div>
   )}
 
   <label class="mb-5 block">
     <span class="mb-2 block font-display text-lg font-bold">Расскажите, так, например…</span>
-    <textarea name="message" rows={compact ? 3 : 5} required placeholder="…что за проект, для кого, что уже есть и что хочется получить" class="w-full rounded-xl2 border border-line bg-white px-4 py-3 text-[16px] outline-none transition focus:border-ink focus:ring-4 focus:ring-accent/15"></textarea>
+    <textarea name="message" rows={compact ? 3 : 4} required placeholder="…что за проект, для кого, что уже есть и что хочется получить" class="w-full rounded-xl2 border border-line bg-white px-4 py-3 text-[16px] outline-none transition focus:border-ink focus:ring-4 focus:ring-accent/15"></textarea>
   </label>
 
   <label class="mb-6 block">
@@ -58,8 +76,117 @@ const when = ['не горит', 'в этом месяце', 'вчера'];
   <p class="form-status mt-4 hidden rounded-xl2 bg-paper-2 px-4 py-3 text-[15px]" role="status" aria-live="polite"></p>
 </form>
 
+<style>
+  /* наклейка */
+  .stk {
+    --rot: 0deg;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.55rem 0.9rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(20, 20, 20, 0.08);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.15;
+    color: var(--color-ink);
+    cursor: grab;
+    user-select: none;
+    touch-action: none;
+    transform: rotate(var(--rot));
+    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s, opacity 0.2s;
+  }
+  .stk:hover, .stk:focus-visible { transform: rotate(0deg) scale(1.04); box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14); outline: none; }
+  .stk input { position: absolute; opacity: 0; pointer-events: none; }
+  .stk.is-dragging { opacity: 0.35; }
+  .stk.is-placed { cursor: grab; }
+  .stk.is-placed::after { content: '×'; margin-left: 0.5rem; font-family: var(--font-sans); font-weight: 400; color: var(--color-muted); }
+  /* летящая копия */
+  .stk-ghost { position: fixed; z-index: 60; pointer-events: none; transform: rotate(-3deg) scale(1.08); box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25); }
+  .stk-slot.is-over { border-color: var(--color-accent); background: rgba(229, 57, 44, 0.05); }
+  .stk-slot.has-items .stk-slot__label { font-size: 11px; opacity: 0.8; }
+  .stk-slot .stk { --rot: 0deg; }
+  .stk-slot .stk:nth-child(odd) { --rot: -2deg; }
+  .stk-slot .stk:nth-child(even) { --rot: 2deg; }
+</style>
+
 <script>
+  // --- наклейки: перетаскивание (pointer events — мышь и палец) + клик/Enter как запасной способ ---
   document.querySelectorAll<HTMLFormElement>('form.project-form').forEach((form) => {
+    const zone = form.querySelector<HTMLElement>('[data-zone]');
+    const sheetGroup = (g: string) => form.querySelector<HTMLElement>(`[data-sheet-group="${g}"]`)!;
+    const slotItems = (g: string) => form.querySelector<HTMLElement>(`[data-slot="${g}"] [data-slot-items]`)!;
+    const slot = (g: string) => form.querySelector<HTMLElement>(`[data-slot="${g}"]`)!;
+
+    const place = (stk: HTMLElement) => {
+      const g = stk.dataset.group!, multi = stk.dataset.multi === '1';
+      const input = stk.querySelector<HTMLInputElement>('input')!;
+      if (!multi) slotItems(g).querySelectorAll<HTMLElement>('.stk').forEach((o) => { if (o !== stk) unplace(o); });
+      slotItems(g).appendChild(stk);
+      stk.classList.add('is-placed'); stk.setAttribute('aria-pressed', 'true');
+      input.checked = true;
+      slot(g).classList.add('has-items');
+    };
+    const unplace = (stk: HTMLElement) => {
+      const g = stk.dataset.group!;
+      const input = stk.querySelector<HTMLInputElement>('input')!;
+      sheetGroup(g).appendChild(stk);
+      stk.classList.remove('is-placed'); stk.setAttribute('aria-pressed', 'false');
+      input.checked = false;
+      if (!slotItems(g).querySelector('.stk')) slot(g).classList.remove('has-items');
+    };
+    const toggle = (stk: HTMLElement) => (stk.classList.contains('is-placed') ? unplace(stk) : place(stk));
+
+    if (zone) {
+      form.querySelectorAll<HTMLElement>('.stk').forEach((stk) => {
+        let ghost: HTMLElement | null = null, sx = 0, sy = 0, moved = false, over: HTMLElement | null = null;
+        stk.addEventListener('pointerdown', (e) => {
+          if ((e as PointerEvent).button !== 0) return;
+          sx = e.clientX; sy = e.clientY; moved = false;
+          stk.setPointerCapture(e.pointerId);
+        });
+        stk.addEventListener('pointermove', (e) => {
+          if (!stk.hasPointerCapture(e.pointerId)) return;
+          const dx = e.clientX - sx, dy = e.clientY - sy;
+          if (!moved && Math.hypot(dx, dy) < 6) return;
+          if (!moved) {
+            moved = true;
+            ghost = stk.cloneNode(true) as HTMLElement;
+            ghost.classList.add('stk-ghost'); ghost.classList.remove('is-placed');
+            const r = stk.getBoundingClientRect();
+            ghost.style.width = `${r.width}px`; ghost.style.left = `${r.left}px`; ghost.style.top = `${r.top}px`;
+            document.body.appendChild(ghost);
+            stk.classList.add('is-dragging');
+          }
+          if (ghost) { ghost.style.transform = `translate(${dx}px, ${dy}px) rotate(-3deg) scale(1.08)`; }
+          const el = document.elementFromPoint(e.clientX, e.clientY);
+          const s = el?.closest<HTMLElement>('.stk-slot') ?? (el?.closest('[data-zone]') ? slot(stk.dataset.group!) : null);
+          if (over && over !== s) over.classList.remove('is-over');
+          over = s && s.dataset.slot === stk.dataset.group ? s : null;
+          over?.classList.add('is-over');
+        });
+        const finish = (e: PointerEvent) => {
+          if (!stk.hasPointerCapture(e.pointerId)) return;
+          stk.releasePointerCapture(e.pointerId);
+          ghost?.remove(); ghost = null;
+          stk.classList.remove('is-dragging');
+          over?.classList.remove('is-over');
+          if (!moved) { toggle(stk); return; }
+          const el = document.elementFromPoint(e.clientX, e.clientY);
+          const inZone = !!el?.closest('[data-zone]');
+          if (inZone && !stk.classList.contains('is-placed')) place(stk);
+          else if (!inZone && stk.classList.contains('is-placed')) unplace(stk);
+          over = null;
+        };
+        stk.addEventListener('pointerup', finish);
+        stk.addEventListener('pointercancel', finish);
+        stk.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(stk); } });
+      });
+    }
+
+    // --- отправка ---
     (form.querySelector('input[name=started]') as HTMLInputElement).value = String(Date.now());
     const status = form.querySelector<HTMLElement>('.form-status')!;
     const btn = form.querySelector<HTMLButtonElement>('button[type=submit]')!;
@@ -78,7 +205,7 @@ const when = ['не горит', 'в этом месяце', 'вчера'];
         const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
         const data = await res.json().catch(() => ({}));
         if (res.ok && data.ok) {
-          form.querySelectorAll('fieldset, label').forEach((el) => el.classList.add('hidden'));
+          form.querySelectorAll('.stk-form, fieldset, label').forEach((el) => el.classList.add('hidden'));
           btn.classList.add('hidden');
           status.innerHTML = '<span class="font-display text-lg font-bold">Спасибо!</span><br>Получила. Отвечу так, например, завтра.';
         } else {
