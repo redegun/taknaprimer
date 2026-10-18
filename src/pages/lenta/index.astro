@@ -1,0 +1,8 @@
+---
+import LentaGrid from '@/components/LentaGrid.astro';
+import { getLenta } from '@/lib/lenta';
+export const PAGE_SIZE = 36;
+const all = await getLenta();
+const pages = Math.max(1, Math.ceil(all.length / PAGE_SIZE));
+---
+<LentaGrid posts={all.slice(0, PAGE_SIZE)} page={1} pages={pages} />

@@ -5,3 +5,7 @@ dist/
 *.log
 # сырые дампы канала (есть личные посты) — живут вне репо
 scripts/data/
+# медиа ленты живут на хостинге (заливает локальный деплой и крон на VPS), не в git
+public/lenta-media/
+src/data/lenta.json
+public/lenta/

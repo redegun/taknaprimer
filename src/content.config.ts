@@ -35,4 +35,20 @@ const cases = defineCollection({
   }),
 });
 
-export const collections = { cases };
+// Посты канала: один файл = одна страница /lenta/<id>/ (пишут scripts/build-lenta.mjs и крон на VPS)
+const lenta = defineCollection({
+  loader: glob({ pattern: 'post-*.md', base: './src/content/lenta' }),
+  schema: z.object({
+    id: z.number(),
+    date: z.coerce.date(),
+    tg: z.string(),
+    title: z.string().default(''),
+    text: z.string().default(''),
+    photos: z.array(z.string()).default([]),
+    videos: z.array(z.object({ src: z.string(), poster: z.string().optional() })).default([]),
+    case: z.string().optional(),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { cases, lenta };

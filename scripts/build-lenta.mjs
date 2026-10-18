@@ -1,48 +1,106 @@
-// Лента из Telegram: последние посты с фото (без личного и репостов) → src/data/lenta.json + public/lenta-media/<id>/n.webp
-// node scripts/build-lenta.mjs --dump <all.json> --media <media.json> [--limit 30]
-// Позже то же самое делает крон на VPS по свежему дампу (схема academylu).
+// Лента из Telegram: каждый подходящий пост → src/content/lenta/post-<id>.md (страница /lenta/<id>/)
+// + медиа в public/lenta-media/<id>/ (фото n.webp ≤ 1000 px, видео v<n>.mp4 ≤ 14 МБ + v<n>-poster.webp).
+// node scripts/build-lenta.mjs --dump <all.json> --media <media.json> [--since <id>]
+// public/lenta-media НЕ в git: заливается на хостинг напрямую (локальный деплой / крон на VPS). Новые посты дописывает
+// крон scripts/taknaprimer-lenta.py на VPS в том же формате.
 import fs from 'node:fs';
 import path from 'node:path';
 import sharp from 'sharp';
 
 const args = Object.fromEntries(process.argv.slice(2).reduce((a, v, i, arr) => (v.startsWith('--') ? [...a, [v.slice(2), arr[i + 1]]] : a), []));
-const DUMP = args.dump, MEDIA = args.media, LIMIT = Number(args.limit || 30);
+const DUMP = args.dump, MEDIA = args.media, SINCE = Number(args.since || 0);
+if (!DUMP || !MEDIA) { console.error('usage: --dump all.json --media media.json [--since id]'); process.exit(1); }
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1')), '..');
 const cfg = JSON.parse(fs.readFileSync(path.join(ROOT, 'scripts/cases.json'), 'utf8'));
 const dump = JSON.parse(fs.readFileSync(DUMP, 'utf8'));
 const media = JSON.parse(fs.readFileSync(MEDIA, 'utf8'));
 const hide = new Set(cfg.hide);
 const stop = cfg.stop.map((s) => s.toLowerCase());
-const cleanText = (t) => (t || '').replace(/#[\wа-яёА-ЯЁ_]+/g, '').replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
+const MAX_VIDEO = 14 * 1024 * 1024;
+const OUT = path.join(ROOT, 'src/content/lenta');
+const MEDIA_DIR = path.join(ROOT, 'public/lenta-media');
+fs.mkdirSync(OUT, { recursive: true });
 
-const picked = dump.posts
-  .filter((p) => !hide.has(p.id) && media[p.id]?.photos?.length && !stop.some((s) => (p.text || '').toLowerCase().includes(s)))
-  .sort((a, b) => b.id - a.id)
-  .slice(0, LIMIT);
-
-const out = [];
-for (const p of picked) {
-  const dir = path.join(ROOT, 'public/lenta-media', String(p.id));
-  const photos = [];
-  const urls = media[p.id].photos.slice(0, 4);
-  for (let i = 0; i < urls.length; i++) {
-    const file = path.join(dir, `${i + 1}.webp`);
-    if (!fs.existsSync(file)) {
-      try {
-        const r = await fetch(urls[i], { headers: { 'User-Agent': 'Mozilla/5.0' } });
-        if (!r.ok) throw new Error(String(r.status));
-        fs.mkdirSync(dir, { recursive: true });
-        await sharp(Buffer.from(await r.arrayBuffer())).rotate().resize({ width: 900, height: 900, fit: 'inside', withoutEnlargement: true }).webp({ quality: 80 }).toFile(file);
-      } catch (e) { console.warn('skip', p.id, i, e.message); continue; }
-    }
-    photos.push(`/lenta-media/${p.id}/${i + 1}.webp`);
-  }
-  if (!photos.length) continue;
-  out.push({ id: p.id, date: p.date, text: cleanText(p.text).slice(0, 400), photos, tg: `https://t.me/tak_naprimer/${p.id}` });
+// пост → кейс (первое совпадение); явно перечисленные id кейса — доверенные (стоп-слова не применяем)
+const expand = (list) => list.flatMap((v) => (typeof v === 'number' ? [v] : (([a, b]) => Array.from({ length: b - a + 1 }, (_, i) => a + i))(v.split('-').map(Number))));
+const caseOf = new Map(), trusted = new Set();
+for (const c of cfg.cases) {
+  for (const id of expand(c.posts || [])) if (!caseOf.has(id)) caseOf.set(id, c.slug);
+  for (const v of c.posts || []) if (typeof v === 'number') trusted.add(v);
 }
-fs.mkdirSync(path.join(ROOT, 'src/data'), { recursive: true });
-fs.writeFileSync(path.join(ROOT, 'src/data/lenta.json'), JSON.stringify(out, null, 1));
-// копия для клиентского обновления; на хостинге этот файл перезаписывает крон на VPS
-fs.mkdirSync(path.join(ROOT, 'public/lenta'), { recursive: true });
-fs.writeFileSync(path.join(ROOT, 'public/lenta/feed.json'), JSON.stringify(out));
-console.log('lenta posts:', out.length);
+
+const cleanText = (t) => (t || '').replace(/#[\wа-яёА-ЯЁ_]+/g, '').replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').replace(/[ \t]{2,}/g, ' ').trim();
+const isPersonal = (t) => { const l = (t || '').toLowerCase(); return stop.some((s) => l.includes(s)); };
+const titleOf = (text) => {
+  const first = (text.split('\n').map((s) => s.trim()).find(Boolean) || '').replace(/\s*(--|—|–)\s*/, ' — ');
+  if (first.length <= 80) return first;
+  const cut = first.slice(0, 79);
+  return cut.slice(0, Math.max(cut.lastIndexOf(' '), 30)).trim() + '…';
+};
+
+async function fetchBuf(url) {
+  const r = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0' } });
+  if (!r.ok) throw new Error(`${r.status}`);
+  return Buffer.from(await r.arrayBuffer());
+}
+async function savePhoto(url, out, max) {
+  if (fs.existsSync(out)) return true;
+  try {
+    fs.mkdirSync(path.dirname(out), { recursive: true });
+    await sharp(await fetchBuf(url)).rotate().resize({ width: max, height: max, fit: 'inside', withoutEnlargement: true }).webp({ quality: 80 }).toFile(out);
+    return true;
+  } catch (e) { console.warn('  photo fail', out, e.message); return false; }
+}
+async function saveVideo(url, out) {
+  if (fs.existsSync(out)) return true;
+  try {
+    const buf = await fetchBuf(url);
+    if (buf.length > MAX_VIDEO) { console.warn('  video too big', (buf.length / 1e6).toFixed(1), 'MB', out); return false; }
+    fs.mkdirSync(path.dirname(out), { recursive: true });
+    fs.writeFileSync(out, buf);
+    return true;
+  } catch (e) { console.warn('  video fail', out, e.message); return false; }
+}
+
+// даты: у продолжений альбома <time> нет — берём от ближайшего младшего id
+const posts = [...dump.posts].sort((a, b) => a.id - b.id);
+let lastDate = '';
+for (const p of posts) { if (p.date) lastDate = p.date; else p.date = lastDate; }
+
+let made = 0, skipped = 0;
+for (const p of posts) {
+  const id = p.id, m = media[id];
+  if (id < SINCE || !m || hide.has(id)) continue;
+  if (!m.photos.length && !m.videos.length) continue;
+  if (!trusted.has(id) && isPersonal(p.text)) { skipped++; continue; }
+  const photos = [], videos = [];
+  for (let i = 0; i < m.photos.length; i++) {
+    if (await savePhoto(m.photos[i], path.join(MEDIA_DIR, String(id), `${i + 1}.webp`), 1000)) photos.push(`/lenta-media/${id}/${i + 1}.webp`);
+  }
+  for (let i = 0; i < m.videos.length; i++) {
+    const v = m.videos[i];
+    if (!(await saveVideo(v.src, path.join(MEDIA_DIR, String(id), `v${i + 1}.mp4`)))) continue;
+    const item = { src: `/lenta-media/${id}/v${i + 1}.mp4` };
+    if (v.thumb && (await savePhoto(v.thumb, path.join(MEDIA_DIR, String(id), `v${i + 1}-poster.webp`), 1000))) item.poster = `/lenta-media/${id}/v${i + 1}-poster.webp`;
+    videos.push(item);
+  }
+  if (!photos.length && !videos.length) { skipped++; continue; }
+  const text = cleanText(p.text);
+  const fm = [
+    '---',
+    `id: ${id}`,
+    `date: ${p.date || '2025-01-01'}`,
+    `tg: "https://t.me/tak_naprimer/${id}"`,
+    `title: ${JSON.stringify(titleOf(text))}`,
+    `text: ${JSON.stringify(text)}`,
+    `photos: ${JSON.stringify(photos)}`,
+    `videos: ${JSON.stringify(videos)}`,
+    caseOf.has(id) ? `case: ${JSON.stringify(caseOf.get(id))}` : null,
+    '---',
+  ].filter(Boolean).join('\n');
+  fs.writeFileSync(path.join(OUT, `post-${id}.md`), fm + '\n');
+  made++;
+}
+// скрытые — убрать, если страница была
+for (const id of hide) { const f = path.join(OUT, `post-${id}.md`); if (fs.existsSync(f)) { fs.unlinkSync(f); console.log('removed hidden', id); } }
+console.log(`lenta: ${made} posts written, ${skipped} skipped (personal/no media)`);

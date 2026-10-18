@@ -1,17 +1,16 @@
 ---
 import { u, SITE } from '@/lib/url';
-import { cardHTML, type LentaPost } from '@/lib/lenta-client';
-import feed from '@/data/lenta.json';
+import { getLenta } from '@/lib/lenta';
+import LentaCard from '@/components/LentaCard.astro';
 
 interface Props {
   limit?: number;
   title?: string;
 }
 const { limit = 12, title = 'Из канала' } = Astro.props;
-const posts = (feed as LentaPost[]).slice(0, limit);
-const html = posts.map((p) => cardHTML(p, 'carousel')).join('');
+const posts = (await getLenta()).slice(0, limit);
 ---
-<section class="py-16 sm:py-24" id="lenta" data-limit={limit}>
+<section class="py-16 sm:py-24" id="lenta">
   <div class="container-x">
     <div class="flex flex-wrap items-end justify-between gap-4" data-reveal>
       <div>
@@ -29,19 +28,19 @@ const html = posts.map((p) => cardHTML(p, 'carousel')).join('');
       </div>
     </div>
 
-    <div class="lenta-track no-scrollbar mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [scroll-padding-inline:1rem]" data-lenta-track data-first={posts[0]?.id ?? 0} data-reveal set:html={html} />
+    <div class="lenta-track no-scrollbar mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [scroll-padding-inline:1rem]" data-reveal>
+      {posts.map((p) => <LentaCard entry={p} mode="carousel" />)}
+    </div>
     <div class="mt-6">
       <a href={u('/lenta/')} class="font-medium underline decoration-line underline-offset-4 hover:text-accent">Вся лента →</a>
     </div>
   </div>
   <script>
-    import { refreshLenta } from '@/lib/lenta-client';
     document.querySelectorAll<HTMLElement>('#lenta').forEach((root) => {
-      const track = root.querySelector<HTMLElement>('[data-lenta-track]');
+      const track = root.querySelector<HTMLElement>('.lenta-track');
       const step = () => (track?.firstElementChild as HTMLElement | null)?.offsetWidth ?? 320;
       root.querySelector('.lenta-prev')?.addEventListener('click', () => track?.scrollBy({ left: -step() - 16, behavior: 'smooth' }));
       root.querySelector('.lenta-next')?.addEventListener('click', () => track?.scrollBy({ left: step() + 16, behavior: 'smooth' }));
-      refreshLenta(track, 'carousel', Number(root.dataset.limit || 12));
     });
   </script>
 </section>

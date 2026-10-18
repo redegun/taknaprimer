@@ -6,7 +6,8 @@
 ## Структура
 
 - `src/content/cases/*.md` — кейсы (генерируются из дампа канала, можно править руками).
-- `src/data/lenta.json` + `public/lenta-media/` — лента из Telegram (генерируется).
+- `src/content/lenta/post-<id>.md` — посты канала, каждый = страница `/lenta/<id>/` (генерируются; новые дописывает крон на VPS и пушит в `main`).
+- `public/lenta-media/<id>/` — фото/видео постов. **Не в git**: на хостинг заливает локальный деплой (первый раз) и крон на VPS (новые посты).
 - `public/cases/<slug>/` — медиа кейсов (webp ≤ 1400 px, mp4 ≤ 14 МБ).
 - `public/api/form.php` — обработчик формы «Обсудить проект» (почта + Telegram через релей). Конфиг с адресами и токенами — `/home/r/redegun/taknaprimer/form-config.php` на хостинге, вне git.
 - `scripts/cases.json` — какие посты канала в какой кейс, списки скрытых постов и стоп-слов.
@@ -17,7 +18,7 @@
 ```bash
 npm install
 npm run content -- --dump <all.json> --media <media.json> --img <папка картинок>   # кейсы
-npm run lenta -- --dump <all.json> --media <media.json> --limit 30                  # лента
+npm run lenta -- --dump <all.json> --media <media.json> [--since <id>]             # страницы постов + медиа
 npm run dev                      # localhost:4321
 npm run build                    # прод, корень домена
 npm run build:preview            # превью в /_preview/ (SITE_BASE=/_preview)

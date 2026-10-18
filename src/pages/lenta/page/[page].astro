@@ -1,0 +1,17 @@
+---
+import LentaGrid from '@/components/LentaGrid.astro';
+import { getLenta } from '@/lib/lenta';
+
+const PAGE_SIZE = 36;
+export async function getStaticPaths() {
+  const all = await getLenta();
+  const pages = Math.max(1, Math.ceil(all.length / PAGE_SIZE));
+  // страница 1 живёт на /lenta/
+  return Array.from({ length: pages - 1 }, (_, i) => i + 2).map((n) => ({
+    params: { page: String(n) },
+    props: { posts: all.slice((n - 1) * PAGE_SIZE, n * PAGE_SIZE), page: n, pages },
+  }));
+}
+const { posts, page, pages } = Astro.props;
+---
+<LentaGrid posts={posts} page={page} pages={pages} />

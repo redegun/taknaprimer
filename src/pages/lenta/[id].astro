@@ -1,0 +1,78 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import LentaCard from '@/components/LentaCard.astro';
+import { getCollection } from 'astro:content';
+import { u } from '@/lib/url';
+import { getLenta, fmtDate, postTitle, postUrl, linkify } from '@/lib/lenta';
+
+export async function getStaticPaths() {
+  const all = await getLenta(); // по убыванию id
+  return all.map((entry, i) => ({
+    params: { id: String(entry.data.id) },
+    props: { entry, newer: all[i - 1] ?? null, older: all[i + 1] ?? null },
+  }));
+}
+
+const { entry, newer, older } = Astro.props;
+const d = entry.data;
+const title = postTitle(entry);
+const cases = await getCollection('cases');
+const relatedCase = d.case ? cases.find((c) => c.id === d.case) : undefined;
+const description = (d.text || `Пост из Telegram-канала «Так, например» от ${fmtDate(d.date, true)}`).replace(/\s+/g, ' ').slice(0, 160);
+const og = d.photos[0] ?? d.videos[0]?.poster;
+---
+<Layout title={title} description={description} ogImage={og ? u(og) : undefined}>
+  <article class="py-10 sm:py-14">
+    <div class="container-x max-w-[900px]">
+      <a href={u('/lenta/')} class="text-sm text-muted hover:text-accent">← Лента</a>
+      <div class="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted" data-reveal>
+        <time datetime={d.date.toISOString().slice(0, 10)}>{fmtDate(d.date, true)}</time>
+        <span>·</span>
+        <a href={d.tg} target="_blank" rel="noopener" class="underline decoration-line underline-offset-4 hover:text-accent">Пост в Telegram</a>
+        {relatedCase && (
+          <>
+            <span>·</span>
+            <a href={u(`/raboty/${relatedCase.id}/`)} class="underline decoration-line underline-offset-4 hover:text-accent">Из кейса «{relatedCase.data.title}»</a>
+          </>
+        )}
+      </div>
+      <h1 class="mt-3 text-3xl font-bold sm:text-5xl" data-reveal>{title}</h1>
+
+      <div class="mt-8 space-y-4" data-reveal>
+        {d.photos.map((src, i) => (
+          <a href={u(src)} target="_blank" rel="noopener" class="block overflow-hidden rounded-xl2 bg-paper-2">
+            <img src={u(src)} alt={`${title} — фото ${i + 1}`} loading={i === 0 ? 'eager' : 'lazy'} decoding="async" class="w-full" />
+          </a>
+        ))}
+        {d.videos.map((v) => (
+          <video controls playsinline preload="metadata" poster={v.poster ? u(v.poster) : undefined} class="w-full rounded-xl2 bg-ink">
+            <source src={u(v.src)} type="video/mp4" />
+          </video>
+        ))}
+      </div>
+
+      {d.text && <div class="prose-case mt-8 whitespace-pre-line text-[17px] leading-relaxed text-ink-2" data-reveal set:html={linkify(d.text)} />}
+
+      <nav class="mt-14 grid gap-4 sm:grid-cols-2">
+        {newer ? (
+          <a href={u(postUrl(newer))} class="card p-5"><div class="text-xs text-muted">← Новее</div><div class="mt-1 font-display font-bold line-clamp-2">{postTitle(newer)}</div></a>
+        ) : <div />}
+        {older && (
+          <a href={u(postUrl(older))} class="card p-5 text-right"><div class="text-xs text-muted">Старее →</div><div class="mt-1 font-display font-bold line-clamp-2">{postTitle(older)}</div></a>
+        )}
+      </nav>
+    </div>
+
+    {relatedCase && (
+      <div class="container-x mt-16">
+        <h2 class="text-2xl font-bold sm:text-3xl" data-reveal>Весь кейс</h2>
+        <div class="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <a href={u(`/raboty/${relatedCase.id}/`)} class="card group" data-reveal>
+            <div class="aspect-square overflow-hidden bg-paper-2"><img src={u(relatedCase.data.cover)} alt={relatedCase.data.title} loading="lazy" class="h-full w-full object-cover" /></div>
+            <div class="p-5"><h3 class="font-display text-lg font-bold group-hover:text-accent transition-colors">{relatedCase.data.title}</h3><p class="mt-2 text-[15px] text-muted line-clamp-2">{relatedCase.data.short}</p></div>
+          </a>
+        </div>
+      </div>
+    )}
+  </article>
+</Layout>

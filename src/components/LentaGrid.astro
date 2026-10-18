@@ -1,0 +1,40 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import LentaCard from '@/components/LentaCard.astro';
+import { u, SITE } from '@/lib/url';
+import type { LentaEntry } from '@/lib/lenta';
+
+interface Props {
+  posts: LentaEntry[];
+  page: number;
+  pages: number;
+}
+const { posts, page, pages } = Astro.props;
+const pageUrl = (n: number) => (n <= 1 ? '/lenta/' : `/lenta/page/${n}/`);
+const title = page > 1 ? `Лента, страница ${page}` : 'Лента';
+---
+<Layout title={title} description="Посты из Telegram-канала «Так, например»: буквы, процесс, челленджи, конкурсы. Каждый пост — на своей странице.">
+  <section class="py-12 sm:py-16">
+    <div class="container-x">
+      <div class="flex flex-wrap items-end justify-between gap-4" data-reveal>
+        <div>
+          <h1 class="text-4xl font-bold sm:text-6xl">Лента</h1>
+          <p class="mt-4 max-w-2xl text-lg text-muted">Посты из канала «Так, например»{page > 1 ? `, страница ${page} из ${pages}` : ''}. Самое свежее — сверху.</p>
+        </div>
+        <a href={SITE.channel} target="_blank" rel="noopener" class="btn btn-primary">Подписаться</a>
+      </div>
+      <div class="mt-10 columns-1 gap-5 sm:columns-2 lg:columns-3 [&>*]:mb-5 [&>*]:break-inside-avoid" data-reveal>
+        {posts.map((p) => <LentaCard entry={p} mode="grid" />)}
+      </div>
+      {pages > 1 && (
+        <nav class="mt-10 flex flex-wrap items-center gap-2" aria-label="Страницы">
+          {page > 1 && <a href={u(pageUrl(page - 1))} class="btn btn-ghost !py-2">← Новее</a>}
+          {Array.from({ length: pages }, (_, i) => i + 1).map((n) => (
+            <a href={u(pageUrl(n))} class:list={['chip', n === page ? 'is-on' : '']} aria-current={n === page ? 'page' : undefined}>{n}</a>
+          ))}
+          {page < pages && <a href={u(pageUrl(page + 1))} class="btn btn-ghost !py-2">Старее →</a>}
+        </nav>
+      )}
+    </div>
+  </section>
+</Layout>
