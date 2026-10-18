@@ -29,3 +29,28 @@ jobs:
           lftp -e "set dns:order inet; set ftp:ssl-allow no; set ssl:verify-certificate no; \
             open -u $FTP_USER,$FTP_PASS 185.114.245.107; \
             mirror -R --parallel=4 dist/ /taknaprimer/public_html/; bye"
+      - name: Force-upload text files (mirror skips same-size files — HTML with a new CSS hash stays old)
+        env:
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASS: ${{ secrets.FTP_PASS }}
+        run: |
+          {
+            echo "set dns:order inet; set ftp:ssl-allow no; set ssl:verify-certificate no;"
+            echo "open -u $FTP_USER,$FTP_PASS 185.114.245.107;"
+            find dist -type f \( -name '*.html' -o -name '*.xml' -o -name '*.json' -o -name '*.txt' -o -name '.htaccess' \) | while read -r f; do
+              rel="${f#dist/}"; dir="$(dirname "$rel")"; [ "$dir" = "." ] && dir=""
+              echo "put -O \"/taknaprimer/public_html/$dir\" \"$f\";"
+            done
+            echo "bye"
+          } > lftp-text.cmds
+          lftp -f lftp-text.cmds
+          rm -f lftp-text.cmds
+      - name: Verify live site serves this build
+        run: |
+          css=$(grep -o 'assets/index\.[A-Za-z0-9_-]*\.css' dist/raboty/index.html | head -1)
+          for i in 1 2 3; do
+            live=$(curl -s "https://taknaprimer.ru/raboty/?v=$(date +%s)" | grep -o 'assets/index\.[A-Za-z0-9_-]*\.css' | head -1)
+            [ "$live" = "$css" ] && { echo "OK: live /raboty/ references $css"; exit 0; }
+            sleep 5
+          done
+          echo "FAIL: live references '$live', build has '$css'"; exit 1
