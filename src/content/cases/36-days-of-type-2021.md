@@ -13,52 +13,28 @@ featured: true
 presentationStyle: {"bg":"#181818","paddingTop":80,"gap":60}
 presentation:
   - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-p\"><span style=\"color:#f9f9f9\"><span class=\"be-bold\">Проект 36 Days of Type</span>&nbsp;родился в Барселоне благодаря Нине Санс и Рафе Гойкоэчеа. Это творческий вызов для дизайнеров и иллюстраторов из любой точки мира: участники создают свои оригинальные версии всех букв и цифр латинского алфавита.<br><br>А вот и моя версия латинского алфавита с цифрами.</span><br></div>\n</div>\n\n<div class=\"be-p\"></div>","text":"Проект 36 Days of Type родился в Барселоне благодаря Нине Санс и Рафе Гойкоэчеа. Это творческий вызов для дизайнеров и иллюстраторов из любой точки мира: участники создают свои оригинальные версии всех букв и цифр латинского алфавита.\nА вот и моя версия латинского алфавита с цифрами.","align":"center"}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/01.webp","w":1136,"h":1137,"grid":false}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/02.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/03.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/04.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/05.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/06.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/07.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/08.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/09.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/10.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/11.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/12.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/13.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/14.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/15.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/16.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/17.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/18.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/19.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/20.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/21.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/22.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/23.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/24.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/25.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/26.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/27.webp","w":580,"h":580,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/28.webp","w":1515,"h":1515,"grid":true}
+  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/01.webp","w":1136,"h":1137}
+  - {"kind":"grid","items":[{"src":"/cases/36-days-of-type-2021/behance/02.webp","w":1515,"h":1515},{"src":"/cases/36-days-of-type-2021/behance/03.webp","w":1515,"h":1515},{"src":"/cases/36-days-of-type-2021/behance/04.webp","w":1515,"h":1515}]}
+  - {"kind":"grid","items":[{"src":"/cases/36-days-of-type-2021/behance/05.webp","w":1515,"h":1515},{"src":"/cases/36-days-of-type-2021/behance/06.webp","w":1515,"h":1515},{"src":"/cases/36-days-of-type-2021/behance/07.webp","w":1515,"h":1515}]}
+  - {"kind":"grid","items":[{"src":"/cases/36-days-of-type-2021/behance/08.webp","w":1515,"h":1515},{"src":"/cases/36-days-of-type-2021/behance/09.webp","w":1515,"h":1515}]}
+  - {"kind":"grid","items":[{"src":"/cases/36-days-of-type-2021/behance/10.webp","w":1515,"h":1515},{"src":"/cases/36-days-of-type-2021/behance/11.webp","w":1515,"h":1515}]}
+  - {"kind":"grid","items":[{"src":"/cases/36-days-of-type-2021/behance/12.webp","w":1515,"h":1515},{"src":"/cases/36-days-of-type-2021/behance/13.webp","w":1515,"h":1515},{"src":"/cases/36-days-of-type-2021/behance/14.webp","w":1515,"h":1515}]}
+  - {"kind":"grid","items":[{"src":"/cases/36-days-of-type-2021/behance/15.webp","w":1515,"h":1515},{"src":"/cases/36-days-of-type-2021/behance/16.webp","w":1515,"h":1515},{"src":"/cases/36-days-of-type-2021/behance/17.webp","w":1515,"h":1515}]}
+  - {"kind":"grid","items":[{"src":"/cases/36-days-of-type-2021/behance/18.webp","w":1515,"h":1515},{"src":"/cases/36-days-of-type-2021/behance/19.webp","w":1515,"h":1515}]}
+  - {"kind":"grid","items":[{"src":"/cases/36-days-of-type-2021/behance/20.webp","w":1515,"h":1515},{"src":"/cases/36-days-of-type-2021/behance/21.webp","w":1515,"h":1515},{"src":"/cases/36-days-of-type-2021/behance/22.webp","w":1515,"h":1515}]}
+  - {"kind":"grid","items":[{"src":"/cases/36-days-of-type-2021/behance/23.webp","w":1515,"h":1515},{"src":"/cases/36-days-of-type-2021/behance/24.webp","w":1515,"h":1515}]}
+  - {"kind":"grid","items":[{"src":"/cases/36-days-of-type-2021/behance/25.webp","w":1515,"h":1515},{"src":"/cases/36-days-of-type-2021/behance/26.webp","w":1515,"h":1515}]}
+  - {"kind":"grid","items":[{"src":"/cases/36-days-of-type-2021/behance/27.webp","w":580,"h":580},{"src":"/cases/36-days-of-type-2021/behance/28.webp","w":1515,"h":1515}]}
   - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-p\"><span style=\"color:#f7f7f7\"><span class=\"be-bold\">Вдохновение</span><br>Придумались эти буквы с цифр, которые я нарисовала для гирлянды на праздник в честь первого года моего любимого сына. Цветовая гамма также оттуда перекочевала.</span><br></div>\n</div>\n\n<div class=\"be-p\"></div>","text":"Вдохновение\nПридумались эти буквы с цифр, которые я нарисовала для гирлянды на праздник в честь первого года моего любимого сына. Цветовая гамма также оттуда перекочевала.","align":"center"}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/29.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/30.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/31.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/32.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/33.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/34.webp","w":800,"h":1067,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/35.webp","w":800,"h":1067,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/36.webp","w":800,"h":1067,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/37.webp","w":800,"h":1067,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/38.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/39.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/40.webp","w":1600,"h":1200,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/41.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/42.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/43.webp","w":1600,"h":1600,"grid":true}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/44.webp","w":1600,"h":561,"grid":false}
-  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/45.webp","w":1600,"h":561,"grid":false}
+  - {"kind":"grid","items":[{"src":"/cases/36-days-of-type-2021/behance/29.webp","w":1515,"h":1515},{"src":"/cases/36-days-of-type-2021/behance/30.webp","w":1515,"h":1515},{"src":"/cases/36-days-of-type-2021/behance/31.webp","w":1515,"h":1515}]}
+  - {"kind":"grid","items":[{"src":"/cases/36-days-of-type-2021/behance/32.webp","w":1515,"h":1515},{"src":"/cases/36-days-of-type-2021/behance/33.webp","w":1515,"h":1515},{"src":"/cases/36-days-of-type-2021/behance/34.webp","w":800,"h":1067}]}
+  - {"kind":"grid","items":[{"src":"/cases/36-days-of-type-2021/behance/35.webp","w":800,"h":1067},{"src":"/cases/36-days-of-type-2021/behance/36.webp","w":800,"h":1067}]}
+  - {"kind":"grid","items":[{"src":"/cases/36-days-of-type-2021/behance/37.webp","w":800,"h":1067},{"src":"/cases/36-days-of-type-2021/behance/38.webp","w":1515,"h":1515}]}
+  - {"kind":"grid","items":[{"src":"/cases/36-days-of-type-2021/behance/39.webp","w":1515,"h":1515},{"src":"/cases/36-days-of-type-2021/behance/40.webp","w":1600,"h":1200}]}
+  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/41.webp","w":1515,"h":1515}
+  - {"kind":"grid","items":[{"src":"/cases/36-days-of-type-2021/behance/42.webp","w":1515,"h":1515},{"src":"/cases/36-days-of-type-2021/behance/43.webp","w":1600,"h":1600}]}
+  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/44.webp","w":1600,"h":561}
+  - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/45.webp","w":1600,"h":561}
 gallery:
   - {"kind":"image","src":"/cases/36-days-of-type-2021/75-1.webp","post":75,"tg":"https://t.me/tak_naprimer/75","title":"В 21-м влетаю снова в со своими кудрявыми"}
   - {"kind":"image","src":"/cases/36-days-of-type-2021/75-2.webp","post":75,"tg":"https://t.me/tak_naprimer/75","title":"В 21-м влетаю снова в со своими кудрявыми"}

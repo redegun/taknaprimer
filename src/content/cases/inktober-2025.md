@@ -12,58 +12,47 @@ sort: 80
 featured: true
 presentationStyle: {"bg":"#FFFFFF","paddingTop":0,"gap":60}
 presentation:
-  - {"kind":"image","src":"/cases/inktober-2025/behance/01.webp","w":1280,"h":868,"grid":false}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/01.webp","w":1280,"h":868}
   - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-p\"><span style=\"color:#101010\"><span class=\"be-bold\">Inktober — это международный ежеоктябрьский творческий челлендж придуманный Паркером для художников.</span>&nbsp;</span></div><div class=\"be-p\"><span style=\"color:#101010\">Нужно делать по одному чб рисунку каждый день, используя чернила. Темы для работ предлагают организаторы, а участники выкладывают свои рисунки в соцсети, чтобы развивать навыки и обмениваться идеями по хештегу #inktober2025</span></div><div class=\"be-p\"><span style=\"color:#101010\">Мне давно хотелось выполнить челлендж не иллюстрациями, а леттерингом, в результате нарисовала 31 работу чернилами и линерами, стараясь передать тему, ощущения и найти новые идеи,&nbsp;формы, сочетания и образы.&nbsp;</span></div>\n</div>\n\n<div class=\"be-p\"></div>","text":"Inktober — это международный ежеоктябрьский творческий челлендж придуманный Паркером для художников.\nНужно делать по одному чб рисунку каждый день, используя чернила. Темы для работ предлагают организаторы, а участники выкладывают свои рисунки в соцсети, чтобы развивать навыки и обмениваться идеями по хештегу #inktober2025\nМне давно хотелось выполнить челлендж не иллюстрациями, а леттерингом, в результате нарисовала 31 работу чернилами и линерами, стараясь передать тему, ощущения и найти новые идеи, формы, сочетания и образы.","align":"center"}
-  - {"kind":"image","src":"/cases/inktober-2025/behance/02.webp","w":1280,"h":903,"grid":true}
-  - {"kind":"image","src":"/cases/inktober-2025/behance/03.webp","w":1280,"h":1024,"grid":true}
+  - {"kind":"grid","items":[{"src":"/cases/inktober-2025/behance/02.webp","w":1280,"h":903},{"src":"/cases/inktober-2025/behance/03.webp","w":1280,"h":1024}]}
   - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-p\"><span style=\"color:#696969\"><span class=\"be-fs\" style=\"--fs:11\">01 Mustache</span></span></div><div class=\"be-p\" style=\"text-align:left\"><span style=\"color:#696969\"><span class=\"be-fs\" style=\"--fs:11\">02 Weave</span></span></div>\n</div>\n\n<div class=\"be-p\"></div>","text":"01 Mustache\n02 Weave","align":"center"}
-  - {"kind":"image","src":"/cases/inktober-2025/behance/04.webp","w":1280,"h":846,"grid":true}
-  - {"kind":"image","src":"/cases/inktober-2025/behance/05.webp","w":1280,"h":916,"grid":true}
+  - {"kind":"grid","items":[{"src":"/cases/inktober-2025/behance/04.webp","w":1280,"h":846},{"src":"/cases/inktober-2025/behance/05.webp","w":1280,"h":916}]}
   - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-p\"><span class=\"be-fs\" style=\"--fs:11\">03 Crown</span></div><div class=\"be-p\" style=\"text-align:left\"><span class=\"be-fs\" style=\"--fs:11\">04 Murky</span>​​​​​​​<br></div>\n</div>\n\n<div class=\"be-p\"></div>","text":"03 Crown\n04 Murky","align":"center"}
-  - {"kind":"image","src":"/cases/inktober-2025/behance/06.webp","w":1280,"h":1280,"grid":false}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/06.webp","w":1280,"h":1280}
   - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-p\"><span class=\"be-fs\" style=\"--fs:11\">05 Deer</span><br></div>\n</div>\n\n<div class=\"be-p\"></div>","text":"05 Deer","align":"center"}
-  - {"kind":"image","src":"/cases/inktober-2025/behance/07.webp","w":1280,"h":955,"grid":true}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/07.webp","w":1280,"h":955}
   - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-p\"><span class=\"be-fs\" style=\"--fs:11\">06 Pierce</span></div>\n</div>\n\n<div class=\"be-p\"></div>","text":"06 Pierce","align":"center"}
-  - {"kind":"image","src":"/cases/inktober-2025/behance/08.webp","w":1280,"h":1099,"grid":true}
-  - {"kind":"image","src":"/cases/inktober-2025/behance/09.webp","w":1280,"h":813,"grid":true}
+  - {"kind":"grid","items":[{"src":"/cases/inktober-2025/behance/08.webp","w":1280,"h":1099},{"src":"/cases/inktober-2025/behance/09.webp","w":1280,"h":813}]}
   - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-p\"><span class=\"be-fs\" style=\"--fs:11\">07 Starfish</span></div><div class=\"be-p\" style=\"text-align:left\"><span class=\"be-fs\" style=\"--fs:11\">08 Reckless</span></div>\n</div>\n\n<div class=\"be-p\"></div>","text":"07 Starfish\n08 Reckless","align":"center"}
-  - {"kind":"image","src":"/cases/inktober-2025/behance/10.webp","w":1280,"h":960,"grid":true}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/10.webp","w":1280,"h":960}
   - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-p\"><span class=\"be-fs\" style=\"--fs:11\">09 Heavy</span></div>\n</div>\n\n<div class=\"be-p\"></div>","text":"09 Heavy","align":"center"}
-  - {"kind":"image","src":"/cases/inktober-2025/behance/11.webp","w":1280,"h":1280,"grid":true}
-  - {"kind":"image","src":"/cases/inktober-2025/behance/12.webp","w":1280,"h":1065,"grid":true}
+  - {"kind":"grid","items":[{"src":"/cases/inktober-2025/behance/11.webp","w":1280,"h":1280},{"src":"/cases/inktober-2025/behance/12.webp","w":1280,"h":1065}]}
   - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-p\"><span class=\"be-fs\" style=\"--fs:11\">10 Sweep</span></div><div class=\"be-p\" style=\"text-align:left\"><span class=\"be-fs\" style=\"--fs:11\">11 Sting</span></div>\n</div>\n\n<div class=\"be-p\"></div>","text":"10 Sweep\n11 Sting","align":"center"}
-  - {"kind":"image","src":"/cases/inktober-2025/behance/13.webp","w":1280,"h":784,"grid":true}
-  - {"kind":"image","src":"/cases/inktober-2025/behance/14.webp","w":1279,"h":1035,"grid":true}
+  - {"kind":"grid","items":[{"src":"/cases/inktober-2025/behance/13.webp","w":1280,"h":784},{"src":"/cases/inktober-2025/behance/14.webp","w":1279,"h":1035}]}
   - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-p\"><span class=\"be-fs\" style=\"--fs:11\">12 Shredded</span></div><div class=\"be-p\" style=\"text-align:left\"><span class=\"be-fs\" style=\"--fs:11\">13 Drink</span></div>\n</div>\n\n<div class=\"be-p\"></div>","text":"12 Shredded\n13 Drink","align":"center"}
-  - {"kind":"image","src":"/cases/inktober-2025/behance/15.webp","w":1280,"h":921,"grid":true}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/15.webp","w":1280,"h":921}
   - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-p\"><span class=\"be-fs\" style=\"--fs:11\">14 Trunk</span></div>\n</div>\n\n<div class=\"be-p\"></div>","text":"14 Trunk","align":"center"}
-  - {"kind":"image","src":"/cases/inktober-2025/behance/16.webp","w":1237,"h":1280,"grid":true}
-  - {"kind":"image","src":"/cases/inktober-2025/behance/17.webp","w":818,"h":555,"grid":true}
+  - {"kind":"grid","items":[{"src":"/cases/inktober-2025/behance/16.webp","w":1237,"h":1280},{"src":"/cases/inktober-2025/behance/17.webp","w":818,"h":555}]}
   - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-p\"><span class=\"be-fs\" style=\"--fs:11\">15 Ragged</span><br></div><div class=\"be-p\" style=\"text-align:left\"><span class=\"be-fs\" style=\"--fs:11\">16 Blunder</span><br></div>\n</div>\n\n<div class=\"be-p\"></div>","text":"15 Ragged\n16 Blunder","align":"center"}
-  - {"kind":"image","src":"/cases/inktober-2025/behance/18.webp","w":1280,"h":671,"grid":true}
-  - {"kind":"image","src":"/cases/inktober-2025/behance/19.webp","w":1280,"h":886,"grid":true}
+  - {"kind":"grid","items":[{"src":"/cases/inktober-2025/behance/18.webp","w":1280,"h":671},{"src":"/cases/inktober-2025/behance/19.webp","w":1280,"h":886}]}
   - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-p\"><span class=\"be-fs\" style=\"--fs:11\">17 Ornate</span></div><div class=\"be-p\" style=\"text-align:left\"><span class=\"be-fs\" style=\"--fs:11\">18 Deal</span></div>\n</div>\n\n<div class=\"be-p\"></div>","text":"17 Ornate\n18 Deal","align":"center"}
-  - {"kind":"image","src":"/cases/inktober-2025/behance/20.webp","w":1280,"h":875,"grid":true}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/20.webp","w":1280,"h":875}
   - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-p\"><span class=\"be-fs\" style=\"--fs:11\">19 Arctic</span></div>\n</div>\n\n<div class=\"be-p\"></div>","text":"19 Arctic","align":"center"}
-  - {"kind":"image","src":"/cases/inktober-2025/behance/21.webp","w":1280,"h":1280,"grid":true}
-  - {"kind":"image","src":"/cases/inktober-2025/behance/22.webp","w":1280,"h":977,"grid":true}
+  - {"kind":"grid","items":[{"src":"/cases/inktober-2025/behance/21.webp","w":1280,"h":1280},{"src":"/cases/inktober-2025/behance/22.webp","w":1280,"h":977}]}
   - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-p\"><span class=\"be-fs\" style=\"--fs:11\">20 Rivals</span><br></div><div class=\"be-p\" style=\"text-align:left\"><span class=\"be-fs\" style=\"--fs:11\">21 Blast</span><br></div>\n</div>\n\n<div class=\"be-p\"></div>","text":"20 Rivals\n21 Blast","align":"center"}
-  - {"kind":"image","src":"/cases/inktober-2025/behance/23.webp","w":1280,"h":395,"grid":true}
-  - {"kind":"image","src":"/cases/inktober-2025/behance/24.webp","w":1280,"h":1040,"grid":true}
+  - {"kind":"grid","items":[{"src":"/cases/inktober-2025/behance/23.webp","w":1280,"h":395},{"src":"/cases/inktober-2025/behance/24.webp","w":1280,"h":1040}]}
   - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-p\"><span class=\"be-fs\" style=\"--fs:11\">22 Button</span><br></div><div class=\"be-p\" style=\"text-align:left\"><span class=\"be-fs\" style=\"--fs:11\">23 Firefly</span><br></div>\n</div>\n\n<div class=\"be-p\"></div>","text":"22 Button\n23 Firefly","align":"center"}
-  - {"kind":"image","src":"/cases/inktober-2025/behance/25.webp","w":1280,"h":794,"grid":true}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/25.webp","w":1280,"h":794}
   - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-p\"><span class=\"be-fs\" style=\"--fs:11\">24 Rowdy</span><br></div>\n</div>\n\n<div class=\"be-p\"></div>","text":"24 Rowdy","align":"center"}
-  - {"kind":"image","src":"/cases/inktober-2025/behance/26.webp","w":1280,"h":935,"grid":true}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/26.webp","w":1280,"h":935}
   - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-p\"><span class=\"be-fs\" style=\"--fs:11\">25 Inferno</span><br></div>\n</div>\n\n<div class=\"be-p\"></div>","text":"25 Inferno","align":"center"}
-  - {"kind":"image","src":"/cases/inktober-2025/behance/27.webp","w":1280,"h":845,"grid":true}
-  - {"kind":"image","src":"/cases/inktober-2025/behance/28.webp","w":1280,"h":902,"grid":true}
+  - {"kind":"grid","items":[{"src":"/cases/inktober-2025/behance/27.webp","w":1280,"h":845},{"src":"/cases/inktober-2025/behance/28.webp","w":1280,"h":902}]}
   - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-p\"><span class=\"be-fs\" style=\"--fs:11\">26 Puzzling</span><br></div><div class=\"be-p\" style=\"text-align:left\"><span class=\"be-fs\" style=\"--fs:11\">27 Onion</span></div>\n</div>\n\n<div class=\"be-p\"></div>","text":"26 Puzzling\n27 Onion","align":"center"}
-  - {"kind":"image","src":"/cases/inktober-2025/behance/29.webp","w":1280,"h":995,"grid":true}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/29.webp","w":1280,"h":995}
   - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-p\"><span class=\"be-fs\" style=\"--fs:11\">28 Skeletal</span><br></div>\n</div>\n\n<div class=\"be-p\"></div>","text":"28 Skeletal","align":"center"}
-  - {"kind":"image","src":"/cases/inktober-2025/behance/30.webp","w":1280,"h":715,"grid":true}
-  - {"kind":"image","src":"/cases/inktober-2025/behance/31.webp","w":1280,"h":995,"grid":true}
+  - {"kind":"grid","items":[{"src":"/cases/inktober-2025/behance/30.webp","w":1280,"h":715},{"src":"/cases/inktober-2025/behance/31.webp","w":1280,"h":995}]}
   - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-p\"><span class=\"be-fs\" style=\"--fs:11\">29 Lesson</span><br></div><div class=\"be-p\" style=\"text-align:left\"><span class=\"be-fs\" style=\"--fs:11\">30 Vacant</span><br></div>\n</div>\n\n<div class=\"be-p\"></div>","text":"29 Lesson\n30 Vacant","align":"center"}
-  - {"kind":"image","src":"/cases/inktober-2025/behance/32.webp","w":1280,"h":715,"grid":true}
+  - {"kind":"image","src":"/cases/inktober-2025/behance/32.webp","w":1280,"h":715}
   - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-p\"><span class=\"be-fs\" style=\"--fs:11\">31 Award</span><br></div>\n</div>","text":"31 Award","align":"center"}
 gallery:
   - {"kind":"image","src":"/cases/inktober-2025/312-1.webp","post":312,"tg":"https://t.me/tak_naprimer/312","title":"А вот и мои усы, точнее не мои, мои еще не настолько шикарные, а…"}

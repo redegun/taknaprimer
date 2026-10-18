@@ -10,8 +10,7 @@
    "kind": "image",
    "src": "/cases/kitayschina/behance/01.webp",
    "w": 1600,
-   "h": 556,
-   "grid": false
+   "h": 556
   },
   {
    "kind": "html",
@@ -29,8 +28,7 @@
    "kind": "image",
    "src": "/cases/kitayschina/behance/02.webp",
    "w": 1600,
-   "h": 827,
-   "grid": false
+   "h": 827
   },
   {
    "kind": "html",
@@ -54,8 +52,7 @@
    "kind": "image",
    "src": "/cases/kitayschina/behance/03.gif",
    "w": 800,
-   "h": 800,
-   "grid": false
+   "h": 800
   },
   {
    "kind": "html",
@@ -73,8 +70,7 @@
    "kind": "image",
    "src": "/cases/kitayschina/behance/04.webp",
    "w": 1600,
-   "h": 1022,
-   "grid": false
+   "h": 1022
   },
   {
    "kind": "html",
@@ -86,330 +82,323 @@
    "kind": "image",
    "src": "/cases/kitayschina/behance/05.gif",
    "w": 800,
-   "h": 800,
-   "grid": false
+   "h": 800
   },
   {
    "kind": "image",
    "src": "/cases/kitayschina/behance/06.webp",
    "w": 1600,
-   "h": 2093,
-   "grid": false
+   "h": 2093
   },
   {
    "kind": "image",
    "src": "/cases/kitayschina/behance/07.webp",
    "w": 1600,
-   "h": 1603,
-   "grid": false
+   "h": 1603
   },
   {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/08.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
+   "kind": "grid",
+   "items": [
+    {
+     "src": "/cases/kitayschina/behance/08.gif",
+     "w": 800,
+     "h": 800
+    },
+    {
+     "src": "/cases/kitayschina/behance/09.gif",
+     "w": 800,
+     "h": 800
+    },
+    {
+     "src": "/cases/kitayschina/behance/10.gif",
+     "w": 800,
+     "h": 800
+    }
+   ]
   },
   {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/09.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
+   "kind": "grid",
+   "items": [
+    {
+     "src": "/cases/kitayschina/behance/11.gif",
+     "w": 800,
+     "h": 800
+    },
+    {
+     "src": "/cases/kitayschina/behance/12.gif",
+     "w": 800,
+     "h": 800
+    },
+    {
+     "src": "/cases/kitayschina/behance/13.gif",
+     "w": 800,
+     "h": 800
+    }
+   ]
   },
   {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/10.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
+   "kind": "grid",
+   "items": [
+    {
+     "src": "/cases/kitayschina/behance/14.gif",
+     "w": 800,
+     "h": 800
+    },
+    {
+     "src": "/cases/kitayschina/behance/15.gif",
+     "w": 800,
+     "h": 800
+    }
+   ]
   },
   {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/11.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
+   "kind": "grid",
+   "items": [
+    {
+     "src": "/cases/kitayschina/behance/16.webp",
+     "w": 1600,
+     "h": 1067
+    },
+    {
+     "src": "/cases/kitayschina/behance/17.webp",
+     "w": 1024,
+     "h": 1024
+    }
+   ]
   },
   {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/12.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
+   "kind": "grid",
+   "items": [
+    {
+     "src": "/cases/kitayschina/behance/18.gif",
+     "w": 800,
+     "h": 800
+    },
+    {
+     "src": "/cases/kitayschina/behance/19.gif",
+     "w": 800,
+     "h": 800
+    },
+    {
+     "src": "/cases/kitayschina/behance/20.gif",
+     "w": 800,
+     "h": 800
+    }
+   ]
   },
   {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/13.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
+   "kind": "grid",
+   "items": [
+    {
+     "src": "/cases/kitayschina/behance/21.gif",
+     "w": 800,
+     "h": 800
+    },
+    {
+     "src": "/cases/kitayschina/behance/22.gif",
+     "w": 800,
+     "h": 800
+    },
+    {
+     "src": "/cases/kitayschina/behance/23.gif",
+     "w": 800,
+     "h": 800
+    }
+   ]
   },
   {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/14.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
+   "kind": "grid",
+   "items": [
+    {
+     "src": "/cases/kitayschina/behance/24.gif",
+     "w": 800,
+     "h": 800
+    },
+    {
+     "src": "/cases/kitayschina/behance/25.gif",
+     "w": 800,
+     "h": 800
+    }
+   ]
   },
   {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/15.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
+   "kind": "grid",
+   "items": [
+    {
+     "src": "/cases/kitayschina/behance/26.gif",
+     "w": 800,
+     "h": 800
+    },
+    {
+     "src": "/cases/kitayschina/behance/27.gif",
+     "w": 800,
+     "h": 800
+    },
+    {
+     "src": "/cases/kitayschina/behance/28.gif",
+     "w": 800,
+     "h": 800
+    }
+   ]
   },
   {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/16.webp",
-   "w": 1600,
-   "h": 1067,
-   "grid": true
+   "kind": "grid",
+   "items": [
+    {
+     "src": "/cases/kitayschina/behance/29.gif",
+     "w": 800,
+     "h": 800
+    },
+    {
+     "src": "/cases/kitayschina/behance/30.gif",
+     "w": 800,
+     "h": 800
+    }
+   ]
   },
   {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/17.webp",
-   "w": 1024,
-   "h": 1024,
-   "grid": true
+   "kind": "grid",
+   "items": [
+    {
+     "src": "/cases/kitayschina/behance/31.gif",
+     "w": 800,
+     "h": 800
+    },
+    {
+     "src": "/cases/kitayschina/behance/32.gif",
+     "w": 800,
+     "h": 800
+    }
+   ]
   },
   {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/18.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
+   "kind": "grid",
+   "items": [
+    {
+     "src": "/cases/kitayschina/behance/33.gif",
+     "w": 800,
+     "h": 800
+    },
+    {
+     "src": "/cases/kitayschina/behance/34.webp",
+     "w": 1600,
+     "h": 1067
+    }
+   ]
   },
   {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/19.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/20.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/21.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/22.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/23.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/24.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/25.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/26.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/27.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/28.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/29.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/30.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/31.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/32.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/33.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/34.webp",
-   "w": 1600,
-   "h": 1067,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/35.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/36.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
+   "kind": "grid",
+   "items": [
+    {
+     "src": "/cases/kitayschina/behance/35.gif",
+     "w": 800,
+     "h": 800
+    },
+    {
+     "src": "/cases/kitayschina/behance/36.gif",
+     "w": 800,
+     "h": 800
+    }
+   ]
   },
   {
    "kind": "image",
    "src": "/cases/kitayschina/behance/37.webp",
    "w": 1600,
-   "h": 797,
-   "grid": false
+   "h": 797
   },
   {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/38.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
+   "kind": "grid",
+   "items": [
+    {
+     "src": "/cases/kitayschina/behance/38.gif",
+     "w": 800,
+     "h": 800
+    },
+    {
+     "src": "/cases/kitayschina/behance/39.gif",
+     "w": 800,
+     "h": 800
+    },
+    {
+     "src": "/cases/kitayschina/behance/40.gif",
+     "w": 800,
+     "h": 800
+    }
+   ]
   },
   {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/39.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
+   "kind": "grid",
+   "items": [
+    {
+     "src": "/cases/kitayschina/behance/41.webp",
+     "w": 1600,
+     "h": 1067
+    },
+    {
+     "src": "/cases/kitayschina/behance/42.gif",
+     "w": 800,
+     "h": 800
+    },
+    {
+     "src": "/cases/kitayschina/behance/43.webp",
+     "w": 1600,
+     "h": 688
+    }
+   ]
   },
   {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/40.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/41.webp",
-   "w": 1600,
-   "h": 1067,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/42.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/43.webp",
-   "w": 1600,
-   "h": 688,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/44.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/45.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/46.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
+   "kind": "grid",
+   "items": [
+    {
+     "src": "/cases/kitayschina/behance/44.gif",
+     "w": 800,
+     "h": 800
+    },
+    {
+     "src": "/cases/kitayschina/behance/45.gif",
+     "w": 800,
+     "h": 800
+    },
+    {
+     "src": "/cases/kitayschina/behance/46.gif",
+     "w": 800,
+     "h": 800
+    }
+   ]
   },
   {
    "kind": "image",
    "src": "/cases/kitayschina/behance/47.webp",
    "w": 1600,
-   "h": 1604,
-   "grid": false
+   "h": 1604
   },
   {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/48.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/kitayschina/behance/49.gif",
-   "w": 800,
-   "h": 800,
-   "grid": true
+   "kind": "grid",
+   "items": [
+    {
+     "src": "/cases/kitayschina/behance/48.gif",
+     "w": 800,
+     "h": 800
+    },
+    {
+     "src": "/cases/kitayschina/behance/49.gif",
+     "w": 800,
+     "h": 800
+    }
+   ]
   },
   {
    "kind": "image",
    "src": "/cases/kitayschina/behance/50.webp",
    "w": 1600,
-   "h": 688,
-   "grid": false
+   "h": 688
   },
   {
    "kind": "image",
    "src": "/cases/kitayschina/behance/51.webp",
    "w": 1600,
-   "h": 1607,
-   "grid": false
+   "h": 1607
   },
   {
    "kind": "html",
@@ -421,8 +410,7 @@
    "kind": "image",
    "src": "/cases/kitayschina/behance/52.gif",
    "w": 2520,
-   "h": 800,
-   "grid": false
+   "h": 800
   }
  ]
 }

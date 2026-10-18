@@ -12,67 +12,43 @@ sort: 90
 featured: true
 presentationStyle: {"bg":"#CFD3D2","paddingTop":0,"gap":20}
 presentation:
-  - {"kind":"image","src":"/cases/kitayschina/behance/01.webp","w":1600,"h":556,"grid":false}
+  - {"kind":"image","src":"/cases/kitayschina/behance/01.webp","w":1600,"h":556}
   - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-title\"><span class=\"be-fs\" style=\"--fs:40\"><span class=\"be-bold\">33 дня&nbsp;X&nbsp;33 буквы</span></span><br></div>\n</div>\n\n<div class=\"be-p\"></div>","text":"33 дня X 33 буквы","align":"center"}
   - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-p\"><span style=\"color:#202020\">Творческий вызов для всех, кто работает с типографикой — от дизайнеров и иллюстраторов до каллиграфов и даже фотографов, — с 18 августа по 19 сентября 2025 года, где каждый день по-новому раскрывает кириллическую букву.</span><br></div>\n</div>\n\n<div class=\"be-p\"></div>","text":"Творческий вызов для всех, кто работает с типографикой — от дизайнеров и иллюстраторов до каллиграфов и даже фотографов, — с 18 августа по 19 сентября 2025 года, где каждый день по-новому раскрывает кириллическую букву.","align":"center"}
-  - {"kind":"image","src":"/cases/kitayschina/behance/02.webp","w":1600,"h":827,"grid":false}
+  - {"kind":"image","src":"/cases/kitayschina/behance/02.webp","w":1600,"h":827}
   - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-title\"><div class=\"be-sub\"><span class=\"be-bold\"><span class=\"be-fs\" style=\"--fs:30\"><span style=\"color:#202020\">Поиски</span></span></span><br></div></div>\n</div>\n\n<div class=\"be-p\"></div>","text":"Поиски","align":"center"}
   - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-p\"><span style=\"color:#202020\">За пару дней до старта я понятия не имела, что буду делать, поэтому взяла карандаш и стала нащупывать возможные варианты. Пересматривая эскизы в день старта, у меня ёкало только на одном варианте, вот так я и ввязалась в азиатско-иероглифическую тему.</span><span style=\"color:#202020\"><span style=\"color:#202020\"></span></span><br></div>\n</div>\n\n<div class=\"be-p\"></div>","text":"За пару дней до старта я понятия не имела, что буду делать, поэтому взяла карандаш и стала нащупывать возможные варианты. Пересматривая эскизы в день старта, у меня ёкало только на одном варианте, вот так я и ввязалась в азиатско-иероглифическую тему.","align":"center"}
   - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-sub\"><span class=\"be-bold\"><span class=\"be-fs\" style=\"--fs:30\"><span style=\"color:#202020\">Цветовая гамма</span></span></span><br></div>\n</div>\n\n<div class=\"be-p\"></div>","text":"Цветовая гамма","align":"center"}
-  - {"kind":"image","src":"/cases/kitayschina/behance/03.gif","w":800,"h":800,"grid":false}
+  - {"kind":"image","src":"/cases/kitayschina/behance/03.gif","w":800,"h":800}
   - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-title\"><div class=\"be-p\"><span class=\"be-bold\"><span style=\"color:#202020\"><span class=\"be-fs\" style=\"--fs:36\">Алфавит</span></span></span><br><span class=\"be-fs\" style=\"--fs:36\"></span></div></div>\n</div>\n\n<div class=\"be-p\"></div>","text":"Алфавит","align":"center"}
   - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-p\"><span style=\"color:#202020\">Я старалась рисовать буквы в одной стилистике, но с различными подходами в идентичных буквах, чтобы каждая получилась уникальной. Вот такой алфавит у меня получился.</span><br></div>\n</div>\n\n<div class=\"be-p\"></div>","text":"Я старалась рисовать буквы в одной стилистике, но с различными подходами в идентичных буквах, чтобы каждая получилась уникальной. Вот такой алфавит у меня получился.","align":"center"}
-  - {"kind":"image","src":"/cases/kitayschina/behance/04.webp","w":1600,"h":1022,"grid":false}
+  - {"kind":"image","src":"/cases/kitayschina/behance/04.webp","w":1600,"h":1022}
   - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-p\"><span style=\"color:#202020\">После буквы В захотелось оживить буквы, одеть их в фактуры и дать им вторую жизнь. А так как я до сих пор еще не пробовала нейросети, то решила, что сейчас самое время освоить этот инструмент.<br><br>Рисуя такие псевдо-иероглифические буквы, думала о том, что все мы ежедневно заказываем, пользуемся, сталкиваемся с китайскими «поделками» и их качеством: то вышивка слипшаяся, то нитки торчат, то бусина висит на волоске, то ржавчина, то трещины, а то и осколки вовсе. Всем известное китайское качество. Так и решила назвать свои буквы — «китайщина», а торчащие нитки сделать «изюминкой» стиля.</span><br></div>\n</div>\n\n<div class=\"be-p\"></div>","text":"После буквы В захотелось оживить буквы, одеть их в фактуры и дать им вторую жизнь. А так как я до сих пор еще не пробовала нейросети, то решила, что сейчас самое время освоить этот инструмент.\nРисуя такие псевдо-иероглифические буквы, думала о том, что все мы ежедневно заказываем, пользуемся, сталкиваемся с китайскими «поделками» и их качеством: то вышивка слипшаяся, то нитки торчат, то бусина висит на волоске, то ржавчина, то трещины, а то и осколки вовсе. Всем известное китайское качество. Так и решила назвать свои буквы — «китайщина», а торчащие нитки сделать «изюминкой» стиля.","align":"center"}
-  - {"kind":"image","src":"/cases/kitayschina/behance/05.gif","w":800,"h":800,"grid":false}
-  - {"kind":"image","src":"/cases/kitayschina/behance/06.webp","w":1600,"h":2093,"grid":false}
-  - {"kind":"image","src":"/cases/kitayschina/behance/07.webp","w":1600,"h":1603,"grid":false}
-  - {"kind":"image","src":"/cases/kitayschina/behance/08.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/09.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/10.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/11.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/12.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/13.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/14.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/15.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/16.webp","w":1600,"h":1067,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/17.webp","w":1024,"h":1024,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/18.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/19.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/20.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/21.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/22.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/23.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/24.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/25.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/26.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/27.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/28.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/29.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/30.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/31.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/32.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/33.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/34.webp","w":1600,"h":1067,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/35.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/36.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/37.webp","w":1600,"h":797,"grid":false}
-  - {"kind":"image","src":"/cases/kitayschina/behance/38.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/39.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/40.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/41.webp","w":1600,"h":1067,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/42.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/43.webp","w":1600,"h":688,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/44.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/45.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/46.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/47.webp","w":1600,"h":1604,"grid":false}
-  - {"kind":"image","src":"/cases/kitayschina/behance/48.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/49.gif","w":800,"h":800,"grid":true}
-  - {"kind":"image","src":"/cases/kitayschina/behance/50.webp","w":1600,"h":688,"grid":false}
-  - {"kind":"image","src":"/cases/kitayschina/behance/51.webp","w":1600,"h":1607,"grid":false}
+  - {"kind":"image","src":"/cases/kitayschina/behance/05.gif","w":800,"h":800}
+  - {"kind":"image","src":"/cases/kitayschina/behance/06.webp","w":1600,"h":2093}
+  - {"kind":"image","src":"/cases/kitayschina/behance/07.webp","w":1600,"h":1603}
+  - {"kind":"grid","items":[{"src":"/cases/kitayschina/behance/08.gif","w":800,"h":800},{"src":"/cases/kitayschina/behance/09.gif","w":800,"h":800},{"src":"/cases/kitayschina/behance/10.gif","w":800,"h":800}]}
+  - {"kind":"grid","items":[{"src":"/cases/kitayschina/behance/11.gif","w":800,"h":800},{"src":"/cases/kitayschina/behance/12.gif","w":800,"h":800},{"src":"/cases/kitayschina/behance/13.gif","w":800,"h":800}]}
+  - {"kind":"grid","items":[{"src":"/cases/kitayschina/behance/14.gif","w":800,"h":800},{"src":"/cases/kitayschina/behance/15.gif","w":800,"h":800}]}
+  - {"kind":"grid","items":[{"src":"/cases/kitayschina/behance/16.webp","w":1600,"h":1067},{"src":"/cases/kitayschina/behance/17.webp","w":1024,"h":1024}]}
+  - {"kind":"grid","items":[{"src":"/cases/kitayschina/behance/18.gif","w":800,"h":800},{"src":"/cases/kitayschina/behance/19.gif","w":800,"h":800},{"src":"/cases/kitayschina/behance/20.gif","w":800,"h":800}]}
+  - {"kind":"grid","items":[{"src":"/cases/kitayschina/behance/21.gif","w":800,"h":800},{"src":"/cases/kitayschina/behance/22.gif","w":800,"h":800},{"src":"/cases/kitayschina/behance/23.gif","w":800,"h":800}]}
+  - {"kind":"grid","items":[{"src":"/cases/kitayschina/behance/24.gif","w":800,"h":800},{"src":"/cases/kitayschina/behance/25.gif","w":800,"h":800}]}
+  - {"kind":"grid","items":[{"src":"/cases/kitayschina/behance/26.gif","w":800,"h":800},{"src":"/cases/kitayschina/behance/27.gif","w":800,"h":800},{"src":"/cases/kitayschina/behance/28.gif","w":800,"h":800}]}
+  - {"kind":"grid","items":[{"src":"/cases/kitayschina/behance/29.gif","w":800,"h":800},{"src":"/cases/kitayschina/behance/30.gif","w":800,"h":800}]}
+  - {"kind":"grid","items":[{"src":"/cases/kitayschina/behance/31.gif","w":800,"h":800},{"src":"/cases/kitayschina/behance/32.gif","w":800,"h":800}]}
+  - {"kind":"grid","items":[{"src":"/cases/kitayschina/behance/33.gif","w":800,"h":800},{"src":"/cases/kitayschina/behance/34.webp","w":1600,"h":1067}]}
+  - {"kind":"grid","items":[{"src":"/cases/kitayschina/behance/35.gif","w":800,"h":800},{"src":"/cases/kitayschina/behance/36.gif","w":800,"h":800}]}
+  - {"kind":"image","src":"/cases/kitayschina/behance/37.webp","w":1600,"h":797}
+  - {"kind":"grid","items":[{"src":"/cases/kitayschina/behance/38.gif","w":800,"h":800},{"src":"/cases/kitayschina/behance/39.gif","w":800,"h":800},{"src":"/cases/kitayschina/behance/40.gif","w":800,"h":800}]}
+  - {"kind":"grid","items":[{"src":"/cases/kitayschina/behance/41.webp","w":1600,"h":1067},{"src":"/cases/kitayschina/behance/42.gif","w":800,"h":800},{"src":"/cases/kitayschina/behance/43.webp","w":1600,"h":688}]}
+  - {"kind":"grid","items":[{"src":"/cases/kitayschina/behance/44.gif","w":800,"h":800},{"src":"/cases/kitayschina/behance/45.gif","w":800,"h":800},{"src":"/cases/kitayschina/behance/46.gif","w":800,"h":800}]}
+  - {"kind":"image","src":"/cases/kitayschina/behance/47.webp","w":1600,"h":1604}
+  - {"kind":"grid","items":[{"src":"/cases/kitayschina/behance/48.gif","w":800,"h":800},{"src":"/cases/kitayschina/behance/49.gif","w":800,"h":800}]}
+  - {"kind":"image","src":"/cases/kitayschina/behance/50.webp","w":1600,"h":688}
+  - {"kind":"image","src":"/cases/kitayschina/behance/51.webp","w":1600,"h":1607}
   - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-p\"><span class=\"be-bold\"><span style=\"color:#202020\">Спасибо за внимание</span></span></div><div class=\"be-p\"><span style=\"color:#202020\">Посмотреть буквы поближе можно в телеграм:</span>&nbsp;<a href=\"https://t.me/tak_naprimer\" target=\"_blank\" rel=\"noopener\">@tak_naprimer</a></div>\n</div>\n\n<div class=\"be-p\"></div>","text":"Спасибо за внимание\nПосмотреть буквы поближе можно в телеграм: @tak_naprimer","align":"center"}
-  - {"kind":"image","src":"/cases/kitayschina/behance/52.gif","w":2520,"h":800,"grid":false}
+  - {"kind":"image","src":"/cases/kitayschina/behance/52.gif","w":2520,"h":800}
 gallery:
   - {"kind":"image","src":"/cases/kitayschina/145-1.webp","post":145,"tg":"https://t.me/tak_naprimer/145","title":"А"}
   - {"kind":"image","src":"/cases/kitayschina/146-1.webp","post":146,"tg":"https://t.me/tak_naprimer/146","title":"Б"}

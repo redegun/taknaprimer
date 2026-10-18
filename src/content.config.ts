@@ -31,11 +31,12 @@ const cases = defineCollection({
     }).default({}),
     // Презентация кейса как на Behance: модули по порядку (картинки в оригинале, заголовки, абзацы)
     presentation: z.array(z.object({
-      kind: z.enum(['image', 'heading', 'text', 'html']),
+      kind: z.enum(['image', 'grid', 'heading', 'text', 'html']),
       src: z.string().optional(),
       w: z.number().optional(),
       h: z.number().optional(),
-      grid: z.boolean().optional(),
+      // grid: картинки одного модуля в один ряд, ширины пропорциональны w/h (как flex-grow у Behance)
+      items: z.array(z.object({ src: z.string(), w: z.number().optional(), h: z.number().optional() })).optional(),
       text: z.string().optional(),
       html: z.string().optional(),
       align: z.enum(['left', 'center', 'right']).optional(),

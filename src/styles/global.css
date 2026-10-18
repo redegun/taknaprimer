@@ -100,6 +100,9 @@ html.js [data-reveal].is-in {
 }
 .be-module { margin: 0; }
 .be-module + .be-module { margin-top: var(--be-gap, 0px); }
+/* сетка Behance: один ряд, ширины ∝ пропорциям (flex-grow), одинаковая высота, узкий зазор */
+.be-grid { display: flex; align-items: stretch; gap: var(--be-gutter, 4px); }
+.be-grid__item { flex-basis: 0; min-width: 0; margin: 0; overflow: hidden; }
 .be-text {
   font-family: Helvetica, Arial, "Manrope Variable", sans-serif;
   font-size: clamp(16px, 1.1vw + 8px, 20px);

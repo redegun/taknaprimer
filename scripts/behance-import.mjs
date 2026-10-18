@@ -132,6 +132,7 @@ for (const [pid, p] of Object.entries(projects)) {
       continue;
     }
     const imgs = [...chunk.matchAll(/<img[^>]*src="(https:\/\/mir-s3-cdn-cf\.behance\.net\/project_modules\/[^"]+)"/g)].map((x) => x[1]);
+    const rowItems = []; // картинки одного модуля-сетки: Behance кладёт их в один ряд, ширины ∝ пропорциям
     for (const src of imgs) {
       const tail = src.split('/').pop();
       if (seen.has(tail)) continue;
@@ -149,8 +150,10 @@ for (const [pid, p] of Object.entries(projects)) {
         } catch (e) { console.warn('   fail', tail, e.message); n--; seen.delete(tail); continue; }
       }
       const meta = await sharp(out).metadata().catch(() => ({}));
-      blocks.push({ kind: 'image', src: `/cases/${p.slug}/behance/${outName}`, w: meta.width, h: meta.pageHeight ?? meta.height, grid: imgs.length > 1 });
+      rowItems.push({ src: `/cases/${p.slug}/behance/${outName}`, w: meta.width, h: meta.pageHeight ?? meta.height });
     }
+    if (rowItems.length === 1) blocks.push({ kind: 'image', ...rowItems[0] });
+    else if (rowItems.length > 1) blocks.push({ kind: 'grid', items: rowItems });
   }
   const cleaned = blocks.filter((b) => b.kind !== 'text' || b.text.trim());
   fs.mkdirSync(path.join(ROOT, 'scripts/presentation'), { recursive: true });

@@ -10,8 +10,7 @@
    "kind": "image",
    "src": "/cases/inktober-2025/behance/01.webp",
    "w": 1280,
-   "h": 868,
-   "grid": false
+   "h": 868
   },
   {
    "kind": "html",
@@ -20,18 +19,19 @@
    "align": "center"
   },
   {
-   "kind": "image",
-   "src": "/cases/inktober-2025/behance/02.webp",
-   "w": 1280,
-   "h": 903,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/inktober-2025/behance/03.webp",
-   "w": 1280,
-   "h": 1024,
-   "grid": true
+   "kind": "grid",
+   "items": [
+    {
+     "src": "/cases/inktober-2025/behance/02.webp",
+     "w": 1280,
+     "h": 903
+    },
+    {
+     "src": "/cases/inktober-2025/behance/03.webp",
+     "w": 1280,
+     "h": 1024
+    }
+   ]
   },
   {
    "kind": "html",
@@ -40,18 +40,19 @@
    "align": "center"
   },
   {
-   "kind": "image",
-   "src": "/cases/inktober-2025/behance/04.webp",
-   "w": 1280,
-   "h": 846,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/inktober-2025/behance/05.webp",
-   "w": 1280,
-   "h": 916,
-   "grid": true
+   "kind": "grid",
+   "items": [
+    {
+     "src": "/cases/inktober-2025/behance/04.webp",
+     "w": 1280,
+     "h": 846
+    },
+    {
+     "src": "/cases/inktober-2025/behance/05.webp",
+     "w": 1280,
+     "h": 916
+    }
+   ]
   },
   {
    "kind": "html",
@@ -63,8 +64,7 @@
    "kind": "image",
    "src": "/cases/inktober-2025/behance/06.webp",
    "w": 1280,
-   "h": 1280,
-   "grid": false
+   "h": 1280
   },
   {
    "kind": "html",
@@ -76,8 +76,7 @@
    "kind": "image",
    "src": "/cases/inktober-2025/behance/07.webp",
    "w": 1280,
-   "h": 955,
-   "grid": true
+   "h": 955
   },
   {
    "kind": "html",
@@ -86,18 +85,19 @@
    "align": "center"
   },
   {
-   "kind": "image",
-   "src": "/cases/inktober-2025/behance/08.webp",
-   "w": 1280,
-   "h": 1099,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/inktober-2025/behance/09.webp",
-   "w": 1280,
-   "h": 813,
-   "grid": true
+   "kind": "grid",
+   "items": [
+    {
+     "src": "/cases/inktober-2025/behance/08.webp",
+     "w": 1280,
+     "h": 1099
+    },
+    {
+     "src": "/cases/inktober-2025/behance/09.webp",
+     "w": 1280,
+     "h": 813
+    }
+   ]
   },
   {
    "kind": "html",
@@ -109,8 +109,7 @@
    "kind": "image",
    "src": "/cases/inktober-2025/behance/10.webp",
    "w": 1280,
-   "h": 960,
-   "grid": true
+   "h": 960
   },
   {
    "kind": "html",
@@ -119,18 +118,19 @@
    "align": "center"
   },
   {
-   "kind": "image",
-   "src": "/cases/inktober-2025/behance/11.webp",
-   "w": 1280,
-   "h": 1280,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/inktober-2025/behance/12.webp",
-   "w": 1280,
-   "h": 1065,
-   "grid": true
+   "kind": "grid",
+   "items": [
+    {
+     "src": "/cases/inktober-2025/behance/11.webp",
+     "w": 1280,
+     "h": 1280
+    },
+    {
+     "src": "/cases/inktober-2025/behance/12.webp",
+     "w": 1280,
+     "h": 1065
+    }
+   ]
   },
   {
    "kind": "html",
@@ -139,18 +139,19 @@
    "align": "center"
   },
   {
-   "kind": "image",
-   "src": "/cases/inktober-2025/behance/13.webp",
-   "w": 1280,
-   "h": 784,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/inktober-2025/behance/14.webp",
-   "w": 1279,
-   "h": 1035,
-   "grid": true
+   "kind": "grid",
+   "items": [
+    {
+     "src": "/cases/inktober-2025/behance/13.webp",
+     "w": 1280,
+     "h": 784
+    },
+    {
+     "src": "/cases/inktober-2025/behance/14.webp",
+     "w": 1279,
+     "h": 1035
+    }
+   ]
   },
   {
    "kind": "html",
@@ -162,8 +163,7 @@
    "kind": "image",
    "src": "/cases/inktober-2025/behance/15.webp",
    "w": 1280,
-   "h": 921,
-   "grid": true
+   "h": 921
   },
   {
    "kind": "html",
@@ -172,18 +172,19 @@
    "align": "center"
   },
   {
-   "kind": "image",
-   "src": "/cases/inktober-2025/behance/16.webp",
-   "w": 1237,
-   "h": 1280,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/inktober-2025/behance/17.webp",
-   "w": 818,
-   "h": 555,
-   "grid": true
+   "kind": "grid",
+   "items": [
+    {
+     "src": "/cases/inktober-2025/behance/16.webp",
+     "w": 1237,
+     "h": 1280
+    },
+    {
+     "src": "/cases/inktober-2025/behance/17.webp",
+     "w": 818,
+     "h": 555
+    }
+   ]
   },
   {
    "kind": "html",
@@ -192,18 +193,19 @@
    "align": "center"
   },
   {
-   "kind": "image",
-   "src": "/cases/inktober-2025/behance/18.webp",
-   "w": 1280,
-   "h": 671,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/inktober-2025/behance/19.webp",
-   "w": 1280,
-   "h": 886,
-   "grid": true
+   "kind": "grid",
+   "items": [
+    {
+     "src": "/cases/inktober-2025/behance/18.webp",
+     "w": 1280,
+     "h": 671
+    },
+    {
+     "src": "/cases/inktober-2025/behance/19.webp",
+     "w": 1280,
+     "h": 886
+    }
+   ]
   },
   {
    "kind": "html",
@@ -215,8 +217,7 @@
    "kind": "image",
    "src": "/cases/inktober-2025/behance/20.webp",
    "w": 1280,
-   "h": 875,
-   "grid": true
+   "h": 875
   },
   {
    "kind": "html",
@@ -225,18 +226,19 @@
    "align": "center"
   },
   {
-   "kind": "image",
-   "src": "/cases/inktober-2025/behance/21.webp",
-   "w": 1280,
-   "h": 1280,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/inktober-2025/behance/22.webp",
-   "w": 1280,
-   "h": 977,
-   "grid": true
+   "kind": "grid",
+   "items": [
+    {
+     "src": "/cases/inktober-2025/behance/21.webp",
+     "w": 1280,
+     "h": 1280
+    },
+    {
+     "src": "/cases/inktober-2025/behance/22.webp",
+     "w": 1280,
+     "h": 977
+    }
+   ]
   },
   {
    "kind": "html",
@@ -245,18 +247,19 @@
    "align": "center"
   },
   {
-   "kind": "image",
-   "src": "/cases/inktober-2025/behance/23.webp",
-   "w": 1280,
-   "h": 395,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/inktober-2025/behance/24.webp",
-   "w": 1280,
-   "h": 1040,
-   "grid": true
+   "kind": "grid",
+   "items": [
+    {
+     "src": "/cases/inktober-2025/behance/23.webp",
+     "w": 1280,
+     "h": 395
+    },
+    {
+     "src": "/cases/inktober-2025/behance/24.webp",
+     "w": 1280,
+     "h": 1040
+    }
+   ]
   },
   {
    "kind": "html",
@@ -268,8 +271,7 @@
    "kind": "image",
    "src": "/cases/inktober-2025/behance/25.webp",
    "w": 1280,
-   "h": 794,
-   "grid": true
+   "h": 794
   },
   {
    "kind": "html",
@@ -281,8 +283,7 @@
    "kind": "image",
    "src": "/cases/inktober-2025/behance/26.webp",
    "w": 1280,
-   "h": 935,
-   "grid": true
+   "h": 935
   },
   {
    "kind": "html",
@@ -291,18 +292,19 @@
    "align": "center"
   },
   {
-   "kind": "image",
-   "src": "/cases/inktober-2025/behance/27.webp",
-   "w": 1280,
-   "h": 845,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/inktober-2025/behance/28.webp",
-   "w": 1280,
-   "h": 902,
-   "grid": true
+   "kind": "grid",
+   "items": [
+    {
+     "src": "/cases/inktober-2025/behance/27.webp",
+     "w": 1280,
+     "h": 845
+    },
+    {
+     "src": "/cases/inktober-2025/behance/28.webp",
+     "w": 1280,
+     "h": 902
+    }
+   ]
   },
   {
    "kind": "html",
@@ -314,8 +316,7 @@
    "kind": "image",
    "src": "/cases/inktober-2025/behance/29.webp",
    "w": 1280,
-   "h": 995,
-   "grid": true
+   "h": 995
   },
   {
    "kind": "html",
@@ -324,18 +325,19 @@
    "align": "center"
   },
   {
-   "kind": "image",
-   "src": "/cases/inktober-2025/behance/30.webp",
-   "w": 1280,
-   "h": 715,
-   "grid": true
-  },
-  {
-   "kind": "image",
-   "src": "/cases/inktober-2025/behance/31.webp",
-   "w": 1280,
-   "h": 995,
-   "grid": true
+   "kind": "grid",
+   "items": [
+    {
+     "src": "/cases/inktober-2025/behance/30.webp",
+     "w": 1280,
+     "h": 715
+    },
+    {
+     "src": "/cases/inktober-2025/behance/31.webp",
+     "w": 1280,
+     "h": 995
+    }
+   ]
   },
   {
    "kind": "html",
@@ -347,8 +349,7 @@
    "kind": "image",
    "src": "/cases/inktober-2025/behance/32.webp",
    "w": 1280,
-   "h": 715,
-   "grid": true
+   "h": 715
   },
   {
    "kind": "html",

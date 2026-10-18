@@ -79,6 +79,14 @@ const hasCaptions = images.some((g) => g.title);
             <figure class="be-module">
               <img src={u(b.src!)} alt={d.title} width={b.w} height={b.h} loading="lazy" decoding="async" class="block h-auto w-full" />
             </figure>
+          ) : b.kind === 'grid' ? (
+            <div class="be-module be-grid">
+              {(b.items ?? []).map((it) => (
+                <figure class="be-grid__item" style={`flex-grow:${((it.w ?? 1) / (it.h ?? 1)).toFixed(4)};aspect-ratio:${it.w ?? 1}/${it.h ?? 1}`}>
+                  <img src={u(it.src)} alt={d.title} width={it.w} height={it.h} loading="lazy" decoding="async" class="block h-full w-full object-cover" />
+                </figure>
+              ))}
+            </div>
           ) : b.kind === 'html' ? (
             <div class:list={['be-module be-text', b.align === 'center' ? 'text-center' : b.align === 'right' ? 'text-right' : 'text-left']} set:html={b.html} />
           ) : b.kind === 'heading' ? (
