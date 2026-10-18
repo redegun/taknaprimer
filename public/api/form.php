@@ -86,7 +86,8 @@ if (!empty($cfg['to'])) {
 
 // 4. Telegram через релей на VPS (с Timeweb api.telegram.org недоступен)
 if (!empty($cfg['relay']) && !empty($cfg['bot_token']) && !empty($cfg['chat_id'])) {
-    $payload = json_encode(['token' => $cfg['bot_token'], 'chat_id' => $cfg['chat_id'], 'text' => $text], JSON_UNESCAPED_UNICODE);
+    // parse_mode '' = plain text: в заявке могут быть < > &, с HTML-режимом Telegram их отвергнет
+    $payload = json_encode(['token' => $cfg['bot_token'], 'chat_id' => $cfg['chat_id'], 'text' => $text, 'parse_mode' => ''], JSON_UNESCAPED_UNICODE | JSON_INVALID_UTF8_SUBSTITUTE);
     $ch = curl_init($cfg['relay']);
     curl_setopt_array($ch, [
         CURLOPT_POST => true,
