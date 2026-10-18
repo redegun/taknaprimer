@@ -9,8 +9,9 @@ interface Props {
   description?: string;
   ogImage?: string;
   noindex?: boolean;
+  stickyHeader?: boolean;
 }
-const { title, description = 'Татьяна Кочнева — дизайнер. Леттеринг, шрифтовые алфавиты, айдентика, буквы-объекты из бумаги, скотча и ткани.', ogImage, noindex = false } = Astro.props;
+const { title, description = 'Татьяна Кочнева — дизайнер. Леттеринг, шрифтовые алфавиты, айдентика, буквы-объекты из бумаги, скотча и ткани.', ogImage, noindex = false, stickyHeader = true } = Astro.props;
 const fullTitle = title === SITE.name ? `${SITE.name} — ${SITE.person}, дизайнер` : `${title} — ${SITE.name}`;
 const isPreview = import.meta.env.BASE_URL !== '/';
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
@@ -35,7 +36,7 @@ const og = ogImage ? new URL(ogImage, Astro.site).toString() : new URL(u('/og.jp
     <script is:inline>document.documentElement.classList.add('js');</script>
   </head>
   <body class="min-h-screen flex flex-col">
-    <Header />
+    <Header sticky={stickyHeader} />
     <main class="flex-1">
       <slot />
     </main>

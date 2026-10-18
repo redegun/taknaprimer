@@ -1,5 +1,7 @@
 ---
 import { u, SITE } from '@/lib/url';
+interface Props { sticky?: boolean }
+const { sticky = true } = Astro.props;
 const path = Astro.url.pathname;
 const nav = [
   { href: '/raboty/', label: 'Работы' },
@@ -9,7 +11,7 @@ const nav = [
 ];
 const isActive = (href: string) => path.startsWith(u(href));
 ---
-<header class="sticky top-0 z-40 border-b border-line/70 bg-paper/85 backdrop-blur">
+<header class:list={['z-40 border-b border-line/70 bg-paper/85 backdrop-blur', sticky ? 'sticky top-0' : 'relative']}>
   <div class="container-x flex h-16 items-center justify-between gap-4">
     <a href={u('/')} class="font-display text-[17px] font-bold tracking-tight hover:text-accent transition-colors">
       Так,<span class="text-accent">&nbsp;например</span>

@@ -1,0 +1,63 @@
+---
+// Плавающая панель кейса (как на Behance): появляется при прокрутке. Десктоп — справа по центру, мобильный — полоска снизу.
+import { u, SITE } from '@/lib/url';
+import LikeButton from '@/components/LikeButton.astro';
+
+interface Props {
+  slug: string;
+  title: string;
+  behance?: string;
+}
+const { slug, title, behance } = Astro.props;
+---
+<aside class="case-dock pointer-events-none fixed inset-x-0 bottom-0 z-30 opacity-0 transition-all duration-500 translate-y-3 lg:inset-x-auto lg:bottom-auto lg:right-5 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-3" aria-label="Панель кейса">
+  <!-- десктоп -->
+  <div class="hidden w-[232px] flex-col gap-3 rounded-xl2 border border-ink/10 bg-white/95 p-4 shadow-[0_12px_40px_rgba(0,0,0,0.12)] backdrop-blur lg:flex">
+    <a href={u('/obo-mne/')} class="flex items-center gap-3">
+      <img src={u('/about/tanya.webp')} alt="Татьяна Кочнева" width="44" height="44" class="h-11 w-11 rounded-full object-cover" loading="lazy" />
+      <span class="leading-tight"><span class="block font-display text-[14px] font-bold">Татьяна Кочнева</span><span class="block text-xs text-muted">дизайнер · буквы и объекты</span></span>
+    </a>
+    <div class="text-[13px] leading-snug text-ink-2 line-clamp-2">{title}</div>
+    <div class="flex items-center gap-3">
+      <LikeButton slug={slug} />
+      <span class="hidden items-center gap-1 text-xs text-muted [&.inline-flex]:inline-flex" data-views-wrap title="Просмотры">
+        <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="3"/></svg>
+        <span data-views={slug}>·</span>
+      </span>
+    </div>
+    <a href="#forma" class="btn btn-accent justify-center !py-2.5 text-sm">Обсудить проект</a>
+    <div class="flex items-center justify-between text-xs text-muted">
+      <button type="button" class="dock-share hover:text-accent" title="Поделиться">Поделиться</button>
+      {behance ? <a href={behance} target="_blank" rel="noopener" class="hover:text-accent">Behance ↗</a> : <a href={SITE.channel} target="_blank" rel="noopener" class="hover:text-accent">Канал ↗</a>}
+    </div>
+  </div>
+  <!-- мобильный: полоска снизу -->
+  <div class="flex items-center gap-2 border-t border-ink/10 bg-white/95 px-3 py-2 backdrop-blur lg:hidden">
+    <img src={u('/about/tanya.webp')} alt="" width="36" height="36" class="h-9 w-9 rounded-full object-cover" loading="lazy" />
+    <LikeButton slug={slug} label={false} />
+    <a href="#forma" class="btn btn-accent ml-auto !py-2 text-sm">Обсудить проект</a>
+  </div>
+</aside>
+
+<script>
+  const dock = document.querySelector<HTMLElement>('.case-dock');
+  if (dock) {
+    const show = () => {
+      const on = window.scrollY > 360;
+      dock.classList.toggle('opacity-0', !on);
+      dock.classList.toggle('pointer-events-none', !on);
+      dock.classList.toggle('translate-y-3', !on);
+      dock.classList.toggle('lg:translate-x-3', !on);
+    };
+    show();
+    window.addEventListener('scroll', show, { passive: true });
+    dock.querySelector('.dock-share')?.addEventListener('click', async (e) => {
+      const btn = e.currentTarget as HTMLButtonElement;
+      const data = { title: document.title, url: location.href };
+      try {
+        if (navigator.share) await navigator.share(data);
+        else { await navigator.clipboard.writeText(location.href); btn.textContent = 'Ссылка скопирована'; setTimeout(() => (btn.textContent = 'Поделиться'), 2000); }
+      } catch {}
+    });
+  }
+</script>

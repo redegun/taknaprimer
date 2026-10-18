@@ -1,6 +1,8 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import ProjectForm from '@/components/ProjectForm.astro';
+import CaseDock from '@/components/CaseDock.astro';
+import LikeButton from '@/components/LikeButton.astro';
 import { getCollection, render } from 'astro:content';
 import { u } from '@/lib/url';
 
@@ -22,7 +24,8 @@ const images = d.gallery.filter((g) => g.kind === 'image');
 const videos = d.gallery.filter((g) => g.kind === 'video');
 const hasCaptions = images.some((g) => g.title);
 ---
-<Layout title={d.title} description={d.short} ogImage={u(d.cover)}>
+<Layout title={d.title} description={d.short} ogImage={u(d.cover)} stickyHeader={false}>
+  <CaseDock slug={entry.id} title={d.title} behance={d.links.behance} />
   <article>
     {hasPres ? (
       <>
@@ -65,6 +68,10 @@ const hasCaptions = images.some((g) => g.title);
           </div>
           <h1 class="mt-4 max-w-4xl text-4xl font-bold sm:text-6xl" data-reveal>{d.title}</h1>
           <p class="mt-5 max-w-2xl text-xl text-ink-2" data-reveal>{d.short}</p>
+          <div class="mt-5 flex flex-wrap items-center gap-4" data-reveal>
+            <LikeButton slug={entry.id} size="lg" />
+            <span class="hidden items-center gap-1.5 text-sm text-muted" data-views-wrap><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="3"/></svg><span data-views={entry.id}>·</span> просмотров</span>
+          </div>
         </div>
         <div class="container-x mt-10" data-reveal>
           <div class="overflow-hidden rounded-xl2 bg-paper-2">
@@ -84,6 +91,10 @@ const hasCaptions = images.some((g) => g.title);
             </div>
             <h1 class="mt-4 max-w-4xl text-3xl font-bold sm:text-5xl" data-reveal>{d.title}</h1>
             <p class="mt-4 max-w-2xl text-lg text-ink-2" data-reveal>{d.short}</p>
+            <div class="mt-5 flex flex-wrap items-center gap-4" data-reveal>
+              <LikeButton slug={entry.id} size="lg" />
+              <span class="hidden items-center gap-1.5 text-sm text-muted" data-views-wrap><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="3"/></svg><span data-views={entry.id}>·</span> просмотров</span>
+            </div>
           </div>
         )}
         <div class="prose-case" data-reveal>
