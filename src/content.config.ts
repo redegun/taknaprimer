@@ -41,6 +41,13 @@ const cases = defineCollection({
       html: z.string().optional(),
       align: z.enum(['left', 'center', 'right']).optional(),
     })).default([]),
+    // как кейс показан на главной: wide — полотно во всю ширину, band — тёмная полоса с текстом, split — картинка + текст
+    home: z.object({
+      layout: z.enum(['wide', 'band', 'split']),
+      media: z.string(),
+      bg: z.string().optional(),
+      dark: z.boolean().optional(),
+    }).optional(),
     // настройки проекта на Behance: фон полотна, верхний отступ, расстояние между модулями (px)
     presentationStyle: z.object({
       bg: z.string().default('#ffffff'),

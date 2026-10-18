@@ -10,6 +10,7 @@ cover: "/cases/inktober-2025/413-1.webp"
 links: {"tg":"https://t.me/tak_naprimer/312","behance":"https://www.behance.net/gallery/238219833/Inktober-2025-by-lettering"}
 sort: 80
 featured: true
+home: {"layout":"split","media":"/cases/inktober-2025/behance/06.webp"}
 presentationStyle: {"bg":"#FFFFFF","paddingTop":0,"gap":60}
 presentation:
   - {"kind":"image","src":"/cases/inktober-2025/behance/01.webp","w":1280,"h":868}

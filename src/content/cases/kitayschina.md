@@ -10,6 +10,7 @@ cover: "/cases/kitayschina/298-1.webp"
 links: {"tg":"https://t.me/tak_naprimer/145","behance":"https://www.behance.net/gallery/235462227/bkvch-2025-kitajschina"}
 sort: 90
 featured: true
+home: {"layout":"wide","media":"/cases/kitayschina/behance/52.gif","bg":"#CFD3D2"}
 presentationStyle: {"bg":"#CFD3D2","paddingTop":0,"gap":20}
 presentation:
   - {"kind":"image","src":"/cases/kitayschina/behance/01.webp","w":1600,"h":556}

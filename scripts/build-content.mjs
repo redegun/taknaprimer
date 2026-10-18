@@ -165,6 +165,7 @@ for (const c of cfg.cases) {
     `links: ${JSON.stringify(links)}`,
     `sort: ${c.sort ?? 0}`,
     `featured: ${!!c.featured}`,
+    c.home ? `home: ${JSON.stringify(c.home)}` : null,
     ...(pres ? [`presentationStyle: ${JSON.stringify(pres.styles || {})}`, 'presentation:', ...pres.blocks.map((b) => '  - ' + JSON.stringify(b))] : []),
     'gallery:',
     ...gallery.map((g) => '  - ' + JSON.stringify(g)),
