@@ -16,6 +16,62 @@ const MAX_W = 1600;
 const decode = (s) => s.replace(/&nbsp;| /g, ' ').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;|&#x27;/g, "'").replace(/​/g, '');
 // HTML текстового модуля → блоки {kind:'heading'|'text', text}
 const UI_JUNK = new Set(['Поиск похожего', 'Сохранить', 'Постоянная ссылка', 'Добавить в коллекцию', 'Исходные файлы', 'Save', 'Permalink', 'Find similar']);
+
+// Настройки проекта из его style-блока: фон, верхний отступ, расстояние между модулями
+function projectStyles(html) {
+  const pc = html.match(/#primary-project-content \{ ([^}]*)\}/);
+  const sp = html.match(/\.spacer \{ height: (\d+)px; \}/);
+  const bg = pc && pc[1].match(/background-color: (#[0-9a-fA-F]{3,6})/);
+  const pt = pc && pc[1].match(/padding-top: (\d+)px/);
+  return { bg: bg ? bg[1] : '#ffffff', paddingTop: pt ? Number(pt[1]) : 0, gap: sp ? Number(sp[1]) : 0 };
+}
+
+// HTML текстового модуля → безопасный HTML с авторскими размерами/цветами (span.be-fs --fs, color), жирным, .title/.sub-title
+function textHtml(htmlChunk) {
+  let inner = htmlChunk.replace(/^[\s\S]*?module-content-text[^>]*>/, '').split(/<\/section>|project-module__actions|<section class=|Project-projectModuleContainer/)[0].replace(/<[^>]*$/, '');
+  inner = inner.replace(/<!--[\s\S]*?-->/g, '');
+  for (const j of UI_JUNK) inner = inner.replace(new RegExp(`>\\s*${j.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*<`, 'g'), '><');
+  // стековый проход: разрешённые теги, сбалансированные закрытия, inline-стили редактора → наши классы
+  const out = [], stack = [];
+  const re = /<\/?([a-zA-Z0-9]+)([^>]*)>|([^<]+)/g;
+  let m;
+  while ((m = re.exec(inner))) {
+    if (m[3] !== undefined) { out.push(m[3]); continue; }
+    const tag = m[1].toLowerCase(), attrs = m[2] || '', closing = m[0].startsWith('</');
+    if (tag === 'br') { out.push('<br>'); continue; }
+    const name = tag === 'b' ? 'strong' : tag === 'i' ? 'em' : tag === 'p' ? 'div' : tag;
+    if (!['div', 'span', 'a', 'strong', 'em'].includes(name)) continue;
+    if (closing) {
+      const idx = stack.lastIndexOf(name);
+      if (idx === -1) continue;
+      while (stack.length > idx) out.push(`</${stack.pop()}>`);
+      continue;
+    }
+    const cls = (attrs.match(/class="([^"]*)"/) || [, ''])[1];
+    const st = (attrs.match(/style="([^"]*)"/) || [, ''])[1];
+    let open;
+    if (name === 'a') {
+      const h = attrs.match(/href="([^"]+)"/);
+      if (!h) continue;
+      open = `<a href="${h[1]}" target="_blank" rel="noopener">`;
+    } else if (name === 'span') {
+      const fs = st.match(/font-size:\s*(\d+)px/), col = st.match(/color:\s*(#[0-9a-fA-F]{3,6})/);
+      const classes = [], styles = [];
+      if (/\bbold\b/.test(cls)) classes.push('be-bold');
+      if (fs) { classes.push('be-fs'); styles.push(`--fs:${fs[1]}`); }
+      if (col) styles.push(`color:${col[1]}`);
+      open = `<span${classes.length ? ` class="${classes.join(' ')}"` : ''}${styles.length ? ` style="${styles.join(';')}"` : ''}>`;
+    } else if (name === 'div') {
+      const c = /\bsub-title\b/.test(cls) ? 'be-sub' : /\btitle\b/.test(cls) ? 'be-title' : 'be-p';
+      const ta = st.match(/text-align:\s*(left|center|right)/);
+      open = `<div class="${c}"${ta ? ` style="text-align:${ta[1]}"` : ''}>`;
+    } else open = `<${name}>`;
+    out.push(open);
+    stack.push(name);
+  }
+  while (stack.length) out.push(`</${stack.pop()}>`);
+  return out.join('').replace(/<div class="be-p">(\s|<br>)*<\/div>/g, '').replace(/[ \t]*\n[ \t]*/g, '\n').trim();
+}
 function textBlocks(htmlChunk) {
   // текст модуля заканчивается там, где начинается меню действий следующего модуля
   // текст модуля — до конца его контейнера (</section>), меню действий или следующего контейнера; у последнего модуля иначе прилипает подвал страницы
@@ -65,8 +121,16 @@ for (const [pid, p] of Object.entries(projects)) {
   const seen = new Set();
   let n = 0;
   console.log('==', pid, p.slug, chunks.length, 'modules');
+  const styles = projectStyles(html);
+  console.log('   styles', JSON.stringify(styles));
   for (const { html: chunk } of chunks) {
-    if (/class="[^"]*project-module-text[^"]*"/.test(chunk)) { blocks.push(...textBlocks(chunk)); continue; }
+    if (/class="[^"]*project-module-text[^"]*"/.test(chunk)) {
+      const align = /project-module-text[^"]*align-(center|right)/.test(chunk) ? chunk.match(/align-(center|right)/)[1] : 'left';
+      const plain = textBlocks(chunk).map((b) => b.text).join('\n').trim();
+      const h = textHtml(chunk);
+      if (plain) blocks.push({ kind: 'html', html: h, text: plain, align });
+      continue;
+    }
     const imgs = [...chunk.matchAll(/<img[^>]*src="(https:\/\/mir-s3-cdn-cf\.behance\.net\/project_modules\/[^"]+)"/g)].map((x) => x[1]);
     for (const src of imgs) {
       const tail = src.split('/').pop();
@@ -90,6 +154,6 @@ for (const [pid, p] of Object.entries(projects)) {
   }
   const cleaned = blocks.filter((b) => b.kind !== 'text' || b.text.trim());
   fs.mkdirSync(path.join(ROOT, 'scripts/presentation'), { recursive: true });
-  fs.writeFileSync(path.join(ROOT, 'scripts/presentation', `${p.slug}.json`), JSON.stringify({ behance: p.url, blocks: cleaned }, null, 1));
+  fs.writeFileSync(path.join(ROOT, 'scripts/presentation', `${p.slug}.json`), JSON.stringify({ behance: p.url, styles, blocks: cleaned }, null, 1));
   console.log(`   -> ${cleaned.length} blocks (${cleaned.filter((b) => b.kind === 'image').length} images, ${cleaned.filter((b) => b.kind !== 'image').length} text)`);
 }

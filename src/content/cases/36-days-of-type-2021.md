@@ -10,8 +10,9 @@ cover: "/cases/36-days-of-type-2021/75-1.webp"
 links: {"tg":"https://t.me/tak_naprimer/75","behance":"https://www.behance.net/gallery/235641295/alphabet-of-36-days-of-type-2021-challenge"}
 sort: 60
 featured: true
+presentationStyle: {"bg":"#181818","paddingTop":80,"gap":60}
 presentation:
-  - {"kind":"text","text":"Проект 36 Days of Type родился в Барселоне благодаря Нине Санс и Рафе Гойкоэчеа. Это творческий вызов для дизайнеров и иллюстраторов из любой точки мира: участники создают свои оригинальные версии всех букв и цифр латинского алфавита.\nА вот и моя версия латинского алфавита с цифрами."}
+  - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-p\"><span style=\"color:#f9f9f9\"><span class=\"be-bold\">Проект 36 Days of Type</span>&nbsp;родился в Барселоне благодаря Нине Санс и Рафе Гойкоэчеа. Это творческий вызов для дизайнеров и иллюстраторов из любой точки мира: участники создают свои оригинальные версии всех букв и цифр латинского алфавита.<br><br>А вот и моя версия латинского алфавита с цифрами.</span><br></div>\n</div>\n\n<div class=\"be-p\"></div>","text":"Проект 36 Days of Type родился в Барселоне благодаря Нине Санс и Рафе Гойкоэчеа. Это творческий вызов для дизайнеров и иллюстраторов из любой точки мира: участники создают свои оригинальные версии всех букв и цифр латинского алфавита.\nА вот и моя версия латинского алфавита с цифрами.","align":"center"}
   - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/01.webp","w":1136,"h":1137,"grid":false}
   - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/02.webp","w":1515,"h":1515,"grid":true}
   - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/03.webp","w":1515,"h":1515,"grid":true}
@@ -40,8 +41,7 @@ presentation:
   - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/26.webp","w":1515,"h":1515,"grid":true}
   - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/27.webp","w":580,"h":580,"grid":true}
   - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/28.webp","w":1515,"h":1515,"grid":true}
-  - {"kind":"heading","text":"Вдохновение"}
-  - {"kind":"text","text":"Придумались эти буквы с цифр, которые я нарисовала для гирлянды на праздник в честь первого года моего любимого сына. Цветовая гамма также оттуда перекочевала."}
+  - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-p\"><span style=\"color:#f7f7f7\"><span class=\"be-bold\">Вдохновение</span><br>Придумались эти буквы с цифр, которые я нарисовала для гирлянды на праздник в честь первого года моего любимого сына. Цветовая гамма также оттуда перекочевала.</span><br></div>\n</div>\n\n<div class=\"be-p\"></div>","text":"Вдохновение\nПридумались эти буквы с цифр, которые я нарисовала для гирлянды на праздник в честь первого года моего любимого сына. Цветовая гамма также оттуда перекочевала.","align":"center"}
   - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/29.webp","w":1515,"h":1515,"grid":true}
   - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/30.webp","w":1515,"h":1515,"grid":true}
   - {"kind":"image","src":"/cases/36-days-of-type-2021/behance/31.webp","w":1515,"h":1515,"grid":true}

@@ -16,8 +16,7 @@ const { entry, prev, next } = Astro.props;
 const d = entry.data;
 const { Content } = await render(entry);
 const lentaIds = new Set((await getCollection('lenta')).map((p) => p.data.id));
-// короткие подписи вида «01 Mustache» из презентации Behance — как подпись, не абзац
-const isCaption = (t?: string) => !!t && t.length < 60 && /^\d{2}\s/.test(t);
+const ps = { bg: '#ffffff', paddingTop: 0, gap: 0, ...(d.presentationStyle ?? {}) };
 const images = d.gallery.filter((g) => g.kind === 'image');
 const videos = d.gallery.filter((g) => g.kind === 'video');
 const hasCaptions = images.some((g) => g.title);
@@ -69,26 +68,24 @@ const hasCaptions = images.some((g) => g.title);
     </div>
 
     {d.presentation.length > 0 && (
-      <section class="container-x mt-16" id="prezentaciya">
-        <div class="mx-auto max-w-[1000px]">
+      <section class="mt-16" id="prezentaciya">
+        <div class="container-x flex flex-wrap items-end justify-between gap-3">
           <h2 class="text-2xl font-bold sm:text-3xl" data-reveal>Кейс</h2>
-          <p class="mt-2 text-muted" data-reveal>
-            Презентация проекта, как она собрана на Behance.
-            {d.links.behance && <a class="underline decoration-line underline-offset-4 hover:text-accent" href={d.links.behance} target="_blank" rel="noopener">Открыть оригинал →</a>}
-          </p>
-          <div class="mt-8 space-y-5">
-            {d.presentation.map((b) => b.kind === 'image' ? (
-              <figure class="overflow-hidden rounded-xl2 bg-paper-2" data-reveal>
-                <img src={u(b.src!)} alt={d.title} width={b.w} height={b.h} loading="lazy" decoding="async" class="w-full" />
-              </figure>
-            ) : b.kind === 'heading' ? (
-              <h3 class="pt-6 text-xl font-bold sm:text-2xl" data-reveal>{b.text}</h3>
-            ) : isCaption(b.text) ? (
-              <p class="whitespace-pre-line text-sm font-medium uppercase tracking-wide text-muted" data-reveal>{b.text}</p>
-            ) : (
-              <p class="whitespace-pre-line text-[17px] leading-relaxed text-ink-2" data-reveal>{b.text}</p>
-            ))}
-          </div>
+          {d.links.behance && <a class="text-sm text-muted underline decoration-line underline-offset-4 hover:text-accent" href={d.links.behance} target="_blank" rel="noopener">Оригинал на Behance →</a>}
+        </div>
+        {/* Полотно проекта как на Behance: 1400 px, фон и отступы проекта, картинки встык, авторская типографика */}
+        <div class="be-project mx-auto mt-6 w-full max-w-[1400px]" style={`--be-bg:${ps.bg};--be-gap:${ps.gap}px;--be-pt:${ps.paddingTop}px`}>
+          {d.presentation.map((b) => b.kind === 'image' ? (
+            <figure class="be-module">
+              <img src={u(b.src!)} alt={d.title} width={b.w} height={b.h} loading="lazy" decoding="async" class="block h-auto w-full" />
+            </figure>
+          ) : b.kind === 'html' ? (
+            <div class:list={['be-module be-text', b.align === 'center' ? 'text-center' : b.align === 'right' ? 'text-right' : 'text-left']} set:html={b.html} />
+          ) : b.kind === 'heading' ? (
+            <div class="be-module be-text"><p class="be-title">{b.text}</p></div>
+          ) : (
+            <div class="be-module be-text"><p>{b.text}</p></div>
+          ))}
         </div>
       </section>
     )}

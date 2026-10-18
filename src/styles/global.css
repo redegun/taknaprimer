@@ -92,6 +92,31 @@ html.js [data-reveal].is-in {
 .no-scrollbar { scrollbar-width: none; }
 .no-scrollbar::-webkit-scrollbar { display: none; }
 
+/* полотно проекта с Behance: фон/отступы проекта, модули встык, типографика Behance с авторскими inline-размерами */
+.be-project {
+  background: var(--be-bg, #fff);
+  padding-top: var(--be-pt, 0px);
+  color: #696969;
+}
+.be-module { margin: 0; }
+.be-module + .be-module { margin-top: var(--be-gap, 0px); }
+.be-text {
+  font-family: Helvetica, Arial, "Manrope Variable", sans-serif;
+  font-size: clamp(16px, 1.1vw + 8px, 20px);
+  line-height: 1.4;
+  padding: 0 clamp(16px, 6vw, 80px);
+}
+.be-text p, .be-text div { margin: 0; }
+.be-text .be-title { color: #191919; font-weight: 700; font-size: clamp(22px, 2.5vw, 36px); line-height: 1.1; }
+.be-text .be-sub { color: #a4a4a4; font-weight: 400; font-size: clamp(16px, 1.1vw + 8px, 20px); line-height: 1.4; }
+.be-text strong, .be-text .be-bold { font-weight: 700; }
+.be-text a { color: #1769ff; }
+/* inline-размер из редактора Behance: --fs в px, на узких экранах ужимаем */
+.be-text .be-fs { font-size: clamp(calc(var(--fs) * 0.55px), calc(var(--fs) * 0.07vw), calc(var(--fs) * 1px)); }
+@media (max-width: 640px) {
+  .be-module + .be-module { margin-top: min(var(--be-gap, 0px), 24px); }
+}
+
 /* текст кейса */
 .prose-case p { @apply mb-4 text-[17px] leading-relaxed text-ink-2; }
 .prose-case p:last-child { @apply mb-0; }
