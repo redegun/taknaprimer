@@ -10,7 +10,7 @@ cover: "/cases/36-days-of-type-2021/75-1.webp"
 links: {"tg":"https://t.me/tak_naprimer/75","behance":"https://www.behance.net/gallery/235641295/alphabet-of-36-days-of-type-2021-challenge"}
 sort: 60
 featured: true
-home: {"layout":"band","media":"/cases/36-days-of-type-2021/behance/44.webp","bg":"#181818","dark":true}
+home: {"layout":"band","media":"/cases/36-days-of-type-2021/behance/43.webp","bg":"#181818","dark":true}
 presentationStyle: {"bg":"#181818","paddingTop":80,"gap":60}
 presentation:
   - {"kind":"html","html":"<div class=\"be-p\">\n<div class=\"be-p\"><span style=\"color:#f9f9f9\"><span class=\"be-bold\">Проект 36 Days of Type</span>&nbsp;родился в Барселоне благодаря Нине Санс и Рафе Гойкоэчеа. Это творческий вызов для дизайнеров и иллюстраторов из любой точки мира: участники создают свои оригинальные версии всех букв и цифр латинского алфавита.<br><br>А вот и моя версия латинского алфавита с цифрами.</span><br></div>\n</div>\n\n<div class=\"be-p\"></div>","text":"Проект 36 Days of Type родился в Барселоне благодаря Нине Санс и Рафе Гойкоэчеа. Это творческий вызов для дизайнеров и иллюстраторов из любой точки мира: участники создают свои оригинальные версии всех букв и цифр латинского алфавита.\nА вот и моя версия латинского алфавита с цифрами.","align":"center"}
