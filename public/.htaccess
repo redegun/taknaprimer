@@ -1,3 +1,9 @@
+# task 446 (2026-10-22): PHP (api/*.php) работает на 8.3.36 через CGI (CVE-2026-109618). В панели Timeweb остаётся 7.2 — доступа к панели нет.
+# Обёртка cgi-bin/php83.cgi лежит на хостинге вне git (CI без --delete её не трогает). Откат: удалить блок до '# task 446 END' (вернётся mod_php 7.2).
+Action php83-cgi /cgi-bin/php83.cgi
+AddHandler php83-cgi .php
+# task 446 END
+
 # taknaprimer.ru — статика Astro (format: directory)
 Options -Indexes
 AddDefaultCharset UTF-8
