@@ -1,0 +1,152 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { u, uv, SITE } from '@/lib/url';
+import { MERCH, MERCH_GROUPS } from '@/data/merch';
+---
+<Layout title="Мерч на заказ" description="Мерч «Так, например» (taknaprimer) на заказ: худи, свитшоты, футболки, брошь из бисера, значки, брелоки, стикеры, плакаты и ваше имя буквами Татьяны Кочневой. Цена по запросу.">
+  <section class="py-12 sm:py-16">
+    <div class="container-x">
+      <div class="grid gap-6 lg:grid-cols-[1.2fr_1fr] lg:items-end" data-reveal>
+        <div>
+          <h1 class="text-4xl font-bold sm:text-6xl">Мерч на заказ</h1>
+          <p class="mt-5 max-w-2xl text-lg text-ink-2">Её буквы на одежде, аксессуарах и бумаге. Каждая вещь делается под вас: цвет, буква, слово, способ нанесения, тираж от одной штуки.</p>
+        </div>
+        <div class="rounded-xl2 border border-line bg-white p-5 text-[15px] text-ink-2">
+          <div class="font-display text-lg font-bold text-ink">Цена — по запросу</div>
+          <p class="mt-2">Она зависит от вещи, материала и тиража. Выберите, что нравится, и нажмите «Узнать цену» — ответим с вариантами.</p>
+          <p class="mt-2 text-muted">Картинки показывают, как вещь будет выглядеть. Брошь «Ё» — настоящая, сделана руками.</p>
+        </div>
+      </div>
+
+      <div class="mt-10 flex flex-wrap gap-2" id="merch-filters" data-reveal>
+        <button class="chip is-on" data-filter="">Всё</button>
+        {MERCH_GROUPS.map((g) => <button class="chip" data-filter={g}>{g}</button>)}
+      </div>
+
+      <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" id="merch-grid">
+        {MERCH.map((m) => (
+          <article class="merch-card flex flex-col overflow-hidden rounded-xl2 bg-white ring-1 ring-ink/5" data-group={m.group} data-reveal>
+            <div class="relative aspect-[4/5] overflow-hidden bg-paper-2">
+              <img src={uv(m.images[0])} alt={m.title} loading="lazy" decoding="async" class="merch-main h-full w-full object-cover transition-transform duration-700" />
+              {m.handmade && <span class="absolute left-3 top-3 rounded-full bg-accent px-3 py-1 text-xs font-semibold text-white">ручная работа</span>}
+            </div>
+            {m.images.length > 1 && (
+              <div class="flex gap-2 px-4 pt-3">
+                {m.images.map((src, i) => (
+                  <button type="button" class:list={['merch-thumb h-12 w-12 overflow-hidden rounded-lg ring-2 transition', i === 0 ? 'ring-ink' : 'ring-transparent hover:ring-ink/30']} data-src={uv(src)} aria-label={`${m.title}, вариант ${i + 1}`}>
+                    <img src={uv(src)} alt="" loading="lazy" class="h-full w-full object-cover" />
+                  </button>
+                ))}
+              </div>
+            )}
+            <div class="flex flex-1 flex-col p-5">
+              <div class="text-xs font-medium uppercase tracking-wide text-muted">{m.collection}</div>
+              <h2 class="mt-1.5 text-xl font-bold leading-tight">{m.title}</h2>
+              <p class="mt-2 text-[15px] text-ink-2">{m.text}</p>
+              <div class="mt-3 flex flex-wrap gap-1.5">
+                {m.options.map((o) => <span class="rounded-full bg-paper-2 px-2.5 py-1 text-xs font-medium text-ink-2">{o}</span>)}
+              </div>
+              <div class="mt-auto flex flex-wrap items-center justify-between gap-3 pt-5">
+                <span class="font-display text-[15px] font-bold">по запросу</span>
+                <div class="flex items-center gap-3">
+                  {m.caseSlug && <a href={u(`/raboty/${m.caseSlug}/`)} class="text-sm text-muted underline decoration-line underline-offset-4 hover:text-accent">кейс</a>}
+                  <a href="#zakaz" class="btn btn-primary !py-2.5 text-sm" data-order={m.title}>Узнать цену</a>
+                </div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 sm:py-16" id="zakaz">
+    <div class="container-x">
+      <div class="rounded-xl2 border border-line bg-white p-6 sm:p-8">
+        <h2 class="text-3xl font-bold sm:text-4xl">Узнать цену</h2>
+        <p class="mt-2 text-muted">Напишите, что хочется, — пришлём варианты и стоимость. Или сразу в Telegram: <a class="font-medium text-ink underline decoration-line underline-offset-4 hover:text-accent" href={SITE.tg} target="_blank" rel="noopener">@taknaprimer</a>.</p>
+        <form class="merch-form mt-6 grid gap-5 sm:grid-cols-2" action={u('/api/form.php')} method="post" novalidate>
+          <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+          <input type="hidden" name="started" value="" />
+          <input type="hidden" name="what[]" value="мерч" />
+          <label class="block">
+            <span class="mb-2 block font-display text-lg font-bold">Что заказать</span>
+            <select name="item" class="w-full rounded-full border border-line bg-white px-5 py-3 text-[16px] outline-none focus:border-ink">
+              <option value="">выберите вещь</option>
+              {MERCH.map((m) => <option value={m.title}>{m.title}</option>)}
+              <option value="другое">другое / несколько вещей</option>
+            </select>
+          </label>
+          <label class="block">
+            <span class="mb-2 block font-display text-lg font-bold">Сколько штук</span>
+            <input type="text" name="qty" placeholder="например, 1 или 30 на команду" class="w-full rounded-full border border-line bg-white px-5 py-3 text-[16px] outline-none focus:border-ink" />
+          </label>
+          <label class="block sm:col-span-2">
+            <span class="mb-2 block font-display text-lg font-bold">Детали</span>
+            <textarea name="details" rows="4" placeholder="цвет, размер, буква или слово, к какому сроку" class="w-full rounded-xl2 border border-line bg-white px-4 py-3 text-[16px] outline-none focus:border-ink"></textarea>
+          </label>
+          <label class="block sm:col-span-2">
+            <span class="mb-2 block font-display text-lg font-bold">Как с вами связаться</span>
+            <input type="text" name="contact" required placeholder="@telegram или почта" class="w-full rounded-full border border-line bg-white px-5 py-3 text-[16px] outline-none focus:border-ink" />
+          </label>
+          <input type="hidden" name="message" value="" />
+          <div class="sm:col-span-2 flex flex-wrap items-center gap-4">
+            <button type="submit" class="btn btn-accent">Отправить запрос</button>
+            <p class="form-status hidden text-[15px]" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // фильтр по группам
+    const chips = document.querySelectorAll<HTMLButtonElement>('#merch-filters .chip');
+    const cards = document.querySelectorAll<HTMLElement>('#merch-grid .merch-card');
+    chips.forEach((chip) => chip.addEventListener('click', () => {
+      chips.forEach((c) => c.classList.toggle('is-on', c === chip));
+      const f = chip.dataset.filter || '';
+      cards.forEach((c) => c.classList.toggle('hidden', !!f && c.dataset.group !== f));
+    }));
+    // миниатюры: переключают главную картинку карточки
+    document.querySelectorAll<HTMLButtonElement>('.merch-thumb').forEach((t) => t.addEventListener('click', () => {
+      const card = t.closest('.merch-card')!;
+      card.querySelector<HTMLImageElement>('.merch-main')!.src = t.dataset.src!;
+      card.querySelectorAll('.merch-thumb').forEach((x) => { x.classList.toggle('ring-ink', x === t); x.classList.toggle('ring-transparent', x !== t); });
+    }));
+    // «Узнать цену» подставляет вещь в форму
+    const form = document.querySelector<HTMLFormElement>('.merch-form')!;
+    const select = form.querySelector<HTMLSelectElement>('[name=item]')!;
+    document.querySelectorAll<HTMLAnchorElement>('[data-order]').forEach((a) => a.addEventListener('click', () => { select.value = a.dataset.order!; }));
+    // отправка через общий обработчик формы: собираем текст заявки в message
+    (form.querySelector('[name=started]') as HTMLInputElement).value = String(Date.now());
+    const status = form.querySelector<HTMLElement>('.form-status')!;
+    const btn = form.querySelector<HTMLButtonElement>('button[type=submit]')!;
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const v = (n: string) => ((form.querySelector(`[name="${n}"]`) as HTMLInputElement | null)?.value || '').trim();
+      if (!v('contact') || (!v('item') && !v('details'))) {
+        status.textContent = 'Выберите вещь или опишите, что хочется, и оставьте контакт.';
+        status.classList.remove('hidden'); return;
+      }
+      (form.querySelector('[name=message]') as HTMLInputElement).value =
+        `Мерч: ${v('item') || 'не выбрано'}\nКоличество: ${v('qty') || '—'}\n${v('details')}`.trim();
+      btn.disabled = true; btn.textContent = 'Отправляю…';
+      try {
+        const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+        const data = await res.json().catch(() => ({}));
+        if (res.ok && data.ok) {
+          form.querySelectorAll('label, button').forEach((el) => el.classList.add('hidden'));
+          status.innerHTML = '<span class="font-display text-lg font-bold">Спасибо!</span> Получила запрос, отвечу с вариантами и ценой.';
+        } else {
+          status.textContent = data.error || 'Не отправилось. Напишите в Telegram: @taknaprimer';
+          btn.disabled = false; btn.textContent = 'Отправить запрос';
+        }
+      } catch {
+        status.textContent = 'Не отправилось. Напишите в Telegram: @taknaprimer';
+        btn.disabled = false; btn.textContent = 'Отправить запрос';
+      }
+      status.classList.remove('hidden');
+    });
+  </script>
+</Layout>
