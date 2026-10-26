@@ -1,0 +1,97 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import MerchForm from '@/components/MerchForm.astro';
+import { u, uv } from '@/lib/url';
+import { MERCH } from '@/data/merch';
+
+export function getStaticPaths() {
+  return MERCH.map((m) => ({ params: { id: m.id }, props: { m } }));
+}
+
+const { m } = Astro.props;
+const more = [...MERCH.filter((x) => x.group === m.group && x.id !== m.id), ...MERCH.filter((x) => x.group !== m.group)].slice(0, 3);
+const steps = [
+  ['Заявка', 'Пишете, что хочется: вещь, буквы или слово, цвет, сколько штук.'],
+  ['Варианты и цена', 'Считаем цену: она зависит от нанесения (вышивка, принт), одной или двух сторон, материала и тиража.'],
+  ['Макет', 'Собираем макет с вашими буквами и согласуем его.'],
+  ['Изготовление', 'Делаем и отправляем. Срок зависит от вещи и тиража.'],
+];
+---
+<Layout title={`${m.title} — можно заказать`} description={`${m.title}: ${m.text} Вещь из кейса Татьяны Кочневой («Так, например», taknaprimer) — можно заказать, цена индивидуальная.`.slice(0, 300)} ogImage={u(m.images[0])}>
+  <section class="py-10 sm:py-14">
+    <div class="container-x">
+      <a href={u('/merch/')} class="text-sm text-muted hover:text-accent">← Все вещи из кейсов</a>
+      <div class="mt-6 grid gap-8 lg:grid-cols-[1.15fr_1fr] lg:gap-12">
+        <div data-reveal>
+          <div class="relative aspect-[4/5] overflow-hidden rounded-xl2 bg-paper-2">
+            <img id="merch-main" src={uv(m.images[0])} alt={m.title} decoding="async" class="h-full w-full object-cover" />
+            {m.handmade && <span class="absolute left-4 top-4 rounded-full bg-accent px-3 py-1 text-sm font-semibold text-white">ручная работа</span>}
+          </div>
+          {m.images.length > 1 && (
+            <div class="mt-3 flex flex-wrap gap-3">
+              {m.images.map((src, i) => (
+                <button type="button" class:list={['merch-thumb h-20 w-20 overflow-hidden rounded-xl ring-2 transition', i === 0 ? 'ring-ink' : 'ring-transparent hover:ring-ink/30']} data-src={uv(src)} aria-label={`${m.title}, вариант ${i + 1}`}>
+                  <img src={uv(src)} alt="" loading="lazy" class="h-full w-full object-cover" />
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+        <div data-reveal>
+          <div class="text-sm font-medium uppercase tracking-wide text-muted">{m.group} · {m.collection}</div>
+          <h1 class="mt-3 text-4xl font-bold sm:text-5xl">{m.title}</h1>
+          <p class="mt-5 text-lg text-ink-2">{m.text}</p>
+          <div class="mt-6">
+            <div class="text-xs font-semibold uppercase tracking-wide text-muted">Можно выбрать</div>
+            <div class="mt-2 flex flex-wrap gap-2">
+              {m.options.map((o) => <span class="rounded-full bg-paper-2 px-3 py-1.5 text-sm font-medium text-ink-2">{o}</span>)}
+            </div>
+          </div>
+          <div class="mt-8 flex flex-wrap items-center gap-4">
+            <span class="font-display text-2xl font-bold">цена индивидуально</span>
+            <a href="#zakaz" class="btn btn-accent">Узнать цену</a>
+          </div>
+          <p class="mt-4 text-[15px] text-muted">{m.handmade ? 'Это настоящая вещь, сделана руками. Повторим или сделаем с вашей буквой.' : 'Визуализация из кейса. Сделаем такую же или с вашими буквами, от одной штуки.'}</p>
+          {m.caseSlug && <p class="mt-3 text-[15px]"><a href={u(`/raboty/${m.caseSlug}/`)} class="underline decoration-line underline-offset-4 hover:text-accent">Откуда эти буквы — кейс →</a></p>}
+        </div>
+      </div>
+
+      <div class="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4" data-reveal>
+        {steps.map(([t, d], i) => (
+          <div class="rounded-xl2 border border-line bg-white p-5">
+            <div class="font-display text-sm font-bold text-accent">{String(i + 1).padStart(2, '0')}</div>
+            <div class="mt-2 font-display text-lg font-bold">{t}</div>
+            <p class="mt-1.5 text-[15px] text-ink-2">{d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-10 sm:py-14" id="zakaz">
+    <div class="container-x"><MerchForm selected={m.title} title={`Узнать цену: ${m.title}`} /></div>
+  </section>
+
+  <section class="pb-16">
+    <div class="container-x">
+      <h2 class="text-2xl font-bold sm:text-3xl">Ещё вещи из кейсов</h2>
+      <div class="mt-6 grid gap-6 sm:grid-cols-3">
+        {more.map((x) => (
+          <a href={u(`/merch/${x.id}/`)} class="card">
+            <div class="aspect-[4/5] overflow-hidden bg-paper-2"><img src={uv(x.images[0])} alt={x.title} loading="lazy" class="h-full w-full object-cover" /></div>
+            <div class="p-4"><div class="text-xs uppercase tracking-wide text-muted">{x.collection}</div><div class="mt-1 font-display font-bold">{x.title}</div></div>
+          </a>
+        ))}
+      </div>
+      <a href={u('/merch/')} class="btn btn-ghost mt-8">Все вещи</a>
+    </div>
+  </section>
+
+  <script>
+    const main = document.getElementById('merch-main') as HTMLImageElement;
+    document.querySelectorAll<HTMLButtonElement>('.merch-thumb').forEach((t, _, all) => t.addEventListener('click', () => {
+      main.src = t.dataset.src!;
+      all.forEach((x) => { x.classList.toggle('ring-ink', x === t); x.classList.toggle('ring-transparent', x !== t); });
+    }));
+  </script>
+</Layout>
