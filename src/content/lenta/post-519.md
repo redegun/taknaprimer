@@ -7,5 +7,5 @@ title: "Куда ж без него-то"
 text: "Куда ж без него-то"
 photos: ["/lenta-media/519/1.webp"]
 videos: []
-case: "analogovyy-apdeyt"
+case: "skotch-koding"
 ---

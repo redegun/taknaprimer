@@ -24,6 +24,19 @@ $raw = stream_get_contents($fh);
 $data = $raw ? json_decode($raw, true) : null;
 if (!is_array($data)) $data = array('counts' => array(), 'views' => array(), 'voters' => array(), 'viewers' => array());
 foreach (array('counts', 'views', 'voters', 'viewers') as $k) if (!isset($data[$k]) || !is_array($data[$k])) $data[$k] = array();
+// переименованные кейсы: счётчики старого слага переезжают на новый (один раз, при первом обращении)
+$renamed = array('analogovyy-apdeyt' => 'skotch-koding');
+$moved = false;
+foreach ($renamed as $old => $new) {
+    foreach (array('counts', 'views') as $k) {
+        if (isset($data[$k][$old])) {
+            $data[$k][$new] = (isset($data[$k][$new]) ? $data[$k][$new] : 0) + $data[$k][$old];
+            unset($data[$k][$old]);
+            $moved = true;
+        }
+    }
+}
+if ($moved) save($fh, $data);
 
 $ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
 $ua = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';

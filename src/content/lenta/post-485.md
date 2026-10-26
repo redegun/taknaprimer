@@ -7,5 +7,5 @@ title: "Ждала вечера, чтобы поснимать на улице �
 text: "Ждала вечера, чтобы поснимать на улице Х"
 photos: []
 videos: [{"src":"/lenta-media/485/v1.mp4","poster":"/lenta-media/485/v1-poster.webp"}]
-case: "analogovyy-apdeyt"
+case: "skotch-koding"
 ---

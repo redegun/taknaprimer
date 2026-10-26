@@ -7,5 +7,5 @@ title: "А буквы то одной картинкой я не показыв�
 text: "А буквы то одной картинкой я не показывала\n\n🔥а тут кейс"
 photos: ["/lenta-media/579/1.webp"]
 videos: []
-case: "analogovyy-apdeyt"
+case: "skotch-koding"
 ---

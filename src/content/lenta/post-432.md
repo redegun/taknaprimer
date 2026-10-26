@@ -7,5 +7,5 @@ title: "И"
 text: "10/33 -- И"
 photos: ["/lenta-media/432/1.webp"]
 videos: []
-case: "analogovyy-apdeyt"
+case: "skotch-koding"
 ---

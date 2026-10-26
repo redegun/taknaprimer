@@ -7,5 +7,5 @@ title: ""
 text: ""
 photos: ["/lenta-media/514/1.webp","/lenta-media/515/1.webp","/lenta-media/516/1.webp","/lenta-media/517/1.webp","/lenta-media/518/1.webp"]
 videos: []
-case: "analogovyy-apdeyt"
+case: "skotch-koding"
 ---

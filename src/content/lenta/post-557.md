@@ -7,5 +7,5 @@ title: "Фрагменты, разложила по цветовым гамма�
 text: "Фрагменты, разложила по цветовым гаммам"
 photos: ["/lenta-media/557/1.webp","/lenta-media/557/2.webp","/lenta-media/557/3.webp","/lenta-media/557/4.webp"]
 videos: []
-case: "analogovyy-apdeyt"
+case: "skotch-koding"
 ---
