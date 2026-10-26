@@ -15,7 +15,7 @@ ErrorDocument 404 /404.html
   # закрыть дот-файлы, кроме .well-known
   RewriteRule "/\.|^\.(?!well-known/)" - [F]
   # переименованный кейс: старый адрес → новый (301, вес страницы переходит)
-  RewriteRule ^raboty/analogovyy-apdeyt/?$ /raboty/skotch-koding/ [R=301,L]
+  RewriteRule ^raboty/analogovyy-apdeyt/?$ https://taknaprimer.ru/raboty/skotch-koding/ [R=301,L]
 </IfModule>
 
 <IfModule mod_headers.c>
