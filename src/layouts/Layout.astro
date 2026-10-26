@@ -10,8 +10,9 @@ interface Props {
   ogImage?: string;
   noindex?: boolean;
   stickyHeader?: boolean;
+  theme?: 'light' | 'dark';
 }
-const { title, description = 'Так, например (taknaprimer) — сайт дизайнера Татьяны Кочневой: леттеринг, шрифтовые алфавиты, айдентика, буквы-объекты из бумаги, скотча и ткани.', ogImage, noindex = false, stickyHeader = true } = Astro.props;
+const { theme = 'light', title, description = 'Так, например (taknaprimer) — сайт дизайнера Татьяны Кочневой: леттеринг, шрифтовые алфавиты, айдентика, буквы-объекты из бумаги, скотча и ткани.', ogImage, noindex = false, stickyHeader = true } = Astro.props;
 // Бренд в каждом title: кириллицей и слитно латиницей — по нему ищут
 const fullTitle = title === SITE.name ? `Так, например (taknaprimer) — ${SITE.person}, дизайнер: леттеринг и айдентика` : `${title} — Так, например · taknaprimer`;
 const jsonLd = JSON.stringify({
@@ -42,7 +43,7 @@ const og = ogImage ? new URL(ogImage, Astro.site).toString() : new URL(u('/og.jp
     <meta property="og:locale" content="ru_RU" />
     <meta property="og:site_name" content="Так, например (taknaprimer)" />
     <script type="application/ld+json" set:html={jsonLd} />
-    <meta name="theme-color" content="#faf8f3" />
+    <meta name="theme-color" content={theme === 'dark' ? '#1e1e1e' : '#faf8f3'} />
     <script is:inline>document.documentElement.classList.add('js');</script>
     {!isPreview && (
       <>
@@ -55,7 +56,7 @@ const og = ogImage ? new URL(ogImage, Astro.site).toString() : new URL(u('/og.jp
       </>
     )}
   </head>
-  <body class="min-h-screen flex flex-col">
+  <body class:list={['min-h-screen flex flex-col', theme === 'dark' && 'theme-dark']}>
     <Header sticky={stickyHeader} />
     <main class="flex-1">
       <slot />

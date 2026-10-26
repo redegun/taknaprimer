@@ -10,6 +10,7 @@ cover: "/cases/analogovyy-apdeyt/556-1.webp"
 links: {"tg":"https://t.me/tak_naprimer/416","dprofile":"https://dprofile.ru/case/195169/skotc-koding-bkvc-2026"}
 sort: 100
 featured: true
+theme: dark
 presentationStyle: {"bg":"#1E1E1E","paddingTop":0,"gap":30}
 presentation:
   - {"kind":"image","src":"/cases/analogovyy-apdeyt/dprofile/001.webp","w":1600,"h":1078}

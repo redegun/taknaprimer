@@ -56,6 +56,8 @@ const cases = defineCollection({
     }).optional(),
     sort: z.number().default(0),
     featured: z.boolean().default(false),
+    theme: z.enum(['light', 'dark']).default('light'), // тема всей страницы кейса
+
     draft: z.boolean().default(false),
   }),
 });

@@ -50,7 +50,29 @@
     background: var(--color-accent);
     color: #fff;
   }
+
+  /* Тёмная тема страницы (кейс с theme: dark): переопределяем токены — все утилиты bg-paper/text-ink/border-line
+     перекрашиваются сами. Белые карточки/поля — в тёмно-серые. */
+  body.theme-dark {
+    --color-paper: #1e1e1e;
+    --color-paper-2: #2a2a2a;
+    --color-ink: #f3f1ec;
+    --color-ink-2: #d4cfc6;
+    --color-muted: #9b958c;
+    --color-line: #3a3a3a;
+    color-scheme: dark;
+  }
 }
+
+/* Вне слоёв намеренно: эти правила должны перебить утилиту bg-white и .card (иначе белые плашки со светлым текстом). */
+body.theme-dark .bg-white,
+body.theme-dark .card { background-color: #262626; }
+body.theme-dark .bg-white\/95 { background-color: rgba(38, 38, 38, 0.95); }
+/* карточки видео (figure.bg-ink) — остаются тёмными, подпись светлая */
+body.theme-dark figure.bg-ink { background-color: #262626; }
+body.theme-dark figure.bg-ink figcaption { color: #d4cfc6; }
+body.theme-dark input, body.theme-dark textarea { color: var(--color-ink); }
+body.theme-dark input::placeholder, body.theme-dark textarea::placeholder { color: #7d776f; }
 
 @layer components {
   .container-x {
