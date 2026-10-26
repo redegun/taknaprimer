@@ -14,7 +14,7 @@ import { MERCH, MERCH_GROUPS } from '@/data/merch';
         </div>
         <div class="rounded-xl2 border border-line bg-white p-5 text-[15px] text-ink-2">
           <div class="font-display text-lg font-bold text-ink">Цена — индивидуально</div>
-          <p class="mt-2">Она зависит от того, что и как делать: вышивка или принт, с одной стороны или с двух, материал, тираж. Выберите вещь и нажмите «Узнать цену» — посчитаем.</p>
+          <p class="mt-2">Она зависит от того, что и как делать: вышивка или принт, с одной стороны или с двух, материал, тираж. Выберите вещь и нажмите «Узнать цену» — посчитаем. А если хочется дешевле — встаньте в лист ожидания: напишем, когда соберём партию.</p>
           <p class="mt-2 text-muted">Картинки — визуализации из кейсов. Брошь «Ё» — настоящая, сделана руками.</p>
         </div>
       </div>
@@ -50,7 +50,7 @@ import { MERCH, MERCH_GROUPS } from '@/data/merch';
               <div class="mt-auto flex flex-wrap items-center justify-between gap-3 pt-5">
                 <span class="font-display text-[15px] font-bold">цена индивидуально</span>
                 <div class="flex items-center gap-3">
-                  <a href={u(`/merch/${m.id}/`)} class="text-sm text-muted underline decoration-line underline-offset-4 hover:text-accent">подробнее</a>
+                  <a href={u(`/merch/${m.id}/#wait`)} class="text-sm text-muted underline decoration-line underline-offset-4 hover:text-accent">ждать партию</a>
                   <a href="#zakaz" class="btn btn-primary !py-2.5 text-sm" data-order={m.title}>Узнать цену</a>
                 </div>
               </div>

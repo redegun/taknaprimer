@@ -1,0 +1,44 @@
+---
+// Лист ожидания вещи из кейсов: контакт → /api/form.php (waitlist=<id> пишет строку в waitlist.csv вне webroot).
+import { u } from '@/lib/url';
+interface Props { id: string; title: string }
+const { id, title } = Astro.props;
+---
+<div class="rounded-xl2 border border-dashed border-ink/25 bg-paper-2/60 p-5 scroll-mt-24" id="wait">
+  <div class="font-display text-lg font-bold">Ждать партию</div>
+  <p class="mt-1.5 text-[15px] text-ink-2">Иногда мы собираем небольшую партию — так выходит дешевле, чем одна вещь. Оставьте контакт, и мы напишем, когда соберём партию этой вещи.</p>
+  <form class="waitlist-form mt-4 flex flex-col gap-3 sm:flex-row" action={u('/api/form.php')} method="post" novalidate>
+    <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+    <input type="hidden" name="started" value="" />
+    <input type="hidden" name="what[]" value="лист ожидания" />
+    <input type="hidden" name="waitlist" value={id} />
+    <input type="hidden" name="item" value={title} />
+    <input type="hidden" name="message" value={`Лист ожидания: ${title}`} />
+    <input type="text" name="contact" required placeholder="@telegram или почта" aria-label="Контакт" class="min-w-0 flex-1 rounded-full border border-line bg-white px-5 py-3 text-[16px] outline-none focus:border-ink" />
+    <button type="submit" class="btn btn-primary justify-center">Встать в лист ожидания</button>
+  </form>
+  <p class="waitlist-status mt-3 hidden text-[15px]" role="status" aria-live="polite"></p>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('.waitlist-form').forEach((form) => {
+    (form.querySelector('[name=started]') as HTMLInputElement).value = String(Date.now());
+    const status = form.parentElement!.querySelector<HTMLElement>('.waitlist-status')!;
+    const btn = form.querySelector<HTMLButtonElement>('button[type=submit]')!;
+    const fail = (msg: string) => { status.textContent = msg; btn.disabled = false; btn.textContent = 'Встать в лист ожидания'; };
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status.classList.remove('hidden');
+      if (!(form.querySelector('[name=contact]') as HTMLInputElement).value.trim()) { status.textContent = 'Оставьте @telegram или почту.'; return; }
+      btn.disabled = true; btn.textContent = 'Записываю…';
+      try {
+        const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+        const data = await res.json().catch(() => ({}));
+        if (res.ok && data.ok) {
+          form.classList.add('hidden');
+          status.innerHTML = '<span class="font-display font-bold">Вы в листе ожидания.</span> Напишем, когда соберём партию.';
+        } else fail(data.error || 'Не получилось. Напишите в Telegram: @taknaprimer');
+      } catch { fail('Не получилось. Напишите в Telegram: @taknaprimer'); }
+    });
+  });
+</script>

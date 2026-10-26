@@ -60,6 +60,12 @@ $text = implode("\n", $lines);
 
 // 1. Лог вне webroot — заявка не теряется, даже если почта упала
 @file_put_contents($logPath, "----- " . date('c') . "\n" . $text . "\n\n", FILE_APPEND | LOCK_EX);
+// лист ожидания вещи из кейсов: отдельный CSV (дата;id;вещь;контакт) — по нему оповещаем, когда соберём партию
+$waitlist = preg_replace('/[^a-z0-9-]/', '', (string)($_POST['waitlist'] ?? ''));
+if ($waitlist !== '') {
+    $row = [date('Y-m-d H:i'), $waitlist, $clean($_POST['item'] ?? ''), $contact];
+    @file_put_contents($home . '/waitlist.csv', implode(';', array_map(fn($v) => str_replace([';', "\n", "\r"], ' ', $v), $row)) . "\n", FILE_APPEND | LOCK_EX);
+}
 
 // 2. Ответ браузеру сразу
 ignore_user_abort(true);
