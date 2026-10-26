@@ -152,6 +152,7 @@ for (const c of cfg.cases) {
   const pres = fs.existsSync(presFile) ? JSON.parse(fs.readFileSync(presFile, 'utf8')) : null;
   const links = { ...(c.links || {}) };
   if (pres?.behance && !links.behance) links.behance = pres.behance;
+  if (pres?.dprofile && !links.dprofile) links.dprofile = pres.dprofile;
   const fm = [
     '---',
     `title: ${yaml(c.title)}`,

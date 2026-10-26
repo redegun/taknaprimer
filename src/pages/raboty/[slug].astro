@@ -25,7 +25,7 @@ const videos = d.gallery.filter((g) => g.kind === 'video');
 const hasCaptions = images.some((g) => g.title);
 ---
 <Layout title={d.title} description={`${d.short} Кейс «${d.title}» — Татьяна Кочнева, «Так, например» (taknaprimer).`.slice(0, 300)} ogImage={u(d.cover)} stickyHeader={false}>
-  <CaseDock slug={entry.id} title={d.title} behance={d.links.behance} />
+  <CaseDock slug={entry.id} title={d.title} behance={d.links.behance} dprofile={d.links.dprofile} />
   <article>
     {hasPres ? (
       <>
