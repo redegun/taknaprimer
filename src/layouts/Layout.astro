@@ -3,28 +3,38 @@ import '@/styles/global.css';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import { u, SITE } from '@/lib/url';
+import { imageSize } from '@/lib/imgsize';
 
 interface Props {
   title: string;
   description?: string;
   ogImage?: string;
   noindex?: boolean;
+  ogType?: 'website' | 'article';
+  // доп. узлы JSON-LD страницы (кейс, пост): image подставляется сам — та же картинка, что og:image
+  schema?: Record<string, unknown>;
   stickyHeader?: boolean;
   theme?: 'light' | 'dark';
 }
-const { theme = 'light', title, description = 'Так, например (taknaprimer) — сайт дизайнера Татьяны Кочневой: леттеринг, шрифтовые алфавиты, айдентика, буквы-объекты из бумаги, скотча и ткани.', ogImage, noindex = false, stickyHeader = true } = Astro.props;
+const { theme = 'light', title, description = 'Так, например (taknaprimer) — сайт дизайнера Татьяны Кочневой: леттеринг, шрифтовые алфавиты, айдентика, буквы-объекты из бумаги, скотча и ткани.', ogImage, noindex = false, stickyHeader = true, ogType = 'website', schema } = Astro.props;
 // Бренд в каждом title: кириллицей и слитно латиницей — по нему ищут
 const fullTitle = title === SITE.name ? `Так, например (taknaprimer) — ${SITE.person}, дизайнер: леттеринг и айдентика` : `${title} — Так, например · taknaprimer`;
+const isPreview = import.meta.env.BASE_URL !== '/';
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const og = ogImage ? new URL(ogImage, Astro.site).toString() : new URL(u('/og.jpg'), Astro.site).toString();
+// реальные размеры og-картинки (Discover/соцсети: крупное превью от 1200 px)
+const ogSize = await imageSize(og);
+const pageNode = schema
+  ? { ...schema, url: canonical, mainEntityOfPage: canonical, image: { '@type': 'ImageObject', url: og, ...(ogSize ? { width: ogSize[0], height: ogSize[1] } : {}) } }
+  : null;
 const jsonLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@graph': [
     { '@type': 'WebSite', '@id': 'https://taknaprimer.ru/#website', url: 'https://taknaprimer.ru/', name: 'Так, например', alternateName: ['taknaprimer', 'Так например', 'taknaprimer.ru'], inLanguage: 'ru-RU', publisher: { '@id': 'https://taknaprimer.ru/#person' } },
     { '@type': 'Person', '@id': 'https://taknaprimer.ru/#person', name: 'Татьяна Кочнева', alternateName: 'Так, например', jobTitle: 'Дизайнер', url: 'https://taknaprimer.ru/obo-mne/', image: 'https://taknaprimer.ru/about/tanya.webp', sameAs: [SITE.channel, 'https://www.behance.net/tak_naprimer'], knowsAbout: ['леттеринг', 'каллиграфия', 'шрифтовые алфавиты', 'айдентика', 'буквы-объекты'] },
+    ...(pageNode ? [pageNode] : []),
   ],
 });
-const isPreview = import.meta.env.BASE_URL !== '/';
-const canonical = new URL(Astro.url.pathname, Astro.site).toString();
-const og = ogImage ? new URL(ogImage, Astro.site).toString() : new URL(u('/og.jpg'), Astro.site).toString();
 ---
 <!doctype html>
 <html lang="ru">
@@ -33,13 +43,19 @@ const og = ogImage ? new URL(ogImage, Astro.site).toString() : new URL(u('/og.jp
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
-    {(noindex || isPreview) && <meta name="robots" content="noindex, nofollow" />}
+    {(noindex || isPreview)
+      ? <meta name="robots" content="noindex, nofollow" />
+      : <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />}
     <link rel="canonical" href={canonical} />
     <link rel="icon" href={u('/favicon.svg')} type="image/svg+xml" />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={og} />
+    {ogSize && <meta property="og:image:width" content={String(ogSize[0])} />}
+    {ogSize && <meta property="og:image:height" content={String(ogSize[1])} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={og} />
     <meta property="og:locale" content="ru_RU" />
     <meta property="og:site_name" content="Так, например (taknaprimer)" />
     <script type="application/ld+json" set:html={jsonLd} />

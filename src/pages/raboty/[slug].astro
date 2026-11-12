@@ -5,6 +5,7 @@ import CaseDock from '@/components/CaseDock.astro';
 import LikeButton from '@/components/LikeButton.astro';
 import { getCollection, render } from 'astro:content';
 import { u } from '@/lib/url';
+import { hasImage, imageSize } from '@/lib/imgsize';
 
 export async function getStaticPaths() {
   const all = (await getCollection('cases', ({ data }) => !data.draft)).sort((a, b) => b.data.sort - a.data.sort);
@@ -23,8 +24,25 @@ const hasPres = d.presentation.length > 0;
 const images = d.gallery.filter((g) => g.kind === 'image');
 const videos = d.gallery.filter((g) => g.kind === 'video');
 const hasCaptions = images.some((g) => g.title);
+// og:image — картинка этого кейса от 1200 px: og.jpg в папке обложки (оригинал из канала), иначе первая крупная
+// из презентации/галереи (не gif, не узкая полоса), иначе обложка
+const coverDir = d.cover.replace(/\/[^/]+$/, '');
+let ogSrc = d.cover;
+if (hasImage(`${coverDir}/og.jpg`)) ogSrc = `${coverDir}/og.jpg`;
+else {
+  const cands = [
+    ...d.presentation.flatMap((b) => (b.kind === 'image' && b.src ? [b.src] : b.kind === 'grid' ? (b.items ?? []).map((it) => it.src) : [])),
+    ...images.map((g) => g.src),
+  ];
+  for (const src of cands) {
+    if (/\.gif$/i.test(src)) continue;
+    const s = await imageSize(src);
+    if (s && s[0] >= 1200 && s[1] / s[0] >= 0.5 && s[1] / s[0] <= 1.5) { ogSrc = src; break; }
+  }
+}
+const caseSchema = { '@type': 'CreativeWork', name: d.title, headline: d.title, description: d.short, dateCreated: String(d.year), inLanguage: 'ru-RU', author: { '@id': 'https://taknaprimer.ru/#person' }, creator: { '@id': 'https://taknaprimer.ru/#person' } };
 ---
-<Layout title={d.title} description={`${d.short} Кейс «${d.title}» — Татьяна Кочнева, «Так, например» (taknaprimer).`.slice(0, 300)} ogImage={u(d.cover)} stickyHeader={false} theme={d.theme}>
+<Layout title={d.title} description={`${d.short} Кейс «${d.title}» — Татьяна Кочнева, «Так, например» (taknaprimer).`.slice(0, 300)} ogImage={u(ogSrc)} ogType="article" schema={caseSchema} stickyHeader={false} theme={d.theme}>
   <CaseDock slug={entry.id} title={d.title} behance={d.links.behance} dprofile={d.links.dprofile} />
   <article>
     {hasPres ? (

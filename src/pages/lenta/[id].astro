@@ -3,6 +3,7 @@ import Layout from '@/layouts/Layout.astro';
 import LentaCard from '@/components/LentaCard.astro';
 import { getCollection } from 'astro:content';
 import { u } from '@/lib/url';
+import { hasImage } from '@/lib/imgsize';
 import { getLenta, fmtDate, postTitle, postUrl, linkify } from '@/lib/lenta';
 
 export async function getStaticPaths() {
@@ -30,9 +31,12 @@ const excerpt = d.text.replace(/^\s*\d{1,2}\/\d{2}\s*[-—–]*\s*/, '').replace
 const description = excerpt
   ? `${shorten(excerpt, 150)} — пост ${d.id} из канала «Так, например» (taknaprimer)${relatedCase ? `, кейс «${relatedCase.data.title}»` : ''}, ${dateLong}.`
   : `${relatedCase ? `Кейс «${relatedCase.data.title}»: ` : ''}${media || 'фото'} из Telegram-канала «Так, например» (taknaprimer) Татьяны Кочневой, ${dateLong}, пост ${d.id}.`;
-const og = d.photos[0] ?? d.videos[0]?.poster;
+// og:image — первое фото поста; если есть оригинал из канала от 1200 px (og.jpg рядом, медиа на хостинге) — он
+const ogBig = d.photos[0] ? d.photos[0].replace(/\/[^/]+$/, '/og.jpg') : undefined;
+const og = ogBig && hasImage(ogBig) ? ogBig : (d.photos[0] ?? d.videos[0]?.poster);
+const postSchema = { '@type': 'BlogPosting', headline: shorten(title, 110), datePublished: d.date.toISOString().slice(0, 10), inLanguage: 'ru-RU', author: { '@id': 'https://taknaprimer.ru/#person' }, publisher: { '@id': 'https://taknaprimer.ru/#person' } };
 ---
-<Layout title={seoTitle} description={description} ogImage={og ? u(og) : undefined}>
+<Layout title={seoTitle} description={description} ogImage={og ? u(og) : undefined} ogType="article" schema={postSchema}>
   <article class="py-10 sm:py-14">
     <div class="container-x max-w-[900px]">
       <a href={u('/lenta/')} class="text-sm text-muted hover:text-accent">← Лента</a>
