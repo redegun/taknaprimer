@@ -12,6 +12,16 @@ ErrorDocument 404 /404.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
+  # #4525: http и www одним 301 на https://taknaprimer.ru (было 200 — дубли зеркал для Яндекса и Google).
+  # Как у pushfish/sistors на том же хостинге: Apache за прокси Timeweb, протокол — и HTTPS, и X-Forwarded-Proto.
+  # Откат: удалить строки до '# #4525 END'.
+  RewriteRule ^\.well-known/ - [L]
+  RewriteCond %{HTTP_HOST} ^www\.taknaprimer\.ru$ [NC]
+  RewriteRule ^(.*)$ https://taknaprimer.ru/$1 [R=301,L]
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+  RewriteRule ^(.*)$ https://taknaprimer.ru/$1 [R=301,L]
+  # #4525 END
   # закрыть дот-файлы, кроме .well-known
   RewriteRule "/\.|^\.(?!well-known/)" - [F]
   # переименованный кейс: старый адрес → новый (301, вес страницы переходит)
