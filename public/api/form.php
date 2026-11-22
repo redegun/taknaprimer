@@ -8,7 +8,9 @@
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+$method = $_SERVER['REQUEST_METHOD'];
+$prepare = $method === 'GET' && isset($_GET['prepare']);
+if ($method !== 'POST' && !$prepare) {
     http_response_code(405);
     echo json_encode(['ok' => false, 'error' => 'POST only']);
     exit;
@@ -27,12 +29,33 @@ $cfgPath = $home . '/form-config.php';
 $cfg = is_file($cfgPath) ? (include $cfgPath) : [];
 $logPath = $home . '/form-inbox.log';
 
-$clean = function ($v) { return trim(mb_substr(strip_tags((string)$v), 0, 2000)); };
+// Подписываем время на сервере: бэкенд не доверяет часам браузера.
+$key = $cfg['relay_auth'] ?? '';
+if ($key === '') {
+    http_response_code(503);
+    echo json_encode(['ok' => false]);
+    exit;
+}
+$now = (int)(microtime(true) * 1000);
+$sign = function ($started) use ($key) {
+    return hash_hmac('sha256', 'taknaprimer-form:' . $started, $key);
+};
+if ($prepare) {
+    echo json_encode(['token' => $now . '.' . $sign($now)]);
+    exit;
+}
 
-// антиспам: honeypot + минимальное время заполнения
-if (!empty($_POST['website'])) { echo json_encode(['ok' => true]); exit; }
-$started = (int)($_POST['started'] ?? 0);
-if ($started > 0 && (microtime(true) * 1000 - $started) < 2500) { echo json_encode(['ok' => true]); exit; }
+$website = $_POST['website'] ?? '';
+$token = $_POST['form_token'] ?? '';
+if ($website !== '' || !is_string($token)
+    || !preg_match('/\A([0-9]{13})\.([a-f0-9]{64})\z/', $token, $parts)
+    || !hash_equals($sign($parts[1]), $parts[2])
+    || $now - (int)$parts[1] < 2500) {
+    echo json_encode(['ok' => true]);
+    exit;
+}
+
+$clean = function ($v) { return is_string($v) ? trim(mb_substr(strip_tags($v), 0, 2000)) : ''; };
 
 $message = $clean($_POST['message'] ?? '');
 $contact = $clean($_POST['contact'] ?? '');
@@ -59,7 +82,11 @@ $lines[] = 'IP: ' . ($_SERVER['REMOTE_ADDR'] ?? '') . ' · ' . date('Y-m-d H:i')
 $text = implode("\n", $lines);
 
 // 1. Лог вне webroot — заявка не теряется, даже если почта упала
-@file_put_contents($logPath, "----- " . date('c') . "\n" . $text . "\n\n", FILE_APPEND | LOCK_EX);
+if (@file_put_contents($logPath, "----- " . date('c') . "\n" . $text . "\n\n", FILE_APPEND | LOCK_EX) === false) {
+    http_response_code(503);
+    echo json_encode(['ok' => false]);
+    exit;
+}
 // лист ожидания вещи из кейсов: отдельный CSV (дата;id;вещь;контакт) — по нему оповещаем, когда соберём партию
 $waitlist = preg_replace('/[^a-z0-9-]/', '', (string)($_POST['waitlist'] ?? ''));
 if ($waitlist !== '') {
@@ -70,7 +97,7 @@ if ($waitlist !== '') {
 // 2. Ответ браузеру сразу
 ignore_user_abort(true);
 set_time_limit(60);
-$body = json_encode(['ok' => true]);
+$body = json_encode(['ok' => true, 'accepted' => true]);
 header('Content-Length: ' . strlen($body));
 header('Connection: close');
 echo $body;

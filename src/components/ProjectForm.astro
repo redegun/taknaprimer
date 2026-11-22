@@ -16,9 +16,8 @@ const sheet = [
 ];
 const rots = [-4, 3, -2, 5, -3, 2, 4, -5, 1];
 ---
-<form class="project-form" action={u('/api/form.php')} method="post" novalidate data-reveal>
-  <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
-  <input type="hidden" name="started" value="" />
+<form class="project-form ym-disable-submit" action={u('/api/form.php')} method="post" novalidate data-reveal>
+  <input type="text" name="website" tabindex="-1" autocomplete="off" hidden aria-hidden="true" />
 
   {!compact && (
     <div class="stk-form mb-8 grid gap-6 lg:grid-cols-[1fr_1.15fr]">
@@ -113,6 +112,8 @@ const rots = [-4, 3, -2, 5, -3, 2, 4, -5, 1];
 </style>
 
 <script>
+  import { prepareForm } from '@/lib/form-token';
+
   // --- наклейки: перетаскивание (pointer events — мышь и палец) + клик/Enter как запасной способ ---
   document.querySelectorAll<HTMLFormElement>('form.project-form').forEach((form) => {
     const zone = form.querySelector<HTMLElement>('[data-zone]');
@@ -187,7 +188,7 @@ const rots = [-4, 3, -2, 5, -3, 2, 4, -5, 1];
     }
 
     // --- отправка ---
-    (form.querySelector('input[name=started]') as HTMLInputElement).value = String(Date.now());
+    const formBody = prepareForm(form.action);
     const status = form.querySelector<HTMLElement>('.form-status')!;
     const btn = form.querySelector<HTMLButtonElement>('button[type=submit]')!;
     form.addEventListener('submit', async (e) => {
@@ -202,9 +203,12 @@ const rots = [-4, 3, -2, 5, -3, 2, 4, -5, 1];
       btn.disabled = true;
       btn.textContent = 'Отправляю…';
       try {
-        const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+        const res = await fetch(form.action, { method: 'POST', body: await formBody(form), headers: { Accept: 'application/json' } });
         const data = await res.json().catch(() => ({}));
         if (res.ok && data.ok) {
+          if (data.accepted === true) {
+            (window as Window & { ym?: (...args: unknown[]) => void }).ym?.(113665438, 'reachGoal', 'project_form_accepted');
+          }
           form.querySelectorAll('.stk-form, fieldset, label').forEach((el) => el.classList.add('hidden'));
           btn.classList.add('hidden');
           status.innerHTML = '<span class="font-display text-lg font-bold">Спасибо!</span><br>Получила. Отвечу так, например, завтра.';
