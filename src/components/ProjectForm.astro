@@ -31,11 +31,12 @@ const rots = [-4, 3, -2, 5, -3, 2, 4, -5, 1];
           <fieldset class="mb-4 last:mb-0">
             <legend class="mb-2 font-display text-[15px] font-bold">{g.title} <span class="font-sans text-xs font-normal text-muted">· {g.hint}</span></legend>
             <div class="flex flex-wrap gap-2.5" data-sheet-group={g.group}>
+              {/* Перенос наклейки при pointerup меняет цель следующего click. label мог активировать соседний input. */}
               {g.items.map(([v, color], i) => (
-                <label class:list={['stk', color]} data-group={g.group} data-multi={g.multi ? '1' : '0'} style={`--rot:${rots[(gi * 3 + i) % rots.length]}deg`} tabindex="0" role="button" aria-pressed="false">
+                <div class:list={['stk', color]} data-group={g.group} data-multi={g.multi ? '1' : '0'} style={`--rot:${rots[(gi * 3 + i) % rots.length]}deg`} tabindex="0" role="button" aria-pressed="false">
                   <input type={g.multi ? 'checkbox' : 'radio'} name={g.multi ? `${g.group}[]` : g.group} value={v} tabindex="-1" />
                   <span>{v}</span>
-                </label>
+                </div>
               ))}
             </div>
           </fieldset>
@@ -174,12 +175,13 @@ const rots = [-4, 3, -2, 5, -3, 2, 4, -5, 1];
           ghost?.remove(); ghost = null;
           stk.classList.remove('is-dragging');
           over?.classList.remove('is-over');
+          over = null;
+          if (e.type === 'pointercancel') return;
           if (!moved) { toggle(stk); return; }
           const el = document.elementFromPoint(e.clientX, e.clientY);
           const inZone = !!el?.closest('[data-zone]');
           if (inZone && !stk.classList.contains('is-placed')) place(stk);
           else if (!inZone && stk.classList.contains('is-placed')) unplace(stk);
-          over = null;
         };
         stk.addEventListener('pointerup', finish);
         stk.addEventListener('pointercancel', finish);
