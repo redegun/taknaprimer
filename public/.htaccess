@@ -22,6 +22,11 @@ ErrorDocument 404 /404.html
   RewriteCond %{HTTP:X-Forwarded-Proto} !=https
   RewriteRule ^(.*)$ https://taknaprimer.ru/$1 [R=301,L]
   # #4525 END
+  # #5384: каталог без слэша — сразу 301 на https://…/ со слэшем. Без правила mod_dir (DirectorySlash) за прокси
+  # Timeweb отдаёт 301 на http://…/, и выходит цепочка https → http → https. Откат: удалить 3 строки до '# #5384 END'.
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^(.+[^/])$ https://taknaprimer.ru/$1/ [R=301,L]
+  # #5384 END
   # закрыть дот-файлы, кроме .well-known
   RewriteRule "/\.|^\.(?!well-known/)" - [F]
   # переименованный кейс: старый адрес → новый (301, вес страницы переходит)

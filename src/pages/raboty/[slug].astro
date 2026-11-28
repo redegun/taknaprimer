@@ -5,6 +5,7 @@ import CaseDock from '@/components/CaseDock.astro';
 import LikeButton from '@/components/LikeButton.astro';
 import { getCollection, render } from 'astro:content';
 import { u } from '@/lib/url';
+import { caseCoverAlt } from '@/lib/lenta';
 import { hasImage, imageSize } from '@/lib/imgsize';
 
 export async function getStaticPaths() {
@@ -22,6 +23,19 @@ const lentaIds = new Set((await getCollection('lenta')).map((p) => p.data.id));
 const ps = { bg: '#ffffff', paddingTop: 0, gap: 0, ...(d.presentationStyle ?? {}) };
 const hasPres = d.presentation.length > 0;
 const images = d.gallery.filter((g) => g.kind === 'image');
+// alt галереи (#5384): короткая подпись («А», «1») — с названием кейса; одинаковые подписи — с номером фото
+const altBase = (g: (typeof images)[number]) => (g.title && g.title.trim().length > 3 ? g.title.trim() : g.title ? `«${g.title.trim()}» — ${d.title}` : d.title);
+const altTotal = new Map<string, number>();
+for (const g of images) altTotal.set(altBase(g), (altTotal.get(altBase(g)) ?? 0) + 1);
+const altSeen = new Map<string, number>();
+const galleryAlt = images.map((g) => {
+  const b = altBase(g);
+  const n = (altSeen.get(b) ?? 0) + 1;
+  altSeen.set(b, n);
+  return (altTotal.get(b) ?? 1) > 1 ? `${b}, фото ${n} из ${altTotal.get(b)}` : b;
+});
+// первая картинка полотна Behance — LCP кейса: без lazy и с высоким приоритетом (SEO-TECH-012, #5384)
+const firstPresSrc = (() => { const b = d.presentation[0]; return b?.kind === 'image' ? b.src : b?.kind === 'grid' ? b.items?.[0]?.src : undefined; })();
 const videos = d.gallery.filter((g) => g.kind === 'video');
 const hasCaptions = images.some((g) => g.title);
 // og:image — картинка этого кейса от 1200 px: og.jpg в папке обложки (оригинал из канала), иначе первая крупная
@@ -56,13 +70,13 @@ const caseSchema = { '@type': 'CreativeWork', name: d.title, headline: d.title, 
           <div class="be-project mx-auto w-full max-w-[1400px]" style={`--be-bg:${ps.bg};--be-gap:${ps.gap}px;--be-pt:${ps.paddingTop}px`}>
             {d.presentation.map((b) => b.kind === 'image' ? (
               <figure class="be-module">
-                <img src={u(b.src!)} alt={d.title} width={b.w} height={b.h} loading="lazy" decoding="async" class="block h-auto w-full" />
+                <img src={u(b.src!)} alt={d.title} width={b.w} height={b.h} loading={b.src === firstPresSrc ? 'eager' : 'lazy'} fetchpriority={b.src === firstPresSrc ? 'high' : undefined} decoding="async" class="block h-auto w-full" />
               </figure>
             ) : b.kind === 'grid' ? (
               <div class="be-module be-grid">
                 {(b.items ?? []).map((it) => (
                   <figure class="be-grid__item" style={`flex-grow:${((it.w ?? 1) / (it.h ?? 1)).toFixed(4)};aspect-ratio:${it.w ?? 1}/${it.h ?? 1}`}>
-                    <img src={u(it.src)} alt={d.title} width={it.w} height={it.h} loading="lazy" decoding="async" class="block h-full w-full object-cover" />
+                    <img src={u(it.src)} alt={d.title} width={it.w} height={it.h} loading={it.src === firstPresSrc ? 'eager' : 'lazy'} fetchpriority={it.src === firstPresSrc ? 'high' : undefined} decoding="async" class="block h-full w-full object-cover" />
                   </figure>
                 ))}
               </div>
@@ -93,7 +107,7 @@ const caseSchema = { '@type': 'CreativeWork', name: d.title, headline: d.title, 
         </div>
         <div class="container-x mt-10" data-reveal>
           <div class="overflow-hidden rounded-xl2 bg-paper-2">
-            <img src={u(d.cover)} alt={d.coverAlt ?? d.title} class="w-full object-cover" decoding="async" />
+            <img src={u(d.cover)} alt={caseCoverAlt(d)} class="w-full object-cover" decoding="async" fetchpriority="high" />
           </div>
         </div>
       </>
@@ -147,10 +161,10 @@ const caseSchema = { '@type': 'CreativeWork', name: d.title, headline: d.title, 
       <div class="container-x mt-14">
         <h2 class="text-2xl font-bold sm:text-3xl" data-reveal>{d.presentation.length ? 'Все буквы по отдельности' : hasCaptions ? 'Буква за буквой' : 'Галерея'} <span class="text-muted">· {images.length}</span></h2>
         <div class:list={['mt-6 grid gap-4', hasCaptions ? 'sm:grid-cols-2 lg:grid-cols-3' : 'grid-cols-2 lg:grid-cols-3']}>
-          {images.map((g) => (
+          {images.map((g, gi) => (
             <figure class="group overflow-hidden rounded-xl2 bg-white ring-1 ring-ink/5" data-reveal>
               <a href={u(g.src)} target="_blank" rel="noopener" class="block aspect-square overflow-hidden bg-paper-2">
-                <img src={u(g.src)} alt={g.title ?? d.title} loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+                <img src={u(g.src)} alt={galleryAlt[gi]} loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
               </a>
               {(g.title || g.caption) && (
                 <figcaption class="p-4">

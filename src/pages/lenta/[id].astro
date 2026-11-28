@@ -4,7 +4,7 @@ import LentaCard from '@/components/LentaCard.astro';
 import { getCollection } from 'astro:content';
 import { u } from '@/lib/url';
 import { hasImage } from '@/lib/imgsize';
-import { getLenta, fmtDate, postTitle, postUrl, linkify } from '@/lib/lenta';
+import { getLenta, caseCoverAlt, fmtDate, postAlt, postTitle, postUrl, linkify } from '@/lib/lenta';
 
 export async function getStaticPaths() {
   const all = await getLenta(); // по убыванию id
@@ -56,7 +56,7 @@ const postSchema = { '@type': 'BlogPosting', headline: shorten(title, 110), date
       <div class="mt-8 space-y-4" data-reveal>
         {d.photos.map((src, i) => (
           <a href={u(src)} target="_blank" rel="noopener" class="block overflow-hidden rounded-xl2 bg-paper-2">
-            <img src={u(src)} alt={`${title} — фото ${i + 1}`} loading={i === 0 ? 'eager' : 'lazy'} decoding="async" class="w-full" />
+            <img src={u(src)} alt={`${postAlt(entry, relatedCase?.data.title)}${d.photos.length > 1 ? `, фото ${i + 1} из ${d.photos.length}` : ''}`} loading={i === 0 ? 'eager' : 'lazy'} decoding="async" class="w-full" />
           </a>
         ))}
         {d.videos.map((v) => (
@@ -83,7 +83,7 @@ const postSchema = { '@type': 'BlogPosting', headline: shorten(title, 110), date
         <h2 class="text-2xl font-bold sm:text-3xl" data-reveal>Весь кейс</h2>
         <div class="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           <a href={u(`/raboty/${relatedCase.id}/`)} class="card group" data-reveal>
-            <div class="aspect-square overflow-hidden bg-paper-2"><img src={u(relatedCase.data.cover)} alt={relatedCase.data.title} loading="lazy" class="h-full w-full object-cover" /></div>
+            <div class="aspect-square overflow-hidden bg-paper-2"><img src={u(relatedCase.data.cover)} alt={caseCoverAlt(relatedCase.data)} loading="lazy" class="h-full w-full object-cover" /></div>
             <div class="p-5"><h3 class="font-display text-lg font-bold group-hover:text-accent transition-colors">{relatedCase.data.title}</h3><p class="mt-2 text-[15px] text-muted line-clamp-2">{relatedCase.data.short}</p></div>
           </a>
         </div>

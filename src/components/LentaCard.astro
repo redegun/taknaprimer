@@ -1,6 +1,7 @@
 ---
 import { u } from '@/lib/url';
-import { fmtDate, postTitle, postUrl, type LentaEntry } from '@/lib/lenta';
+import { getCollection } from 'astro:content';
+import { fmtDate, postAlt, postTitle, postUrl, type LentaEntry } from '@/lib/lenta';
 
 interface Props {
   entry: LentaEntry;
@@ -9,6 +10,7 @@ interface Props {
 const { entry, mode = 'grid' } = Astro.props;
 const d = entry.data;
 const cover = d.photos[0] ?? d.videos[0]?.poster ?? '';
+const caseTitle = d.case ? (await getCollection('cases')).find((c) => c.id === d.case)?.data.title : undefined;
 const isVideo = !d.photos.length && d.videos.length > 0;
 const counts = [d.photos.length > 1 ? `${d.photos.length} фото` : '', d.videos.length ? `${d.videos.length} видео` : ''].filter(Boolean).join(' · ');
 const meta = `${fmtDate(d.date, mode === 'grid')}${counts ? ' · ' + counts : ''}`;
@@ -16,7 +18,7 @@ const meta = `${fmtDate(d.date, mode === 'grid')}${counts ? ' · ' + counts : ''
 <a href={u(postUrl(entry))} class:list={['card', mode === 'carousel' ? 'snap-start w-[78vw] shrink-0 sm:w-[340px]' : '']}>
   <div class:list={['relative overflow-hidden bg-paper-2', mode === 'carousel' ? 'aspect-square' : '']}>
     {cover ? (
-      <img src={u(cover)} alt={postTitle(entry)} loading="lazy" decoding="async" class:list={[mode === 'carousel' ? 'h-full w-full object-cover' : 'w-full']} />
+      <img src={u(cover)} alt={postAlt(entry, caseTitle)} loading="lazy" decoding="async" class:list={[mode === 'carousel' ? 'h-full w-full object-cover' : 'w-full']} />
     ) : (
       <div class="flex aspect-square items-center justify-center font-display text-5xl text-muted">Т,</div>
     )}

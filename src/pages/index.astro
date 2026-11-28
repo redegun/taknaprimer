@@ -40,7 +40,7 @@ const featured = all.filter((c) => c.data.featured && !bigIds.has(c.id)).slice(0
         <a href={u('/raboty/')} class="hidden font-medium underline decoration-line underline-offset-4 hover:text-accent sm:inline">Все работы →</a>
       </div>
       {/* Разные форматы, не однотипные карточки: полотно во всю ширину, тёмная полоса, картинка + текст */}
-      {big.map((c, i) => <BigCase entry={c} flip={i % 2 === 1} stickers={CASE_STICKERS[c.id] ?? []} />)}
+      {big.map((c, i) => <BigCase entry={c} flip={i % 2 === 1} stickers={CASE_STICKERS[c.id] ?? []} priority={i === 0} />)}
     </div>
   )}
 

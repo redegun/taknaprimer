@@ -1,5 +1,6 @@
 ---
 import { u } from '@/lib/url';
+import { caseCoverAlt } from '@/lib/lenta';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
@@ -11,7 +12,7 @@ const d = entry.data;
 ---
 <a href={u(`/raboty/${entry.id}/`)} class="card group" data-tags={d.tags.join('|')} data-reveal>
   <div class:list={['overflow-hidden bg-paper-2', big ? 'aspect-[4/3]' : 'aspect-square']}>
-    <img src={u(d.cover)} alt={d.coverAlt ?? d.title} loading="lazy" decoding="async" class="h-full w-full object-cover" />
+    <img src={u(d.cover)} alt={caseCoverAlt(d)} loading="lazy" decoding="async" class="h-full w-full object-cover" />
   </div>
   <div class="p-5">
     <div class="flex items-baseline justify-between gap-3">

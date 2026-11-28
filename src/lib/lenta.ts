@@ -18,6 +18,18 @@ export function postTitle(e: LentaEntry): string {
   return e.data.title || `Из канала, ${fmtDate(e.data.date, true)}`;
 }
 
+// alt картинки поста (#5384): подпись поста; у буквенных постов («и», «Ё») и постов без подписи —
+// с названием кейса, а не голая буква или «Из канала, <дата>»
+export function postAlt(e: LentaEntry, caseTitle?: string): string {
+  const t = (e.data.title ?? '').trim();
+  if (t.length > 3) return t;
+  if (t) return caseTitle ? `«${t}» — ${caseTitle}` : `«${t}»`;
+  return caseTitle ? `${caseTitle} — фото из канала, ${fmtDate(e.data.date, true)}` : postTitle(e);
+}
+
+// alt обложки кейса (#5384): у кейса-буквы («Ё») — «Буква «Ё»», а не одна буква
+export const caseCoverAlt = (d: { title: string; coverAlt?: string }) => d.coverAlt ?? (/^\p{L}$/u.test(d.title.trim()) ? `Буква «${d.title.trim()}»` : d.title);
+
 export const postUrl = (e: LentaEntry) => `/lenta/${e.data.id}/`;
 
 // Голые ссылки в тексте поста → кликабельные (текст экранируется)
