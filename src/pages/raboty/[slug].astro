@@ -35,7 +35,15 @@ const galleryAlt = images.map((g) => {
   return (altTotal.get(b) ?? 1) > 1 ? `${b}, фото ${n} из ${altTotal.get(b)}` : b;
 });
 // первая картинка полотна Behance — LCP кейса: без lazy и с высоким приоритетом (SEO-TECH-012, #5384)
-const firstPresSrc = d.presentation.flatMap((b) => (b.kind === 'image' && b.src ? [b.src] : b.kind === 'grid' ? (b.items ?? []).map((it) => it.src) : []))[0]; // первая картинка, даже если перед ней текстовый блок
+// LCP кейса (SEO-TECH-012, #5384): eager + fetchpriority=high первым картинкам полотна, пока их суммарная высота
+// (h/w) не дойдёт до 0,6 ширины, но не больше двух. Узкая полоса сверху (Китайщина, 1600×556) на 390 px мала,
+// и LCP становится следующая картинка — её тоже грузим сразу. Текстовые блоки между ними не мешают.
+const presImgs = d.presentation.flatMap((b) => (b.kind === 'image' && b.src ? [{ src: b.src, w: b.w, h: b.h }] : b.kind === 'grid' ? (b.items ?? []) : []));
+const prioritySrc = new Set<string>();
+for (let i = 0, cum = 0; i < presImgs.length && i < 2 && cum < 0.6; i++) {
+  prioritySrc.add(presImgs[i].src);
+  cum += presImgs[i].w && presImgs[i].h ? presImgs[i].h! / presImgs[i].w! : 1;
+}
 const videos = d.gallery.filter((g) => g.kind === 'video');
 const hasCaptions = images.some((g) => g.title);
 // og:image — картинка этого кейса от 1200 px: og.jpg в папке обложки (оригинал из канала), иначе первая крупная
@@ -70,13 +78,13 @@ const caseSchema = { '@type': 'CreativeWork', name: d.title, headline: d.title, 
           <div class="be-project mx-auto w-full max-w-[1400px]" style={`--be-bg:${ps.bg};--be-gap:${ps.gap}px;--be-pt:${ps.paddingTop}px`}>
             {d.presentation.map((b) => b.kind === 'image' ? (
               <figure class="be-module">
-                <img src={u(b.src!)} alt={d.title} width={b.w} height={b.h} loading={b.src === firstPresSrc ? 'eager' : 'lazy'} fetchpriority={b.src === firstPresSrc ? 'high' : undefined} decoding="async" class="block h-auto w-full" />
+                <img src={u(b.src!)} alt={d.title} width={b.w} height={b.h} loading={prioritySrc.has(b.src!) ? 'eager' : 'lazy'} fetchpriority={prioritySrc.has(b.src!) ? 'high' : undefined} decoding="async" class="block h-auto w-full" />
               </figure>
             ) : b.kind === 'grid' ? (
               <div class="be-module be-grid">
                 {(b.items ?? []).map((it) => (
                   <figure class="be-grid__item" style={`flex-grow:${((it.w ?? 1) / (it.h ?? 1)).toFixed(4)};aspect-ratio:${it.w ?? 1}/${it.h ?? 1}`}>
-                    <img src={u(it.src)} alt={d.title} width={it.w} height={it.h} loading={it.src === firstPresSrc ? 'eager' : 'lazy'} fetchpriority={it.src === firstPresSrc ? 'high' : undefined} decoding="async" class="block h-full w-full object-cover" />
+                    <img src={u(it.src)} alt={d.title} width={it.w} height={it.h} loading={prioritySrc.has(it.src) ? 'eager' : 'lazy'} fetchpriority={prioritySrc.has(it.src) ? 'high' : undefined} decoding="async" class="block h-full w-full object-cover" />
                   </figure>
                 ))}
               </div>
