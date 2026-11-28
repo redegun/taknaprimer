@@ -3,7 +3,7 @@ import Layout from '@/layouts/Layout.astro';
 import ProjectForm from '@/components/ProjectForm.astro';
 import { SITE } from '@/lib/url';
 ---
-<Layout title="Контакты" description="Обсудить проект с Татьяной Кочневой, «Так, например» (taknaprimer): леттеринг, айдентика, буквы-объекты, текстиль, печать. Telegram @taknaprimer, почта taknaprimer@yandex.ru.">
+<Layout title="Контакты" description="Обсудить проект с Татьяной Кочневой, «Так, например» (taknaprimer): леттеринг, айдентика, буквы-объекты, текстиль, печать. Telegram @taknaprimer, почта taknaprimer@yandex.ru." social={{ label: 'Контакты', offer: `Telegram @taknaprimer · ${SITE.email}`, photos: ['/about/tanya.webp'] }}>
   <section class="py-12 sm:py-16">
     <div class="container-x">
       <div class="grid gap-8 lg:grid-cols-[1.3fr_1fr] lg:items-end" data-reveal>

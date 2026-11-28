@@ -3,6 +3,7 @@ import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import { readFileSync } from 'node:fs';
+import socialImages from './scripts/social-images.mjs';
 
 // SITE_BASE=/_preview — сборка превью в подпапку на Timeweb; по умолчанию корень.
 const base = process.env.SITE_BASE || '/';
@@ -19,6 +20,7 @@ export default defineConfig({
   build: { format: 'directory', assets: 'assets' },
   compressHTML: true,
   redirects,
-  integrations: [react(), sitemap({ filter: (page) => !Object.keys(redirects).some((r) => page.endsWith(r)) })],
+  // socialImages — своя og:image 1200×630 у каждой страницы (#5106), рисуется после сборки
+  integrations: [react(), sitemap({ filter: (page) => !Object.keys(redirects).some((r) => page.endsWith(r)) }), socialImages()],
   vite: { plugins: [tailwindcss()] },
 });

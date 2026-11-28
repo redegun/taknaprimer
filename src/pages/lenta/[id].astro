@@ -36,7 +36,7 @@ const ogBig = d.photos[0] ? d.photos[0].replace(/\/[^/]+$/, '/og.jpg') : undefin
 const og = ogBig && hasImage(ogBig) ? ogBig : (d.photos[0] ?? d.videos[0]?.poster);
 const postSchema = { '@type': 'BlogPosting', headline: shorten(title, 110), datePublished: d.date.toISOString().slice(0, 10), inLanguage: 'ru-RU', author: { '@id': 'https://taknaprimer.ru/#person' }, publisher: { '@id': 'https://taknaprimer.ru/#person' } };
 ---
-<Layout title={seoTitle} description={description} ogImage={og ? u(og) : undefined} ogType="article" schema={postSchema}>
+<Layout title={seoTitle} description={description} ogImage={og ? u(og) : undefined} ogType="article" schema={postSchema} social={{ title, label: `Лента · ${dateLong}` }}>
   <article class="py-10 sm:py-14">
     <div class="container-x max-w-[900px]">
       <a href={u('/lenta/')} class="text-sm text-muted hover:text-accent">← Лента</a>

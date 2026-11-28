@@ -45,6 +45,13 @@ jobs:
           } > lftp-text.cmds
           lftp -f lftp-text.cmds
           rm -f lftp-text.cmds
+      - name: Sync og:image cards (dist/og belongs to the generator — stale variants are deleted, task 5106)
+        if: hashFiles('dist/og/manifest.json') != ''
+        env:
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASS: ${{ secrets.FTP_PASS }}
+        run: |
+          lftp -e "set dns:order inet; set ftp:ssl-allow no; set ssl:verify-certificate no; open -u $FTP_USER,$FTP_PASS 185.114.245.107; mirror -R --delete --parallel=4 dist/og/ /taknaprimer/public_html/og/; bye"
       - name: Verify live site serves this build
         run: |
           css=$(grep -o 'assets/index\.[A-Za-z0-9_-]*\.css' dist/raboty/index.html | head -1)
@@ -54,3 +61,12 @@ jobs:
             sleep 5
           done
           echo "FAIL: live references '$live', build has '$css'"; exit 1
+      - name: Verify og:image cards on live (1200x630 JPG from scripts/social-images.mjs)
+        run: |
+          for page in "" raboty/ lenta/ merch/; do
+            og=$(grep -o '<meta property="og:image" content="[^"]*"' "dist/${page}index.html" | head -1 | sed 's/.*content="//;s/"$//')
+            case "$og" in */og/*.jpg) ;; *) echo "FAIL: /$page has no og card: $og"; exit 1;; esac
+            r=$(curl -s -o /dev/null -w '%{http_code} %{content_type}' "$og")
+            [ "$r" = "200 image/jpeg" ] || { echo "FAIL: $og -> $r"; exit 1; }
+            echo "OK: /$page -> $og"
+          done

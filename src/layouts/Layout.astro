@@ -3,7 +3,7 @@ import '@/styles/global.css';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import { u, SITE } from '@/lib/url';
-import { imageSize } from '@/lib/imgsize';
+import { imageSize, publicPath } from '@/lib/imgsize';
 
 interface Props {
   title: string;
@@ -15,8 +15,10 @@ interface Props {
   schema?: Record<string, unknown>;
   stickyHeader?: boolean;
   theme?: 'light' | 'dark';
+  // карточка og:image 1200×630 (#5106): название (по умолчанию H1), раздел, фото (по умолчанию ogImage), оффер со страницы
+  social?: { title?: string; label?: string; photos?: string[]; offer?: string };
 }
-const { theme = 'light', title, description = 'Так, например (taknaprimer) — сайт дизайнера Татьяны Кочневой: леттеринг, шрифтовые алфавиты, айдентика, буквы-объекты из бумаги, скотча и ткани.', ogImage, noindex = false, stickyHeader = true, ogType = 'website', schema } = Astro.props;
+const { theme = 'light', title, description = 'Так, например (taknaprimer) — сайт дизайнера Татьяны Кочневой: леттеринг, шрифтовые алфавиты, айдентика, буквы-объекты из бумаги, скотча и ткани.', ogImage, noindex = false, stickyHeader = true, ogType = 'website', schema, social } = Astro.props;
 // Бренд в каждом title: кириллицей и слитно латиницей — по нему ищут
 const fullTitle = title === SITE.name ? `Так, например (taknaprimer) — ${SITE.person}, дизайнер: леттеринг и айдентика` : `${title} — Так, например · taknaprimer`;
 const isPreview = import.meta.env.BASE_URL !== '/';
@@ -27,6 +29,15 @@ const ogSize = await imageSize(og);
 const pageNode = schema
   ? { ...schema, url: canonical, mainEntityOfPage: canonical, image: { '@type': 'ImageObject', url: og, ...(ogSize ? { width: ogSize[0], height: ogSize[1] } : {}) } }
   : null;
+// og:image рисует scripts/social-images.mjs после сборки по этим данным и подменяет meta og:image/twitter:image.
+// JSON-LD остаётся с фото страницы. Кейс или пост со своим фото от 1200 px (узел JSON-LD, ветка Discover #2122) —
+// раскладка photo: работа целиком без заголовка. Превью и noindex — без карточки.
+const discoverPhoto = !!(schema && ogImage && ogSize && ogSize[0] >= 1200);
+const socialMeta = (noindex || isPreview) ? null : JSON.stringify({
+  m: discoverPhoto ? 'photo' : 'card',
+  t: social?.title, l: social?.label, o: social?.offer,
+  p: (discoverPhoto ? [og] : social?.photos ?? (ogImage ? [ogImage] : [])).map(publicPath),
+});
 const jsonLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@graph': [
@@ -58,6 +69,7 @@ const jsonLd = JSON.stringify({
     <meta name="twitter:image" content={og} />
     <meta property="og:locale" content="ru_RU" />
     <meta property="og:site_name" content="Так, например (taknaprimer)" />
+    {socialMeta && <meta name="tn-social" content={socialMeta} />}
     <script type="application/ld+json" set:html={jsonLd} />
     <meta name="theme-color" content={theme === 'dark' ? '#1e1e1e' : '#faf8f3'} />
     <script is:inline>document.documentElement.classList.add('js');</script>

@@ -4,7 +4,7 @@ import MerchForm from '@/components/MerchForm.astro';
 import { u, uv } from '@/lib/url';
 import { MERCH, MERCH_GROUPS } from '@/data/merch';
 ---
-<Layout title="Вещи из кейсов — можно заказать" description="Худи, свитшоты, футболки, брошь из бисера, значки, стикеры и плакаты из кейсов Татьяны Кочневой («Так, например», taknaprimer). Каждую вещь можно заказать — цена индивидуальная.">
+<Layout title="Вещи из кейсов — можно заказать" description="Худи, свитшоты, футболки, брошь из бисера, значки, стикеры и плакаты из кейсов Татьяны Кочневой («Так, например», taknaprimer). Каждую вещь можно заказать — цена индивидуальная." social={{ label: 'Можно заказать', offer: 'Цена — индивидуально', photos: MERCH.slice(0, 4).map((m) => m.images[0]) }}>
   <section class="py-12 sm:py-16">
     <div class="container-x">
       <div class="grid gap-6 lg:grid-cols-[1.2fr_1fr] lg:items-end" data-reveal>

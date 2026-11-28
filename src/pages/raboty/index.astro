@@ -8,7 +8,7 @@ const all = (await getCollection('cases', ({ data }) => !data.draft)).sort((a, b
 const used = new Set(all.flatMap((c) => c.data.tags));
 const tags = TAGS.filter((t) => used.has(t));
 ---
-<Layout title="Работы" description="Работы Татьяны Кочневой, «Так, например» (taknaprimer): алфавиты, леттеринг, буквы-объекты, каллиграфия, печать. Кейсы с Behance и Telegram-канала.">
+<Layout title="Работы" description="Работы Татьяны Кочневой, «Так, например» (taknaprimer): алфавиты, леттеринг, буквы-объекты, каллиграфия, печать. Кейсы с Behance и Telegram-канала." social={{ label: 'Алфавиты, леттеринг, буквы-объекты', photos: all.slice(0, 4).map((c) => c.data.cover) }}>
   <section class="py-12 sm:py-16">
     <div class="container-x">
       <h1 class="text-4xl font-bold sm:text-6xl" data-reveal>Работы</h1>

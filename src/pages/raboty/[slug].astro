@@ -42,7 +42,7 @@ else {
 }
 const caseSchema = { '@type': 'CreativeWork', name: d.title, headline: d.title, description: d.short, dateCreated: String(d.year), inLanguage: 'ru-RU', author: { '@id': 'https://taknaprimer.ru/#person' }, creator: { '@id': 'https://taknaprimer.ru/#person' } };
 ---
-<Layout title={d.title} description={`${d.short} Кейс «${d.title}» — Татьяна Кочнева, «Так, например» (taknaprimer).`.slice(0, 300)} ogImage={u(ogSrc)} ogType="article" schema={caseSchema} stickyHeader={false} theme={d.theme}>
+<Layout title={d.title} description={`${d.short} Кейс «${d.title}» — Татьяна Кочнева, «Так, например» (taknaprimer).`.slice(0, 300)} ogImage={u(ogSrc)} ogType="article" schema={caseSchema} social={{ title: d.title, label: `Кейс · ${d.year}` }} stickyHeader={false} theme={d.theme}>
   <CaseDock slug={entry.id} title={d.title} behance={d.links.behance} dprofile={d.links.dprofile} />
   <article>
     {hasPres ? (

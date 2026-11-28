@@ -18,7 +18,7 @@ const steps = [
   ['Изготовление', 'Делаем и отправляем. Срок зависит от вещи и тиража.'],
 ];
 ---
-<Layout title={`${m.title} — можно заказать`} description={`${m.title}: ${m.text} Вещь из кейса Татьяны Кочневой («Так, например», taknaprimer) — можно заказать, цена индивидуальная.`.slice(0, 300)} ogImage={u(m.images[0])}>
+<Layout title={`${m.title} — можно заказать`} description={`${m.title}: ${m.text} Вещь из кейса Татьяны Кочневой («Так, например», taknaprimer) — можно заказать, цена индивидуальная.`.slice(0, 300)} ogImage={u(m.images[0])} social={{ title: m.title, label: `${m.group} · ${m.collection}`, offer: m.handmade ? 'Ручная работа · цена индивидуально' : 'Можно заказать · цена индивидуально' }}>
   <section class="py-10 sm:py-14">
     <div class="container-x">
       <a href={u('/merch/')} class="text-sm text-muted hover:text-accent">← Все вещи из кейсов</a>
