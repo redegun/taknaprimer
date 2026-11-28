@@ -35,7 +35,7 @@ const galleryAlt = images.map((g) => {
   return (altTotal.get(b) ?? 1) > 1 ? `${b}, фото ${n} из ${altTotal.get(b)}` : b;
 });
 // первая картинка полотна Behance — LCP кейса: без lazy и с высоким приоритетом (SEO-TECH-012, #5384)
-const firstPresSrc = (() => { const b = d.presentation[0]; return b?.kind === 'image' ? b.src : b?.kind === 'grid' ? b.items?.[0]?.src : undefined; })();
+const firstPresSrc = d.presentation.flatMap((b) => (b.kind === 'image' && b.src ? [b.src] : b.kind === 'grid' ? (b.items ?? []).map((it) => it.src) : []))[0]; // первая картинка, даже если перед ней текстовый блок
 const videos = d.gallery.filter((g) => g.kind === 'video');
 const hasCaptions = images.some((g) => g.title);
 // og:image — картинка этого кейса от 1200 px: og.jpg в папке обложки (оригинал из канала), иначе первая крупная
